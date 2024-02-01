@@ -9,3 +9,5 @@ Brainstorming of project ideas:
 JDK version used: Java 18
 IDE: IntelliJ with Maven
 
+Link to Google Docs file: https://docs.google.com/document/d/15QwcgjwSmCxJUP0zNxNb6lPk_swcd3uP-b2F3EU2cig/edit
+
