@@ -2,7 +2,7 @@
 This is the ReadME!
 
 # General Info on the Project
-JDK version: Java 18
+JDK version: 18
 
 IDE: IntelliJ
 
