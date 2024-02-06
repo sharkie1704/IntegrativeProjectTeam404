@@ -1,14 +1,6 @@
 # Integrative Project of Team 404
 This is the ReadME!
 
-Brainstorming of project ideas:
-
--Graphing calculator with derivative/integral
-
--Single-slit diffraction experiment
-
--Mirrors/lenses and object/image position
-
 # General Info on the Project
 JDK version: Java 18
 
