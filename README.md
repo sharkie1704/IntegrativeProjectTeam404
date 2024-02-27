@@ -1,5 +1,5 @@
-# Integrative Project of Team 404
-This is the ReadME!
+# The Light Matrix Escape
+This is the ReadME. The Integrative Project of Team 404 consists in a light maze game where the player
 
 # General Info on the Project
 JDK version: 18
