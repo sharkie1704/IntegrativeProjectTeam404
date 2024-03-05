@@ -24,6 +24,14 @@ dependencies {
     compileOnly  "org.openjfx:javafx-controls:20.0.2:javadoc"
     compileOnly  "org.openjfx:javafx-fxml:20.0.2:javadoc"
     compileOnly  "org.openjfx:javafx-graphics:20.0.2:javadoc"
+
+
+	compileOnly 'org.projectlombok:lombok:1.18.30'
+	annotationProcessor 'org.projectlombok:lombok:1.18.30'
+	
+	testCompileOnly 'org.projectlombok:lombok:1.18.30'
+	testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
+
 }
 //-- Loads the JavaFX modules of the selected JavaFX version.
 javafx {    
