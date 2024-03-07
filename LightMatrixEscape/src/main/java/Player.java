@@ -9,4 +9,8 @@ public class Player {
     private String username;
     private int levelProgress;
     private int score;
+
+    public static void saveProgress() {
+        //code
+    }
 }

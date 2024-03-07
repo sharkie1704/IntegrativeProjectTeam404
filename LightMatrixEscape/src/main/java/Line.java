@@ -1,12 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 
-/**
- *
- * @author 2279307
- */
 public class Line {
-    
+
+    private double startPointX;
+    private double startPointY;
+    private double endPointX;
+    private double endPointY;
+    private double angleXAxis;
+
+    public static double calcAngle() {
+        //Code to be added
+        return 0;
+    }
 }
