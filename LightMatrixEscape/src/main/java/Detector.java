@@ -5,6 +5,6 @@ public class Detector {
     private boolean detectedLight;
 
     public static void detectLight() {
-        //code
+        
     }
 }

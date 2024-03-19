@@ -8,7 +8,6 @@ public class Line {
     private double angleXAxis;
 
     public static double calcAngle() {
-        //Code to be added
         return 0;
     }
 }

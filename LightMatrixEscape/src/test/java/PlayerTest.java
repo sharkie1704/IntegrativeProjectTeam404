@@ -8,14 +8,14 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Player {
+public class PlayerTest {
 
     private String username;
     private int levelProgress;
     private int score;
     File progressFile = new File("player/progress.txt");
 
-    public Player(String username, int levelProgress, int score) {
+    public PlayerTest(String username, int levelProgress, int score) {
         this.username = username;
         this.levelProgress = levelProgress;
         this.score = score;

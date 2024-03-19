@@ -5,6 +5,6 @@ public class Mirror extends Line {
     private MirrorType mirrorType;
     
     public static void changeCoordinates() {
-        //code
+
     }
 }
