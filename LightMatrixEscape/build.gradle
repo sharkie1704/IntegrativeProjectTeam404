@@ -1,6 +1,20 @@
 plugins {
   id 'application'
   id 'org.openjfx.javafxplugin' version '0.1.0'
+  id 'jacoco'
+}
+
+jacoco {
+    toolVersion = "0.8.11"
+    reportsDirectory = layout.buildDirectory.dir("customJacocoReportDir")
+}
+
+tasks.jacocoTestReport {
+    reports {
+        xml.required = false
+        csv.required = false
+        html.outputLocation = layout.buildDirectory.dir("jacocoHtml")
+    }
 }
 
 repositories {
