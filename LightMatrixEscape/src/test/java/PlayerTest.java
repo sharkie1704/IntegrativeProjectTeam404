@@ -8,6 +8,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
+
 public class PlayerTest {
 
     private String username;
@@ -20,7 +21,7 @@ public class PlayerTest {
         this.levelProgress = levelProgress;
         this.score = score;
     }
-
+    
     public void saveProgress() {
         String scoreData = "The player " + username + " has a score of " + score;
         String progressData = "The player " + username + " is at level " + levelProgress;
