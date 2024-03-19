@@ -15,6 +15,7 @@ public class PlayerTest {
     private String username;
     private int levelProgress;
     private int score;
+    String str = null;
     File progressFile = new File("player/progress.txt");
 
     public PlayerTest() {
@@ -28,10 +29,9 @@ public class PlayerTest {
         Files.saveToFile(scoreData, progressFile);
         Files.saveToFile("/n" + progressData, progressFile);
     }
-    
-    @Test
+
     public int importProgress() throws IOException {
-        String str = null;
+
         try (BufferedReader reader = new BufferedReader(new FileReader(progressFile))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -39,6 +39,7 @@ public class PlayerTest {
                     if (line.startsWith("The player " + username + " has a score of ")) {
                         str = line.substring(line.length() - 2);
                         levelProgress = Integer.parseInt(str);
+                        System.out.println(levelProgress);
                     }
                 }
             }

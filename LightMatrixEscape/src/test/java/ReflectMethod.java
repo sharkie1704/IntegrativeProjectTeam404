@@ -3,7 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.scene.Scene;
@@ -11,17 +10,19 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Line;
 import javafx.stage.Stage;
+import org.junit.jupiter.api.Test;
 
 /**
  *
  * @author Hongyan Li
  */
 public class ReflectMethod extends Application {
-    
+
     public static void main(String[] args) {
         launch(args);
     }
 
+    @Test
     @Override
     public void start(Stage primaryStage) {
         Pane root = new Pane();
@@ -35,10 +36,10 @@ public class ReflectMethod extends Application {
         Line wall = new Line(200, 50, 200, 350);
         wall.setStroke(Color.GRAY);
         root.getChildren().add(wall);
-        
+
         Line ReflectRay = new Line(200, 50, 200, 350);
-            ReflectRay.setStroke(Color.TRANSPARENT);
-            root.getChildren().addAll(ReflectRay);
+        ReflectRay.setStroke(Color.TRANSPARENT);
+        root.getChildren().addAll(ReflectRay);
 
         //Click the mouse to change the incident light and reflected light
         root.setOnMouseClicked(event -> {
@@ -58,13 +59,12 @@ public class ReflectMethod extends Application {
 
             // Calculate the reflection angle of light
             double reflectedAngle = incidentAngle;
-            System.out.println("reflectedAngle "+reflectedAngle+ " ; reflectedAngle "+reflectedAngle);
+            System.out.println("reflectedAngle " + reflectedAngle + " ; reflectedAngle " + reflectedAngle);
 
             // Calculate the end point coordinates of the reflected light, assuming the length is 200
-            double[] reflectedRayEndPoint = calculateReflectRayEndPoint(intersection,reflectedAngle,200,C,D);
-            double reflectedRayEndX=reflectedRayEndPoint[0];
-            double reflectedRayEndY=reflectedRayEndPoint[1];
-            
+            double[] reflectedRayEndPoint = calculateReflectRayEndPoint(intersection, reflectedAngle, 200, C, D);
+            double reflectedRayEndX = reflectedRayEndPoint[0];
+            double reflectedRayEndY = reflectedRayEndPoint[1];
 
             //Set ReflectRay proporties
             ReflectRay.setStartX(intersection[0]);
@@ -73,24 +73,19 @@ public class ReflectMethod extends Application {
             ReflectRay.setEndY(reflectedRayEndY);
             ReflectRay.setStroke(Color.BLACK);
 
-            
-            
         });
 
-        
         Scene scene = new Scene(root, 400, 400);
         primaryStage.setTitle("Reflection Game");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
-    
-
+    @Test
     public static double[] findIntersection(double[] A, double[] B, double[] C, double[] D) {
 
         //A and B are the starting and ending coordinates of the ray
         //C and D are the starting and ending coordinates of the wall
-        
         double[] AB = {B[0] - A[0], B[1] - A[1]};
         double[] CD = {D[0] - C[0], D[1] - C[1]};
         double[] AC = {C[0] - A[0], C[1] - A[1]};
@@ -109,24 +104,20 @@ public class ReflectMethod extends Application {
 
         // return Intersection point
         return P;
-       
+
     }
-    
-    
-    
+
     public static double findIncidentAngle(double[] A, double[] B, double[] C, double[] D) {
         //A and B are the starting and ending coordinates of the ray
         //C and D are the starting and ending coordinates of the wall
 
-
-           // Calculate vectors AB and CD
+        // Calculate vectors AB and CD
         double[] AB = {B[0] - A[0], B[1] - A[1]};
         double[] CD = {D[0] - C[0], D[1] - C[1]};
 
         // Calculate the dot product of vectors AB and CD
         double dotProduct = AB[0] * CD[0] + AB[1] * CD[1];
 
-        
         // Calculate the modulus of vectors AB and CD
         double magnitudeAB = Math.sqrt(AB[0] * AB[0] + AB[1] * AB[1]);
         double magnitudeCD = Math.sqrt(CD[0] * CD[0] + CD[1] * CD[1]);
@@ -140,14 +131,12 @@ public class ReflectMethod extends Application {
         return angleDegrees;
 
     }
-    
-    
+
     public static double[] calculateReflectRayEndPoint(double[] intersection, double angle, double lengthCD, double[] A, double[] B) {
         //A and B are the starting and ending coordinates of the wall
         //intersection is the starting point coordinate of the reflected light, which is the point where it intersects with AB
-         //angle is the angle between the reflected light and the wall
+        //angle is the angle between the reflected light and the wall
         //lengthCD is the length of the reflected light
-        
 
         // Calculate the length and direction vector of line segment AB
         double lengthAB = Math.sqrt(Math.pow(B[0] - A[0], 2) + Math.pow(B[1] - A[1], 2));
@@ -167,8 +156,5 @@ public class ReflectMethod extends Application {
 
         return D;
     }
-    
-    
+
 }
-
-
