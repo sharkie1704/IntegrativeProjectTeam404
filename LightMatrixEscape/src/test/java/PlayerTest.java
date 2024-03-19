@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import lombok.Getter;
 import lombok.Setter;
+import org.junit.jupiter.api.Test;
 
 @Getter
 @Setter
@@ -16,12 +17,10 @@ public class PlayerTest {
     private int score;
     File progressFile = new File("player/progress.txt");
 
-    public PlayerTest(String username, int levelProgress, int score) {
-        this.username = username;
-        this.levelProgress = levelProgress;
-        this.score = score;
+    public PlayerTest() {
     }
-    
+
+    @Test
     public void saveProgress() {
         String scoreData = "The player " + username + " has a score of " + score;
         String progressData = "The player " + username + " is at level " + levelProgress;
@@ -29,7 +28,8 @@ public class PlayerTest {
         Files.saveToFile(scoreData, progressFile);
         Files.saveToFile("/n" + progressData, progressFile);
     }
-
+    
+    @Test
     public int importProgress() throws IOException {
         String str = null;
         try (BufferedReader reader = new BufferedReader(new FileReader(progressFile))) {
@@ -42,7 +42,7 @@ public class PlayerTest {
                     }
                 }
             }
-            
+
         }
         return levelProgress;
     }
