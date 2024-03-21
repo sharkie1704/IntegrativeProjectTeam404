@@ -10,4 +10,6 @@
 public class Prism {
     private double angleIncidentBeam;
     private double indexOfRefraction;
+    
+//    public static void prism
 }
