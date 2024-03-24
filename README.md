@@ -32,6 +32,7 @@ Summary:
 
 - The JUnit testing framework was added to the code and is fully functional
 
+- The base auto-save feature code has been added
 
 Issues:
 
