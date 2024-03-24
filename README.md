@@ -13,3 +13,26 @@ IDE: Netbeans
 Build System: Gradle
 
 Link to Google Docs file: https://docs.google.com/document/d/15QwcgjwSmCxJUP0zNxNb6lPk_swcd3uP-b2F3EU2cig/edit?usp=sharing
+
+
+
+
+# Build 1
+Summary:
+
+- The refracted and reflection methods were implemented and are fully functional
+
+- The main classes (lines, mirror, etc.) have been created
+
+- The controllers have been created
+
+- The base scene and stage have been linked with fxml
+
+- The Lombok library was added to the code and is fully functional
+
+- The JUnit testing framework was added to the code and is fully functional
+
+
+Issues:
+
+- There is a compatibility problem with the UI when loading a stage from an fxml file
