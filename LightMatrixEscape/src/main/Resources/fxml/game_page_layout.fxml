@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<Pane fx:id="gamePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fx:id="backgroundImageView" fitHeight="1080.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true" />
+      <Pane fx:id="actionPane" layoutX="129.0" layoutY="112.0" prefHeight="849.0" prefWidth="1655.0" />
+      <ImageView fx:id="volumeImageView" fitHeight="82.0" fitWidth="90.0" layoutX="1374.0" layoutY="974.0" pickOnBounds="true" preserveRatio="true" />
+      <Slider layoutX="1521.0" layoutY="984.0" prefHeight="62.0" prefWidth="227.0" />
+      <Text fx:id="scoreText" layoutX="181.0" layoutY="1023.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+      <Text fx:id="usernameText" layoutX="172.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+      <Text fx:id="levelText" layoutX="1645.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Level">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Text>
+   </children>
+</Pane>

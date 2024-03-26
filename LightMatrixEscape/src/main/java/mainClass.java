@@ -1,5 +1,8 @@
 
+import controllerPackage.MainAppController;
+import java.io.IOException;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
@@ -15,76 +18,86 @@ public class mainClass extends Application {
     }
     
     @Override
-    public void start(Stage primaryStage) {
-        Pane root = new Pane();
-
-        // create ray
-        Line lightRay = new Line(50, 200, 350, 200);
-        lightRay.setStroke(Color.BLACK);
-        root.getChildren().add(lightRay);
-
-        // create wall
-        Line wall = new Line(200, 50, 200, 350);
-        wall.setStroke(Color.GRAY);
-        root.getChildren().add(wall);
-
-        Line RefractRay = new Line(200, 50, 200, 350);
-        RefractRay.setStroke(Color.TRANSPARENT);
-        root.getChildren().addAll(RefractRay);
-
-        Line Normal = new Line(200, 50, 200, 350);
-        RefractRay.setStroke(Color.BURLYWOOD);
-        root.getChildren().add(Normal);
-
-        ReflectMethods ReflectMethodsOne=new ReflectMethods();
+    public void start(Stage primaryStage) throws IOException {
+       
+        FXMLLoader loader = new FXMLLoader(
+                getClass().getResource("/fxml/main_page_layout.fxml")
         
-        //Click the mouse to change the incident light and Refracted light
-        root.setOnMouseClicked(event -> {
-
-            // Update the end point of the light
-            double[] A = {50, 200}; // The starting point of line segment AB (ray
-            double[] B = {event.getX(), event.getY()}; // The end point of line segment AB (ray
-            double[] C = {200, 50}; // The starting point of line segment CD (wall
-            double[] D = {200, 350}; // The end point of line segment CD (wall
-
-            double[] intersection = ReflectMethodsOne.findIntersection(A, B, C, D);
-            lightRay.setEndX(intersection[0]);
-            lightRay.setEndY(intersection[1]);
-
-            //Set Normal proporties
-            double[] NoramlStartPoint = ReflectMethodsOne.calculateNormalStartPoint(C, D, intersection);
-            double[] NoramlEndPoint = ReflectMethodsOne.calculateNormalEndPoint(C, D, intersection); //FInd the Normal endpoint      
-            Normal.setStartX(NoramlStartPoint[0]);
-            Normal.setStartY(NoramlStartPoint[1]);
-            Normal.setEndX(NoramlEndPoint[0]);
-            Normal.setEndY(NoramlEndPoint[1]);
-            Normal.setStroke(Color.DARKSALMON);
-
-            // Calculate the incident angle of light
-//            double incidentAngle =  Math.toRadians(Math.abs(findIncidentAngle(A, B, C, D)-90));
-            double incidentAngle = Math.toRadians(ReflectMethodsOne.findIncidentAngle(A, B, C, D) - 90);
-
-            // Calculate the Refraction angle of light
-            double refractedAngle = -Math.toDegrees(Math.asin(Math.sin(incidentAngle) / 1.33));
-            System.out.println("incidentAngle " + incidentAngle + " ; RefractedAngle " + refractedAngle);
-
-            // Calculate the end point coordinates of the Refracted light, assuming the length is 200
-            double[] RefractedRayEndPoint = ReflectMethodsOne.calculateRefractRayEndPoint(intersection, refractedAngle, 200, NoramlStartPoint, NoramlEndPoint);
-            double RefractedRayEndX = RefractedRayEndPoint[0];
-            double RefractedRayEndY = RefractedRayEndPoint[1];
-
-            //Set RefractRay proporties
-            RefractRay.setStartX(intersection[0]);
-            RefractRay.setStartY(intersection[1]);
-            RefractRay.setEndX(RefractedRayEndX);
-            RefractRay.setEndY(RefractedRayEndY);
-            RefractRay.setStroke(Color.BLACK);
-        });
-
-        Scene scene = new Scene(root, 400, 400);
+            );
+        MainAppController fxmlController = new MainAppController();
+        loader.setController(fxmlController);
+        fxmlController.giveStage(primaryStage);
+        
+        Pane root = loader.load();
+        Scene scene = new Scene(root);
         primaryStage.setTitle("Refraction Game");
         primaryStage.setScene(scene);
         primaryStage.show();
+        
+//        // create ray
+//        Line lightRay = new Line(50, 200, 350, 200);
+//        lightRay.setStroke(Color.BLACK);
+//        root.getChildren().add(lightRay);
+//
+//        // create wall
+//        Line wall = new Line(200, 50, 200, 350);
+//        wall.setStroke(Color.GRAY);
+//        root.getChildren().add(wall);
+//
+//        Line RefractRay = new Line(200, 50, 200, 350);
+//        RefractRay.setStroke(Color.TRANSPARENT);
+//        root.getChildren().addAll(RefractRay);
+//
+//        Line Normal = new Line(200, 50, 200, 350);
+//        RefractRay.setStroke(Color.BURLYWOOD);
+//        root.getChildren().add(Normal);
+//
+//        ReflectMethods ReflectMethodsOne=new ReflectMethods();
+//        
+//        //Click the mouse to change the incident light and Refracted light
+//        root.setOnMouseClicked(event -> {
+//
+//            // Update the end point of the light
+//            double[] A = {50, 200}; // The starting point of line segment AB (ray
+//            double[] B = {event.getX(), event.getY()}; // The end point of line segment AB (ray
+//            double[] C = {200, 50}; // The starting point of line segment CD (wall
+//            double[] D = {200, 350}; // The end point of line segment CD (wall
+//
+//            double[] intersection = ReflectMethodsOne.findIntersection(A, B, C, D);
+//            lightRay.setEndX(intersection[0]);
+//            lightRay.setEndY(intersection[1]);
+//
+//            //Set Normal proporties
+//            double[] NoramlStartPoint = ReflectMethodsOne.calculateNormalStartPoint(C, D, intersection);
+//            double[] NoramlEndPoint = ReflectMethodsOne.calculateNormalEndPoint(C, D, intersection); //FInd the Normal endpoint      
+//            Normal.setStartX(NoramlStartPoint[0]);
+//            Normal.setStartY(NoramlStartPoint[1]);
+//            Normal.setEndX(NoramlEndPoint[0]);
+//            Normal.setEndY(NoramlEndPoint[1]);
+//            Normal.setStroke(Color.DARKSALMON);
+//
+//            // Calculate the incident angle of light
+////            double incidentAngle =  Math.toRadians(Math.abs(findIncidentAngle(A, B, C, D)-90));
+//            double incidentAngle = Math.toRadians(ReflectMethodsOne.findIncidentAngle(A, B, C, D) - 90);
+//
+//            // Calculate the Refraction angle of light
+//            double refractedAngle = -Math.toDegrees(Math.asin(Math.sin(incidentAngle) / 1.33));
+//            System.out.println("incidentAngle " + incidentAngle + " ; RefractedAngle " + refractedAngle);
+//
+//            // Calculate the end point coordinates of the Refracted light, assuming the length is 200
+//            double[] RefractedRayEndPoint = ReflectMethodsOne.calculateRefractRayEndPoint(intersection, refractedAngle, 200, NoramlStartPoint, NoramlEndPoint);
+//            double RefractedRayEndX = RefractedRayEndPoint[0];
+//            double RefractedRayEndY = RefractedRayEndPoint[1];
+//
+//            //Set RefractRay proporties
+//            RefractRay.setStartX(intersection[0]);
+//            RefractRay.setStartY(intersection[1]);
+//            RefractRay.setEndX(RefractedRayEndX);
+//            RefractRay.setEndY(RefractedRayEndY);
+//            RefractRay.setStroke(Color.BLACK);
+//        });
+
+        
     }
 
     
