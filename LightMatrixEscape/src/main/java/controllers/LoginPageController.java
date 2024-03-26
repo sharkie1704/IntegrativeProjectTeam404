@@ -1,5 +1,5 @@
 
-package controllerPackage;
+package controllers;
 
 import java.io.IOException;
 import java.util.logging.Level;
