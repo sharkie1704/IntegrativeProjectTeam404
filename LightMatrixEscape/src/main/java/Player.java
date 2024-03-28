@@ -1,8 +1,5 @@
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,28 +18,12 @@ public class Player {
         this.score = score;
     }
 
+    //This method saves the progress of the player to access it when they log back into the game
     public void saveProgress() {
-        String scoreData = "The player " + username + " has a score of " + score;
-        String progressData = "The player " + username + " is at level " + levelProgress;
-
+        String scoreData = "The player " + username + "'s score: " + score;
+        String progressData = "The player " + username + " is at level: " + levelProgress;
+        
         Files.saveToFile(scoreData, progressFile);
-        Files.saveToFile("/n" + progressData, progressFile);
-    }
-
-    public int importProgress() throws IOException {
-        String str = null;
-        try (BufferedReader reader = new BufferedReader(new FileReader(progressFile))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (!line.isEmpty()) {
-                    if (line.startsWith("The player " + username + " has a score of ")) {
-                        str = line.substring(line.length() - 2);
-                        levelProgress = Integer.parseInt(str);
-                    }
-                }
-            }
-            
-        }
-        return levelProgress;
+        Files.saveToFile("/n" + progressData + "/n/n", progressFile);
     }
 }

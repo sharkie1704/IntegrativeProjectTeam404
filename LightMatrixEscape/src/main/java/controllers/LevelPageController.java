@@ -1,4 +1,3 @@
-
 package controllers;
 
 import javafx.fxml.FXML;
@@ -7,17 +6,16 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 
 public class LevelPageController {
+
     @FXML
-    ImageView backgroundImageView,volumeImageView;
-    
+    ImageView backgroundImageView, volumeImageView;
+
     @FXML
-    Pane gamePane,actionPane;
-    
+    Pane gamePane, actionPane;
+
     @FXML
-    Text scoreText,usernameText,levelText;
-    
-    
-    public void initialize(){
-        
+    Text scoreText, usernameText, levelText;
+
+    public void initialize() {
     }
 }

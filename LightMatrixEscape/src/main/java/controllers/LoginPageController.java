@@ -1,4 +1,3 @@
-
 package controllers;
 
 import java.io.IOException;
@@ -13,29 +12,29 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 public class LoginPageController {
+
     @FXML
     Pane accountPane;
-    
+
     @FXML
-    TextField logInTextField,signInTextField;
-    
+    TextField logInTextField, signInTextField;
+
     @FXML
     Button continuebtn;
-    
+
     Stage stage;
-    
-    public void initialize(){
-        
-        continuebtn.setOnAction((event)->{
-        
-         //if (verification()){
+
+    public void initialize() {
+
+        continuebtn.setOnAction((event) -> {
+
+            //if (verification()){
             FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/fxml/account_page_layout.fxml")
-        
+                    getClass().getResource("/fxml/account_page_layout.fxml")
             );
             LevelPageController fxmlController = new LevelPageController();
             loader.setController(fxmlController);
-            
+
             Pane root = null;
             try {
                 root = loader.load();
@@ -44,26 +43,21 @@ public class LoginPageController {
             }
             Scene scene = new Scene(root);
             stage.setScene(scene);
-         //}
+            //}
         });
-    
     }
-    
-    public Stage giveStage(Stage stage){
+
+    public Stage giveStage(Stage stage) {
         return this.stage = stage;
     }
-    
+
     //In this method, the username received from the textfield will be filtered
-    public void verification(String name){
+    public void verification(String name) {
         //if the username was typed in the signIn the method will look if it is in the username file
-            //if it isn't there then it will show an error message
-        
+        //if it isn't there then it will show an error message
+
         //if the username was typed in the logIn, the method will look if it is also in the username file
-            //if it is in it, then it will show an error message
-        
-        //the username was typed in the two textfield then it will show an error message
-        
+        //if it is in it, then it will show an error message
+        //the username was typed in the two textfield then it will show an error message   
     }
-   
-    
 }

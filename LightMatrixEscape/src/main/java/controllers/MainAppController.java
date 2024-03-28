@@ -20,25 +20,26 @@ import javafx.stage.Stage;
  * @author Ntela
  */
 public class MainAppController {
+
     @FXML
-    ImageView titleImageView,startImageView;
-    
+    ImageView titleImageView, startImageView;
+
     Stage stage;
+
     //don't forget to make it so that when you click on the image you'll open a new scene
-    public void initialize(){
+    public void initialize() {
         //Image title = new Image(getClass().getResourceAsStream("insert the image address"));
         //Image start = new Image(getClass().getResourceAsStream("insert the image address"));
         //titleImageView.setImage(title);
         //startImageView.setImage(start);  
-        
-        startImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, event->{
+
+        startImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/fxml/account_page_layout.fxml")
-        
+                    getClass().getResource("/fxml/account_page_layout.fxml")
             );
             LoginPageController fxmlController = new LoginPageController();
             loader.setController(fxmlController);
-        
+
             fxmlController.giveStage(stage);
             Pane root = null;
             try {
@@ -50,10 +51,8 @@ public class MainAppController {
             stage.setScene(scene);
         });
     }
-    
-    
-    public Stage giveStage(Stage stage){
+
+    public Stage giveStage(Stage stage) {
         return this.stage = stage;
     }
-
 }
