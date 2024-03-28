@@ -17,150 +17,151 @@ import org.junit.jupiter.api.Test;
  *
  * @author Hongyan Li
  */
-public class RefractMethod extends Application {
+//public class RefractMethod extends Application {
+public class RefractMethod {
 
-    public static void main(String[] args) {
-        launch(args);
-    }
-
-    @Test
-    @Override
-    public void start(Stage primaryStage) {
-        Pane root = new Pane();
-
-        // create ray
-        Line lightRay = new Line(50, 25 + 100 * Math.sqrt(3),
-                50, 25 + 100 * Math.sqrt(3));
-        lightRay.setStroke(Color.BLACK);
-        root.getChildren().add(lightRay);
-
-        // create left line of Prism
-        Line leftLineOfPrism = new Line(200, 25,
-                100, 25 + 100 * Math.sqrt(3)); //  /  
-        leftLineOfPrism.setStroke(Color.GRAY);
-
-        root.getChildren().add(leftLineOfPrism);
-
-        //create right line of Prism
-        Line rightLineOfPrism = new Line(200, 25,
-                300, 25 + 100 * Math.sqrt(3));  // \  
-        rightLineOfPrism.setStroke(Color.GRAY);
-        root.getChildren().add(rightLineOfPrism);
-
-        //create bottom line of Prism
-        Line bottomLineOfPrism = new Line(100, 25 + 100 * Math.sqrt(3),
-                300, 25 + 100 * Math.sqrt(3));  // _  
-        bottomLineOfPrism.setStroke(Color.GRAY);
-        root.getChildren().add(bottomLineOfPrism);
-
-        Line firstRefractRay = new Line(200, 50, 200, 350);
-        firstRefractRay.setStroke(Color.TRANSPARENT);
-        root.getChildren().addAll(firstRefractRay);
-
-        Line secondRefractRay = new Line(200, 50, 200, 350);
-        secondRefractRay.setStroke(Color.TRANSPARENT);
-        root.getChildren().addAll(secondRefractRay);
-
-        Line firstNormal = new Line(50, 200, 50, 200); //random place
-        firstNormal.setStroke(Color.TRANSPARENT);
-        root.getChildren().add(firstNormal);
-
-        Line secondNormal = new Line(50, 200, 50, 200); //random place
-        secondNormal.setStroke(Color.TRANSPARENT);
-        root.getChildren().add(secondNormal);
-
-        //Click the mouse to change the incident light and Refracted light
-        root.setOnMouseClicked(event -> {
-
-            RefractMethods reflectMethodsOne = new RefractMethods();
-
-            double[] startingPointOfRay = {50, 200}; // The starting point of ray
-            double[] endingPointOfRay = {event.getX(), event.getY()}; // The end point of ray
-            double[] startingPointOfLeftLineOfPrism = {leftLineOfPrism.getStartX(),
-                leftLineOfPrism.getStartY()}; // The starting point of /
-            double[] endingPointOfLeftLineOfPrism = {leftLineOfPrism.getEndX(),
-                leftLineOfPrism.getEndY()}; // The end point of line /
-            double[] startingPointOfRightLineOfPrism = {rightLineOfPrism.getStartX(),
-                rightLineOfPrism.getStartY()}; // The starting point of line \
-            double[] endingPointOfRightLineOfPrism = {rightLineOfPrism.getEndX(),
-                rightLineOfPrism.getEndY()}; // The end point of line \
-
-            double[] reflectRayStartPoint = reflectMethodsOne.findIntersection(
-                    startingPointOfRay,
-                    endingPointOfRay,
-                    startingPointOfLeftLineOfPrism,
-                    endingPointOfLeftLineOfPrism);
-
-            double refractedAngleOne = reflectMethodsOne.FindrefractedAngle(
-                    startingPointOfRay, endingPointOfRay,
-                    startingPointOfLeftLineOfPrism,
-                    endingPointOfLeftLineOfPrism, "Glass");
-
-            double[] firstNoramlStartPoint = reflectMethodsOne.calculateNormalStartPoint(
-                    startingPointOfLeftLineOfPrism,
-                    endingPointOfLeftLineOfPrism,
-                    reflectRayStartPoint);
-
-            double[] firstNoramlEndPoint = reflectMethodsOne.calculateNormalEndPoint(
-                    startingPointOfLeftLineOfPrism,
-                    endingPointOfLeftLineOfPrism,
-                    reflectRayStartPoint);
-
-            double[] firstRefractedRayEndPoint = reflectMethodsOne.calculateRefractRayEndPoint(
-                    reflectRayStartPoint, refractedAngleOne,
-                    200, firstNoramlStartPoint,
-                    firstNoramlEndPoint);
-
-            lightRay.setEndX(reflectRayStartPoint[0]);
-            lightRay.setEndY(reflectRayStartPoint[1]);
-
-            //make sure the ray only reflect when touching the prism
-            if (reflectRayStartPoint[1] < leftLineOfPrism.getEndY()
-                    && reflectRayStartPoint[1] > leftLineOfPrism.getStartY()) {
-                //First Reflection
-                reflectMethodsOne.reflectThings(startingPointOfRay, endingPointOfRay,
-                        startingPointOfLeftLineOfPrism, endingPointOfLeftLineOfPrism, lightRay,
-                        firstNormal, firstRefractRay, "Glass");
-                System.out.println("Yes");
-
-                if (firstRefractedRayEndPoint[1] < rightLineOfPrism.getEndY()
-                        && firstRefractedRayEndPoint[1] > rightLineOfPrism.getStartY()) {
-                    //Second Reflection
-                    reflectMethodsOne.reflectThings(reflectRayStartPoint,
-                            firstRefractedRayEndPoint, startingPointOfRightLineOfPrism,
-                            endingPointOfRightLineOfPrism, lightRay, secondNormal,
-                            secondRefractRay, "Air");
-
-                    // Find intersection between ReflectRay and PrismTwoC-D
-                    double[] intersectionSecond = reflectMethodsOne.findIntersection(
-                            reflectRayStartPoint,
-                            firstRefractedRayEndPoint,
-                            startingPointOfRightLineOfPrism, endingPointOfRightLineOfPrism);
-
-                    firstRefractRay.setEndX(intersectionSecond[0]);
-                    firstRefractRay.setEndY(intersectionSecond[1]);
-                } else { //if the lightTwo in wrong place
-                    secondRefractRay.setStroke(Color.TRANSPARENT);
-                    secondNormal.setStroke(Color.TRANSPARENT);
-                }
-            } //if the lightOne in wrong place
-            else {
-                lightRay.setEndX(event.getX());
-                lightRay.setEndY(event.getY());
-                firstRefractRay.setStroke(Color.TRANSPARENT);
-                secondRefractRay.setStroke(Color.TRANSPARENT);
-                firstNormal.setStroke(Color.TRANSPARENT);
-                secondNormal.setStroke(Color.TRANSPARENT);
-//                System.out.println("No");
-            }
-
-        });
-
-        Scene scene = new Scene(root, 400, 400);
-        primaryStage.setTitle("Refraction Game");
-        primaryStage.setScene(scene);
-        primaryStage.show();
-    }
+//    public static void main(String[] args) {
+//        launch(args);
+//    }
+//
+//    @Test
+//    @Override
+//    public void start(Stage primaryStage) {
+//        Pane root = new Pane();
+//
+//        // create ray
+//        Line lightRay = new Line(50, 25 + 100 * Math.sqrt(3),
+//                50, 25 + 100 * Math.sqrt(3));
+//        lightRay.setStroke(Color.BLACK);
+//        root.getChildren().add(lightRay);
+//
+//        // create left line of Prism
+//        Line leftLineOfPrism = new Line(200, 25,
+//                100, 25 + 100 * Math.sqrt(3)); //  /  
+//        leftLineOfPrism.setStroke(Color.GRAY);
+//
+//        root.getChildren().add(leftLineOfPrism);
+//
+//        //create right line of Prism
+//        Line rightLineOfPrism = new Line(200, 25,
+//                300, 25 + 100 * Math.sqrt(3));  // \  
+//        rightLineOfPrism.setStroke(Color.GRAY);
+//        root.getChildren().add(rightLineOfPrism);
+//
+//        //create bottom line of Prism
+//        Line bottomLineOfPrism = new Line(100, 25 + 100 * Math.sqrt(3),
+//                300, 25 + 100 * Math.sqrt(3));  // _  
+//        bottomLineOfPrism.setStroke(Color.GRAY);
+//        root.getChildren().add(bottomLineOfPrism);
+//
+//        Line firstRefractRay = new Line(200, 50, 200, 350);
+//        firstRefractRay.setStroke(Color.TRANSPARENT);
+//        root.getChildren().addAll(firstRefractRay);
+//
+//        Line secondRefractRay = new Line(200, 50, 200, 350);
+//        secondRefractRay.setStroke(Color.TRANSPARENT);
+//        root.getChildren().addAll(secondRefractRay);
+//
+//        Line firstNormal = new Line(50, 200, 50, 200); //random place
+//        firstNormal.setStroke(Color.TRANSPARENT);
+//        root.getChildren().add(firstNormal);
+//
+//        Line secondNormal = new Line(50, 200, 50, 200); //random place
+//        secondNormal.setStroke(Color.TRANSPARENT);
+//        root.getChildren().add(secondNormal);
+//
+//        //Click the mouse to change the incident light and Refracted light
+//        root.setOnMouseClicked(event -> {
+//
+//            RefractMethods reflectMethodsOne = new RefractMethods();
+//
+//            double[] startingPointOfRay = {50, 200}; // The starting point of ray
+//            double[] endingPointOfRay = {event.getX(), event.getY()}; // The end point of ray
+//            double[] startingPointOfLeftLineOfPrism = {leftLineOfPrism.getStartX(),
+//                leftLineOfPrism.getStartY()}; // The starting point of /
+//            double[] endingPointOfLeftLineOfPrism = {leftLineOfPrism.getEndX(),
+//                leftLineOfPrism.getEndY()}; // The end point of line /
+//            double[] startingPointOfRightLineOfPrism = {rightLineOfPrism.getStartX(),
+//                rightLineOfPrism.getStartY()}; // The starting point of line \
+//            double[] endingPointOfRightLineOfPrism = {rightLineOfPrism.getEndX(),
+//                rightLineOfPrism.getEndY()}; // The end point of line \
+//
+//            double[] reflectRayStartPoint = reflectMethodsOne.findIntersection(
+//                    startingPointOfRay,
+//                    endingPointOfRay,
+//                    startingPointOfLeftLineOfPrism,
+//                    endingPointOfLeftLineOfPrism);
+//
+//            double refractedAngleOne = reflectMethodsOne.FindrefractedAngle(
+//                    startingPointOfRay, endingPointOfRay,
+//                    startingPointOfLeftLineOfPrism,
+//                    endingPointOfLeftLineOfPrism, "Glass");
+//
+//            double[] firstNoramlStartPoint = reflectMethodsOne.calculateNormalStartPoint(
+//                    startingPointOfLeftLineOfPrism,
+//                    endingPointOfLeftLineOfPrism,
+//                    reflectRayStartPoint);
+//
+//            double[] firstNoramlEndPoint = reflectMethodsOne.calculateNormalEndPoint(
+//                    startingPointOfLeftLineOfPrism,
+//                    endingPointOfLeftLineOfPrism,
+//                    reflectRayStartPoint);
+//
+//            double[] firstRefractedRayEndPoint = reflectMethodsOne.calculateRefractRayEndPoint(
+//                    reflectRayStartPoint, refractedAngleOne,
+//                    200, firstNoramlStartPoint,
+//                    firstNoramlEndPoint);
+//
+//            lightRay.setEndX(reflectRayStartPoint[0]);
+//            lightRay.setEndY(reflectRayStartPoint[1]);
+//
+//            //make sure the ray only reflect when touching the prism
+//            if (reflectRayStartPoint[1] < leftLineOfPrism.getEndY()
+//                    && reflectRayStartPoint[1] > leftLineOfPrism.getStartY()) {
+//                //First Reflection
+//                reflectMethodsOne.reflectThings(startingPointOfRay, endingPointOfRay,
+//                        startingPointOfLeftLineOfPrism, endingPointOfLeftLineOfPrism, lightRay,
+//                        firstNormal, firstRefractRay, "Glass");
+//                System.out.println("Yes");
+//
+//                if (firstRefractedRayEndPoint[1] < rightLineOfPrism.getEndY()
+//                        && firstRefractedRayEndPoint[1] > rightLineOfPrism.getStartY()) {
+//                    //Second Reflection
+//                    reflectMethodsOne.reflectThings(reflectRayStartPoint,
+//                            firstRefractedRayEndPoint, startingPointOfRightLineOfPrism,
+//                            endingPointOfRightLineOfPrism, lightRay, secondNormal,
+//                            secondRefractRay, "Air");
+//
+//                    // Find intersection between ReflectRay and PrismTwoC-D
+//                    double[] intersectionSecond = reflectMethodsOne.findIntersection(
+//                            reflectRayStartPoint,
+//                            firstRefractedRayEndPoint,
+//                            startingPointOfRightLineOfPrism, endingPointOfRightLineOfPrism);
+//
+//                    firstRefractRay.setEndX(intersectionSecond[0]);
+//                    firstRefractRay.setEndY(intersectionSecond[1]);
+//                } else { //if the lightTwo in wrong place
+//                    secondRefractRay.setStroke(Color.TRANSPARENT);
+//                    secondNormal.setStroke(Color.TRANSPARENT);
+//                }
+//            } //if the lightOne in wrong place
+//            else {
+//                lightRay.setEndX(event.getX());
+//                lightRay.setEndY(event.getY());
+//                firstRefractRay.setStroke(Color.TRANSPARENT);
+//                secondRefractRay.setStroke(Color.TRANSPARENT);
+//                firstNormal.setStroke(Color.TRANSPARENT);
+//                secondNormal.setStroke(Color.TRANSPARENT);
+////                System.out.println("No");
+//            }
+//
+//        });
+//
+//        Scene scene = new Scene(root, 400, 400);
+//        primaryStage.setTitle("Refraction Game");
+//        primaryStage.setScene(scene);
+//        primaryStage.show();
+//    }
 
     @Test
     /**
