@@ -9,23 +9,40 @@ import javafx.scene.paint.Color;
 
 /**
  *
- * @author 2254403
+ * @author Hongyan Li
  */
 public class RefractMethods {
 
+    /**
+     *
+     * @param startPointOfRayA
+     * @param endPointOfRayB
+     * @param startPointOfPrismC
+     * @param endPointOfPrismD
+     * @param lightRay
+     * @param normal
+     * @param refractRay
+     * @param Type //glass or air
+     */
+    //An overall method that add some methods together
     public static void reflectThings(double[] startPointOfRayA, double[] endPointOfRayB,
             double[] startPointOfPrismC, double[] endPointOfPrismD, Line lightRay,
             Line normal, Line refractRay, String Type) {
 
         // Update the end point of the Ray
-        double[] intersection = findIntersection(startPointOfRayA, endPointOfRayB,
-                startPointOfPrismC, endPointOfPrismD);
+        double[] intersection = findIntersection(
+                startPointOfRayA,
+                endPointOfRayB,
+                startPointOfPrismC,
+                endPointOfPrismD);
 
         //Set Normal's proporties
-        double[] normalOneStartPoint = calculateNormalStartPoint(startPointOfPrismC,
+        double[] normalOneStartPoint = calculateNormalStartPoint(
+                startPointOfPrismC,
                 endPointOfPrismD, intersection);
-        double[] noramlOneEndPoint = calculateNormalEndPoint(startPointOfPrismC,
-                endPointOfPrismD, intersection); //FInd the Normal endpoint      
+        double[] noramlOneEndPoint = calculateNormalEndPoint(
+                startPointOfPrismC,
+                endPointOfPrismD, intersection); //Find the Normal endpoint      
         normal.setStartX(normalOneStartPoint[0]);
         normal.setStartY(normalOneStartPoint[1]);
         normal.setEndX(noramlOneEndPoint[0]);
@@ -38,7 +55,9 @@ public class RefractMethods {
 
         // Calculate the end point coordinates of the Refracted light, assuming the length is 200
         double[] refractedRayOneEndPoint = calculateRefractRayEndPoint(intersection,
-                refractedAngleOne, 200, normalOneStartPoint, noramlOneEndPoint);
+                refractedAngleOne, 200,
+                normalOneStartPoint,
+                noramlOneEndPoint);
         double refractedRayOneEndX = refractedRayOneEndPoint[0];
         double refractedRayOneEndY = refractedRayOneEndPoint[1];
 
@@ -49,11 +68,18 @@ public class RefractMethods {
         refractRay.setEndY(refractedRayOneEndY);
         refractRay.setStroke(Color.BLACK);
 
-        System.out.println(Type + Arrays.toString(intersection));
-
+//        System.out.println(Type + Arrays.toString(intersection));
     }
 
-   public static double findIncidentAngle(double[] startingCoordinateOfRayA, 
+    /**
+     *
+     * @param startingCoordinateOfRayA
+     * @param endingCoordinateOfRayB
+     * @param startingCoordinateOfWallC
+     * @param endingCoordinateOfWallD
+     * @return Incident Angle
+     */
+    public static double findIncidentAngle(double[] startingCoordinateOfRayA,
             double[] endingCoordinateOfRayB, double[] startingCoordinateOfWallC,
             double[] endingCoordinateOfWallD) {
         //A and B are the starting and ending coordinates of the ray
@@ -62,7 +88,7 @@ public class RefractMethods {
         // Calculate vectors AB and CD
         double[] ab = {endingCoordinateOfRayB[0] - startingCoordinateOfRayA[0],
             endingCoordinateOfRayB[1] - startingCoordinateOfRayA[1]};
-        double[] cd = {endingCoordinateOfWallD[0] - startingCoordinateOfWallC[0], 
+        double[] cd = {endingCoordinateOfWallD[0] - startingCoordinateOfWallC[0],
             endingCoordinateOfWallD[1] - startingCoordinateOfWallC[1]};
 
         // Calculate the dot product of vectors AB and CD
@@ -73,7 +99,7 @@ public class RefractMethods {
         double magnitudeCD = Math.sqrt(cd[0] * cd[0] + cd[1] * cd[1]);
 
         // Calculate the angle
-        double cosTheta = dotProduct / (magnitudeAB * magnitudeCD);  
+        double cosTheta = dotProduct / (magnitudeAB * magnitudeCD);
         double angleRadians = Math.acos(cosTheta);
         double angleDegrees = Math.toDegrees(angleRadians);
 
@@ -82,13 +108,22 @@ public class RefractMethods {
 
     }
 
-    public static double FindrefractedAngle(double[] startPointOfRayA, 
-            double[] endPointOfRayB, double[] startPointOfPrismC, 
+    /**
+     *
+     * @param startPointOfRayA
+     * @param endPointOfRayB
+     * @param startPointOfPrismC
+     * @param endPointOfPrismD
+     * @param Type glass/air
+     * @return
+     */
+    public static double FindrefractedAngle(double[] startPointOfRayA,
+            double[] endPointOfRayB, double[] startPointOfPrismC,
             double[] endPointOfPrismD, String Type) {
 
         // Calculate the incident angle of light
 //            double incidentAngle =  Math.toRadians(Math.abs(findIncidentAngle(A, B, C, D)-90));
-        double incidentAngle = Math.toRadians(findIncidentAngle(startPointOfRayA, 
+        double incidentAngle = Math.toRadians(findIncidentAngle(startPointOfRayA,
                 endPointOfRayB, startPointOfPrismC,
                 endPointOfPrismD) - 90);
         double refractedAngle = 0;
@@ -108,16 +143,24 @@ public class RefractMethods {
         return refractedAngle;
     }
 
-    public static double[] findIntersection(double[] startingCoordinateOfFirstLineA, 
+    /**
+     *
+     * @param startingCoordinateOfFirstLineA
+     * @param endingCoordinateOfFirstLineB
+     * @param startingCoordinateOfSecondLineC
+     * @param endingCoordinateOfSecondLineD
+     * @return Intersection point of two lines
+     */
+    public static double[] findIntersection(double[] startingCoordinateOfFirstLineA,
             double[] endingCoordinateOfFirstLineB, double[] startingCoordinateOfSecondLineC,
             double[] endingCoordinateOfSecondLineD) {
 
         // Calculate vectors ab,cd and ac
-        double[] ab = {endingCoordinateOfFirstLineB[0] - startingCoordinateOfFirstLineA[0], 
+        double[] ab = {endingCoordinateOfFirstLineB[0] - startingCoordinateOfFirstLineA[0],
             endingCoordinateOfFirstLineB[1] - startingCoordinateOfFirstLineA[1]};
-        double[] cd = {endingCoordinateOfSecondLineD[0] - startingCoordinateOfSecondLineC[0], 
+        double[] cd = {endingCoordinateOfSecondLineD[0] - startingCoordinateOfSecondLineC[0],
             endingCoordinateOfSecondLineD[1] - startingCoordinateOfSecondLineC[1]};
-        double[] ac = {startingCoordinateOfSecondLineC[0] - startingCoordinateOfFirstLineA[0], 
+        double[] ac = {startingCoordinateOfSecondLineC[0] - startingCoordinateOfFirstLineA[0],
             startingCoordinateOfSecondLineC[1] - startingCoordinateOfFirstLineA[1]};
 
         double denominator = ab[0] * cd[1] - ab[1] * cd[0];
@@ -137,8 +180,17 @@ public class RefractMethods {
 
     }
 
-    public static double[] calculateRefractRayEndPoint(double[] intersection, 
-            double angle, double lengthOfTheRefractedLight, 
+    /**
+     *
+     * @param intersection
+     * @param angle
+     * @param lengthOfTheRefractedLight
+     * @param startingCoordinateOfWallA
+     * @param endingCoordinateOfWallB
+     * @return refract ray's end point
+     */
+    public static double[] calculateRefractRayEndPoint(double[] intersection,
+            double angle, double lengthOfTheRefractedLight,
             double[] startingCoordinateOfWallA, double[] endingCoordinateOfWallB) {
         //A and B are the starting and ending coordinates of the wall
         //intersection is the starting point coordinate of the Refracted light, 
@@ -147,8 +199,8 @@ public class RefractMethods {
         //lengthOfTheRefractedLight is the length of the Refracted light
 
         // Calculate the length and direction vector of line segment AB
-        double lengthAB = Math.sqrt(Math.pow(endingCoordinateOfWallB[0] 
-                - startingCoordinateOfWallA[0], 2) 
+        double lengthAB = Math.sqrt(Math.pow(endingCoordinateOfWallB[0]
+                - startingCoordinateOfWallA[0], 2)
                 + Math.pow(endingCoordinateOfWallB[1] - startingCoordinateOfWallA[1], 2));
         double[] abVector = {(endingCoordinateOfWallB[0] - startingCoordinateOfWallA[0]) / lengthAB,
             (endingCoordinateOfWallB[1] - startingCoordinateOfWallA[1]) / lengthAB};
@@ -169,6 +221,13 @@ public class RefractMethods {
         return RefractRayEndPoint;
     }
 
+    /**
+     *
+     * @param startingCoordinateOfWallA
+     * @param endingCoordinateOfWallB
+     * @param intersection //intersection of ray and wall
+     * @return normal's start point
+     */
     public static double[] calculateNormalStartPoint(double[] startingCoordinateOfWallA,
             double[] endingCoordinateOfWallB, double[] intersection) {
 
@@ -176,7 +235,7 @@ public class RefractMethods {
         double lengthOfNormal = 200;
 
         // Calculate the unit vector of line segment AB
-        double[] abVector = {(endingCoordinateOfWallB[0] - startingCoordinateOfWallA[0]), 
+        double[] abVector = {(endingCoordinateOfWallB[0] - startingCoordinateOfWallA[0]),
             (endingCoordinateOfWallB[1] - startingCoordinateOfWallA[1])};
         double lengthAB = Math.sqrt(abVector[0] * abVector[0] + abVector[1] * abVector[1]);
         abVector[0] /= lengthAB;
@@ -186,14 +245,21 @@ public class RefractMethods {
         double[] perpendicularVector = {-abVector[1], abVector[0]};
 
         // Calculate Start Point of mormal
-        double[] startPointOfNormal = {intersection[0] + 0.5 * lengthOfNormal * perpendicularVector[0], 
+        double[] startPointOfNormal = {intersection[0] + 0.5 * lengthOfNormal * perpendicularVector[0],
             intersection[1] + 0.5 * lengthOfNormal * perpendicularVector[1]};
-        
+
         return startPointOfNormal;
 
     }
 
-    public static double[] calculateNormalEndPoint(double[] startingCoordinateOfWallA, 
+    /**
+     *
+     * @param startingCoordinateOfWallA
+     * @param endingCoordinateOfWallB
+     * @param intersection //intersection of ray and wall
+     * @return normal's end point
+     */
+    public static double[] calculateNormalEndPoint(double[] startingCoordinateOfWallA,
             double[] endingCoordinateOfWallB, double[] intersection) {
 
         //Assume the length of normal is 200

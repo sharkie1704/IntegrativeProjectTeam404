@@ -5,10 +5,18 @@
 
 /**
  *
- * @author lidai
+ * @author Hongyan Li
  */
 public class ReflectMethods {
 
+    /**
+     *
+     * @param startingCoordinateOfFirstLineA
+     * @param endingCoordinateOfFirstLineB
+     * @param startingCoordinateOfSecondLineC
+     * @param endingCoordinateOfSecondLineD
+     * @return Intersection point between two line
+     */
     public static double[] findIntersection(double[] startingCoordinateOfFirstLineA,
             double[] endingCoordinateOfFirstLineB, double[] startingCoordinateOfSecondLineC,
             double[] endingCoordinateOfSecondLineD) {
@@ -38,6 +46,14 @@ public class ReflectMethods {
 
     }
 
+    /**
+     *
+     * @param startingCoordinateOfRayA
+     * @param endingCoordinateOfRayB
+     * @param startingCoordinateOfWallC
+     * @param endingCoordinateOfWallD
+     * @return incident angle
+     */
     public static double findIncidentAngle(double[] startingCoordinateOfRayA,
             double[] endingCoordinateOfRayB, double[] startingCoordinateOfWallC,
             double[] endingCoordinateOfWallD) {
@@ -67,8 +83,19 @@ public class ReflectMethods {
 
     }
 
+    /**
+     *
+     * @param intersection //intersection is the starting point coordinate of
+     * //the reflected light, which is the point where it //intersects with the
+     * wall
+     * @param angleReflected
+     * @param lengthOfReflectedLightCD
+     * @param startingCoordinateOfWallA
+     * @param endingCoordinateOfWallB
+     * @return
+     */
     public static double[] calculateReflectRayEndPoint(double[] intersection,
-            double angle, double lengthOfReflectedLightCD, double[] startingCoordinateOfWallA,
+            double angleReflected, double lengthOfReflectedLightCD, double[] startingCoordinateOfWallA,
             double[] endingCoordinateOfWallB) {
         //A and B are the starting and ending coordinates of the wall
         //intersection is the starting point coordinate of the reflected light, which is the point where it intersects with AB
@@ -82,7 +109,7 @@ public class ReflectMethods {
             (endingCoordinateOfWallB[1] - startingCoordinateOfWallA[1]) / lengthAB};
 
         //Convert angle to radians
-        double angleRadians = Math.toRadians(angle);
+        double angleRadians = Math.toRadians(angleReflected);
 
         // Calculate the direction vector of line segment CD
         double[] CDVector = {
@@ -97,6 +124,13 @@ public class ReflectMethods {
         return reflectRayEndPoint;
     }
 
+    /**
+     *
+     * @param startingCoordinateOfWallA
+     * @param endingCoordinateOfWallB
+     * @param intersection //intersection of ray and wall
+     * @return the start point of normal
+     */
     public static double[] calculateNormalStartPoint(double[] startingCoordinateOfWallA,
             double[] endingCoordinateOfWallB, double[] intersection) {
 
@@ -121,6 +155,13 @@ public class ReflectMethods {
 
     }
 
+    /**
+     *
+     * @param startingCoordinateOfWallA
+     * @param endingCoordinateOfWallB
+     * @param intersection //intersection of ray and wall
+     * @return the end point of normal
+     */
     public static double[] calculateNormalEndPoint(double[] startingCoordinateOfWallA,
             double[] endingCoordinateOfWallB, double[] intersection) {
 
@@ -138,7 +179,8 @@ public class ReflectMethods {
         double[] perpendicularVector = {-abVector[1], abVector[0]};
 
         // Calculate Normal end Point
-        double[] endPointOfNormal = {intersection[0] - 0.5 * lengthOfNormal * perpendicularVector[0], intersection[1] - 0.5 * lengthOfNormal * perpendicularVector[1]};
+        double[] endPointOfNormal = {intersection[0] - 0.5 * lengthOfNormal * perpendicularVector[0],
+            intersection[1] - 0.5 * lengthOfNormal * perpendicularVector[1]};
         return endPointOfNormal;
 
     }
