@@ -50,14 +50,14 @@ public class LoginPageControllerTest {
                 getClass().getResource("/fxml/account_page_layout.fxml")
             );
             
-            LevelPageController fxmlController = new LevelPageController();
+            LevelPageControllerTest fxmlController = new LevelPageControllerTest();
             loader.setController(fxmlController);
             
             Pane root = null;
             try {
                 root = loader.load();
             } catch (IOException ex) {
-                Logger.getLogger(MainAppController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(LoginPageControllerTest.class.getName()).log(Level.SEVERE, null, ex);
             }
             Scene scene = new Scene(root);
             stage.setScene(scene);

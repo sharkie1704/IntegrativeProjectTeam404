@@ -39,7 +39,7 @@ public class LoginPageController {
             try {
                 root = loader.load();
             } catch (IOException ex) {
-                Logger.getLogger(MainAppController.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(LoginPageController.class.getName()).log(Level.SEVERE, null, ex);
             }
             Scene scene = new Scene(root);
             stage.setScene(scene);

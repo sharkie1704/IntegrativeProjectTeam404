@@ -6,26 +6,25 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<Pane fx:id="gamePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="gamePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="backgroundImageView" fitHeight="1080.0" fitWidth="1920.0" pickOnBounds="true" preserveRatio="true" />
-      <Pane fx:id="actionPane" layoutX="129.0" layoutY="112.0" prefHeight="849.0" prefWidth="1655.0" />
-      <ImageView fx:id="volumeImageView" fitHeight="82.0" fitWidth="90.0" layoutX="1374.0" layoutY="974.0" pickOnBounds="true" preserveRatio="true" />
-      <Slider layoutX="1521.0" layoutY="984.0" prefHeight="62.0" prefWidth="227.0" />
-      <Text fx:id="scoreText" layoutX="181.0" layoutY="1023.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score">
+      <ImageView fx:id="backgroundImageView" fitHeight="850.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true" />
+      <Pane fx:id="actionPane" layoutX="100.0" layoutY="112.0" prefHeight="650.0" prefWidth="1000.0" />
+      <ImageView fx:id="volumeImageView" fitHeight="75.0" fitWidth="80.0" layoutX="841.0" layoutY="769.0" pickOnBounds="true" preserveRatio="true" />
+      <Slider layoutX="950.0" layoutY="778.0" prefHeight="50.0" prefWidth="184.0" />
+      <Text fx:id="scoreText" layoutX="100.0" layoutY="812.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score">
          <font>
-            <Font size="30.0" />
+            <Font size="24.0" />
          </font>
       </Text>
-      <Text fx:id="usernameText" layoutX="172.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
+      <Text fx:id="usernameText" layoutX="100.0" layoutY="70.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username">
          <font>
-            <Font size="30.0" />
+            <Font size="24.0" />
          </font>
       </Text>
-      <Text fx:id="levelText" layoutX="1645.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Level">
+      <Text fx:id="levelText" layoutX="1008.0" layoutY="72.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Level">
          <font>
-            <Font size="30.0" />
+            <Font size="24.0" />
          </font>
       </Text>
    </children>
