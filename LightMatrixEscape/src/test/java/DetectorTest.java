@@ -1,8 +1,9 @@
 
 import javafx.geometry.Bounds;
 import javafx.scene.shape.Rectangle;
+import org.junit.jupiter.api.Test;
 
-@Test
+
 public class DetectorTest {
     //Still in work
     private Colour colour;

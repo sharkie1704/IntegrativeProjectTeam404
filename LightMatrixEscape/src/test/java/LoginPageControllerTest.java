@@ -16,43 +16,43 @@ import org.junit.jupiter.api.Test;
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-
 /**
  *
  * @author 2280592
  */
 public class LoginPageControllerTest {
-@FXML
-    Pane accountPane;
-    
+
     @FXML
-    TextField logInTextField,signInTextField;
-    
+    Pane accountPane;
+
+    @FXML
+    TextField logInTextField, signInTextField;
+
     @FXML
     Button continuebtn;
-    
+
     Stage stage;
-    String s= "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ_.";
+    String permitedChar = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ_.";
     String login = null;
     String signin = null;
-    
+
     @Test
-    public void initialize(){
-        
-        continuebtn.setOnAction((event)->{
-            
-        login = logInTextField.getText();
-        
-        signin = signInTextField.getText();
-        
-         //if (verification(login,signin)){
+    public void initialize() {
+
+        continuebtn.setOnAction((event) -> {
+
+            login = logInTextField.getText();
+
+            signin = signInTextField.getText();
+
+            //if (verification(login,signin)){
             FXMLLoader loader = new FXMLLoader(
-                getClass().getResource("/fxml/account_page_layout.fxml")
+                    getClass().getResource("/fxml/account_page_layout.fxml")
             );
-            
+
             LevelPageControllerTest fxmlController = new LevelPageControllerTest();
             loader.setController(fxmlController);
-            
+
             Pane root = null;
             try {
                 root = loader.load();
@@ -61,110 +61,110 @@ public class LoginPageControllerTest {
             }
             Scene scene = new Scene(root);
             stage.setScene(scene);
-         //}
-         
+            //}
+
         });
-    
+
     }
-    
-    public Stage giveStage(Stage stage){
+
+    public Stage giveStage(Stage stage) {
         return this.stage = stage;
     }
-    
+
     //In this method, the username received from the textfield will be filtered
     @Test
-    public boolean verification(String log,String sign){
-        
-        //if 1. both together are not empty and 2. one of them is empty
-        if((log.isEmpty()^sign.isEmpty())){
+    public boolean verification(String log, String sign) {
+
+        //Makes sure that one of the two string is empty
+        if (( (log.isEmpty()||log == null) ^ (sign.isEmpty()|| sign == null) )) {
             //!(log.isEmpty() && sign.isEmpty()) && (log.isEmpty() || sign.isEmpty())
             // use the one above if the code doesn't work
-            
-            if(!log.isEmpty()){
-                if(login.length()>12){
-                //showError("size")
-                //return false
-                }else{
-                    for (int i =0;i<log.length();i++){
+
+            if (!log.isEmpty()) {
+                if (login.length() > 12) {
+                    //showError("size")
+                    login= null;
+                    //return false
+                } else {
+                    for (int i = 0; i < log.length(); i++) {
                         String letter = Character.toString(log.charAt(i));
-                        if(!s.contains(letter)){
-                        //calls error method that shows that a character is not accepted
-                        //showError("invalid")
-                        return false;
+                        if (!permitedChar.contains(letter)) {
+                            //calls error method that shows that a character is not accepted
+                            //showError("invalid")
+                            login = null;
+                            return false;
                         }
                     }
+                    
+                     //here put some code that reads the file and make sure that it exists
                 }
                 //
-                
-                
-                //here put some code that reads the file and make sure that it exists
-                
-                
-            }else{ //the signin option
-                for (int i =0;i<sign.length();i++){
-                String letter = Character.toString(sign.charAt(i));
-                    if(!s.contains(letter)){
+
+               
+            } else { //the signin option
+                for (int i = 0; i < sign.length(); i++) {
+                    String letter = Character.toString(sign.charAt(i));
+                    if (!permitedChar.contains(letter)) {
                         //calls error method that shows that a character is not accepted
                         //showError("invalid")
-                        
+                        signin = null;
                     }
                 }
                 //here put some code that reads the file and make sure that it isn't already used
             }
-           
-        }else if(log.isEmpty() && sign.isEmpty()){
+
+        } else if ((log.isEmpty()||log == null ) && (sign.isEmpty()||sign == null)) {
             //gets error that shows that both sets have no value showError("empty")
+            
             return false;
         }
-            //gets error that shows that both sets are used  showError("bothfull")
-            return false;
-        
-        
+        //gets error that shows that both sets are used  showError("bothfull")
+            login = null;
+            signin = null;
+        return false;
+
         //if the username was typed in the signIn the method will look if it is in the username file
-            //if it isn't there then it will show an error message
-            
+        //if it isn't there then it will show an error message
 //        for (int i =0;i<name.length();i++){
 //            String letter = Character.toString(name.charAt(i));
 //            if(s.contains(letter)!= true){
 //                
 //            }
 //        }
-        
-        
     }
-   
+
     @Test
-    private void showError(String problem){
-        Alert  error = new Alert(Alert.AlertType.ERROR);
-        String header="";
-        String content="";
-        switch(problem){
+    private void showError(String problem) {
+        Alert error = new Alert(Alert.AlertType.ERROR);
+        String header = "";
+        String content = "";
+        switch (problem) {
             case "empty": //both textfields are empty
-                          header = "Nothing has been inputed";
-                          content = "The game won't start if you don't put a username";
-                    
+                header = "Nothing has been inputed";
+                content = "The game won't start if you don't put a username";
+
             case "bothfull": //both textfields are used
-                          header = "Both textfield are used";
-                          content = "You can only enter your username in login or sign in";
-                
+                header = "Both textfield are used";
+                content = "You can only enter your username in login or sign in";
+
             case "used": //the username has already been used (sign in)
-                          header = "This username is already taken";
-                          content = "Either log in or find another usernmae";
-                
+                header = "This username is already taken";
+                content = "Either log in or find another usernmae";
+
             case "new": //the username has never been used (log in)
-                          header = "This username is not registered";
-                          content = "Either sign in with this username or ...";
-                
+                header = "This username is not registered";
+                content = "Either sign in with this username or ...";
+
             case "invalid": //the username has at least one unauthorized character
-                           header = "The username contains unauthorized characters";
-                          content = "You can put in your username lower and upper case English letters, periods and underscores.";
-                
+                header = "The username contains unauthorized characters";
+                content = "You can put in your username lower and upper case English letters, periods and underscores.";
+
             case "size": //the username exceeds 12 characters
-                           header = "The username is too long";
-                          content = "You have a limit of 12 characters for your username";
-                
+                header = "The username is too long";
+                content = "You have a limit of 12 characters for your username";
+
         }
-        
+
         error.setHeaderText(header);
         error.setContentText(content);
         error.showAndWait();
