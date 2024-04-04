@@ -23,6 +23,8 @@ public class LevelPageControllerTest {
 
     @FXML
     Text scoreText, usernameText, levelText;
+    
+    PlayerTest player;
 
     public void initialize() {
         

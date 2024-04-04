@@ -35,6 +35,7 @@ public class LoginPageControllerTest {
     String permitedChar = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ_.";
     String login = null;
     String signin = null;
+    PlayerTest player;
 
     @Test
     public void initialize() {
@@ -62,7 +63,6 @@ public class LoginPageControllerTest {
             Scene scene = new Scene(root);
             stage.setScene(scene);
             //}
-
         });
 
     }
@@ -82,45 +82,43 @@ public class LoginPageControllerTest {
 
             if (!log.isEmpty()) {
                 if (login.length() > 12) {
-                    //showError("size")
-                    login= null;
-                    //return false
+                    showError("size");
+                    return false;
                 } else {
                     for (int i = 0; i < log.length(); i++) {
                         String letter = Character.toString(log.charAt(i));
                         if (!permitedChar.contains(letter)) {
                             //calls error method that shows that a character is not accepted
-                            //showError("invalid")
-                            login = null;
+                            showError("invalid");
                             return false;
                         }
                     }
                     
                      //here put some code that reads the file and make sure that it exists
+                     
                 }
-                //
 
                
             } else { //the signin option
-                for (int i = 0; i < sign.length(); i++) {
+                if (login.length() > 12) {
+                    showError("size");
+                    return false;
+                } else { 
+                    for (int i = 0; i < sign.length(); i++) {
                     String letter = Character.toString(sign.charAt(i));
-                    if (!permitedChar.contains(letter)) {
-                        //calls error method that shows that a character is not accepted
-                        //showError("invalid")
-                        signin = null;
+                        if (!permitedChar.contains(letter)) {
+                        showError("invalid");
+                        }
                     }
                 }
-                //here put some code that reads the file and make sure that it isn't already used
+                    //here put some code that reads the file and make sure that it isn't already used
             }
 
         } else if ((log.isEmpty()||log == null ) && (sign.isEmpty()||sign == null)) {
-            //gets error that shows that both sets have no value showError("empty")
-            
+            showError("empty");
             return false;
         }
-        //gets error that shows that both sets are used  showError("bothfull")
-            login = null;
-            signin = null;
+        showError("bothfull");
         return false;
 
         //if the username was typed in the signIn the method will look if it is in the username file
@@ -149,11 +147,11 @@ public class LoginPageControllerTest {
 
             case "used": //the username has already been used (sign in)
                 header = "This username is already taken";
-                content = "Either log in or find another usernmae";
+                content = "Either log in or find another username";
 
             case "new": //the username has never been used (log in)
                 header = "This username is not registered";
-                content = "Either sign in with this username or ...";
+                content = "Either sign in with this username or login with an used username";
 
             case "invalid": //the username has at least one unauthorized character
                 header = "The username contains unauthorized characters";
@@ -164,7 +162,10 @@ public class LoginPageControllerTest {
                 content = "You have a limit of 12 characters for your username";
 
         }
-
+        
+        this.login = null;
+        this.signin = null;
+        
         error.setHeaderText(header);
         error.setContentText(content);
         error.showAndWait();

@@ -30,7 +30,7 @@ public class LoginPageController {
 
             //if (verification()){
             FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/fxml/account_page_layout.fxml")
+                    getClass().getResource("/fxml/game_page_layout.fxml")
             );
             LevelPageController fxmlController = new LevelPageController();
             loader.setController(fxmlController);
