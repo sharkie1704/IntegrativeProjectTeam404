@@ -6,36 +6,36 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="accountPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="accountPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text layoutX="882.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log/Sign in">
+      <Text layoutX="488.0" layoutY="204.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log/Sign in">
          <font>
             <Font size="35.0" />
          </font>
       </Text>
-      <Text layoutX="416.0" layoutY="430.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in">
+      <Text layoutX="247.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in">
          <font>
-            <Font size="35.0" />
+            <Font size="24.0" />
          </font>
       </Text>
-      <Text layoutX="1423.0" layoutY="427.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign in">
+      <Text layoutX="851.0" layoutY="406.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign in">
          <font>
-            <Font size="35.0" />
+            <Font size="24.0" />
          </font>
       </Text>
-      <TextField fx:id="logInTextField" layoutX="349.0" layoutY="478.0">
+      <TextField fx:id="logInTextField" layoutX="156.0" layoutY="471.0">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <TextField fx:id="signInTextField" layoutX="1356.0" layoutY="472.0">
+      <TextField fx:id="signInTextField" layoutX="773.0" layoutY="460.0">
          <font>
             <Font size="20.0" />
          </font>
       </TextField>
-      <Button fx:id="continuebtn" layoutX="874.0" layoutY="853.0" mnemonicParsing="false" text="Continue">
+      <Button fx:id="continuebtn" layoutX="512.0" layoutY="680.0" mnemonicParsing="false" text="Continue">
          <font>
-            <Font size="40.0" />
+            <Font size="24.0" />
          </font>
       </Button>
    </children>

@@ -3,10 +3,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
 
-
-<Pane fx:id="startingPagePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="startingPagePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="titleImageView" fitHeight="292.0" fitWidth="1292.0" layoutX="313.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true" />
-      <ImageView fx:id="startImageView" fitHeight="464.0" fitWidth="462.0" layoutX="726.0" layoutY="617.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="titleImageView" fitHeight="166.0" fitWidth="696.0" layoutX="246.0" layoutY="259.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="startImageView" fitHeight="298.0" fitWidth="323.0" layoutX="432.0" layoutY="552.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </Pane>
