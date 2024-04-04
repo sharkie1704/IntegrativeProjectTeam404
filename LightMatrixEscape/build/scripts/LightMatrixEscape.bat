@@ -72,7 +72,7 @@ set CLASSPATH=%APP_HOME%\lib\LightMatrixEscape.jar;%APP_HOME%\lib\javafx-fxml-21
 
 
 @rem Execute LightMatrixEscape
-"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %LIGHT_MATRIX_ESCAPE_OPTS%  -classpath "%CLASSPATH%" mainClass %*
+"%JAVA_EXE%" %DEFAULT_JVM_OPTS% %JAVA_OPTS% %LIGHT_MATRIX_ESCAPE_OPTS%  -classpath "%CLASSPATH%" properties.mainClass %*
 
 :end
 @rem End local scope for the variables with windows NT shell
