@@ -1,4 +1,10 @@
 package controllers;
+
+/**
+ *
+ * @author Hongyan Li
+ */
+
 public class Reflection {
 
     public static double[] findIntersection(double[] startingCoordinateOfFirstLineA,
@@ -72,7 +78,7 @@ public class Reflection {
             (endingCoordinateOfWallB[1] - startingCoordinateOfWallA[1]) / lengthAB};
 
         //Convert angle to radians
-        double angleRadians = Math.toRadians(angle);
+        double angleRadians = Math.toRadians(-angle);
 
         //Calculate the direction vector of line segment CD
         double[] CDVector = {

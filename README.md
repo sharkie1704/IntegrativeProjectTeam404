@@ -37,3 +37,19 @@ Summary:
 Issues:
 
 - There is a compatibility problem with the UI when loading a stage from an fxml file
+
+# Build 2
+Summary:
+
+- Level One is mostly done, Level Two still need some work
+
+- Sounds and images are added in the level One
+
+- Player Login page is done
+
+- detecter intersects with ray method is done
+
+- Cover page is added
+
+
+
