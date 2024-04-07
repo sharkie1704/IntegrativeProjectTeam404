@@ -2,6 +2,7 @@ package controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -12,9 +13,6 @@ import javafx.scene.text.Text;
 public class LevelPageController {
 
     @FXML
-    ImageView backgroundImageView, doorImageView;
-
-    @FXML
     Pane gamePane, actionPane;
 
     @FXML
@@ -22,11 +20,14 @@ public class LevelPageController {
 
     @FXML
     Button btnNextGame;
-    
+
+    @FXML
+    Slider volumeSlider;
+    Player player;
+
 //    @FXML
 //    LoginPageController loginPageController;
 //    private Player newPlayer;
-    
     // Method to set the player
 //    public void setPlayer(Player player) {
 //       // loginPageController.initialize();
@@ -40,22 +41,15 @@ public class LevelPageController {
 //       private void updateScoreText() {
 //        scoreText.setText("Score: " + newPlayer.getScore());
 //    }
-    
     double level = 1;
-
+    
     public void initialize() {
         
-//        Image backgroundImage = new Image("Resources\\images\\background.png");
-//        backgroundImageView.setImage(backgroundImage);
-//        Image doorImage = new Image(getClass().getResourceAsStream("main/Resources/images/imageDoorClosed.png"));
-//        doorImageView.setImage(doorImage);
+        volumeSlider = new Slider(0, 100, 30);
+        volumeSlider.setValue(50);               
+        // mediaPlayer.volumeProperty().bind(volumeSlider.valueProperty().divide(100))
 
-        //scoreText.setText("Score: " + newPlayer.getScore());
-
-        // Update score text whenever score changes (if needed)
-        // For example, if score is updated in another class, you may need to listen for changes and update the text accordingly
-        // You can use listeners or binding to achieve this
-        // Example listener (assuming Player has a property for score):
+//        scoreText.setText("Score: " + player.getScore());
 //        player.scoreProperty().addListener((obs, oldScore, newScore) -> {
 //            scoreText.setText("Score: " + newScore.intValue());
 
@@ -64,16 +58,16 @@ public class LevelPageController {
         Reflection reflectionMethod = new Reflection();
         Refraction reflectMethod = new Refraction();
         // create ray
-        Line lightRay = new Line(100, 400, 800, 400);
+        Line lightRay = new Line(441, 463, 800, 400);
         lightRay.setStroke(Color.BLACK);
         gamePane.getChildren().add(lightRay);
 
         // create mirror one
-        Line mirrorOne = new Line(800, 200, 800, 600);
+        Line mirrorOne = new Line(845, 365, 845, 200);
         mirrorOne.setStroke(Color.BLUE);
         gamePane.getChildren().add(mirrorOne);
 
-        Line reflectRay = new Line(200, 50, 200, 350);
+        Line reflectRay = new Line(367, 50, 367, 600);
         //whatever position and length of reflectRay, since this will change later.
         reflectRay.setStroke(Color.TRANSPARENT);
         gamePane.getChildren().addAll(reflectRay);
