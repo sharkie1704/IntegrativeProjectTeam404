@@ -29,10 +29,8 @@ public class mainClass extends Application {
         fxmlController.giveStage(primaryStage);
 
         Pane root = loader.load();
-
-//      Pane root = new Pane();
         Scene scene = new Scene(root);
-        primaryStage.setTitle("Refraction Game");
+        primaryStage.setTitle("The Light Matrix Escape");
         primaryStage.setScene(scene);
         primaryStage.show();
     }

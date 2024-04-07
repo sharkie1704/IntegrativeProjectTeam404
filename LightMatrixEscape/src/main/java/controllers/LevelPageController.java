@@ -2,6 +2,7 @@ package controllers;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -11,7 +12,7 @@ import javafx.scene.text.Text;
 public class LevelPageController {
 
     @FXML
-    ImageView backgroundImageView, volumeImageView;
+    ImageView backgroundImageView, doorImageView;
 
     @FXML
     Pane gamePane, actionPane;
@@ -21,11 +22,45 @@ public class LevelPageController {
 
     @FXML
     Button btnNextGame;
-
+    
+//    @FXML
+//    LoginPageController loginPageController;
+//    private Player newPlayer;
+    
+    // Method to set the player
+//    public void setPlayer(Player player) {
+//       // loginPageController.initialize();
+//        this.newPlayer = player;
+//        if (player != null) {
+//            updateScoreText(); // Update score text when player is set
+//        }
+//    }
+//
+//    // Method to update the score text
+//       private void updateScoreText() {
+//        scoreText.setText("Score: " + newPlayer.getScore());
+//    }
+    
     double level = 1;
 
     public void initialize() {
+        
+//        Image backgroundImage = new Image("Resources\\images\\background.png");
+//        backgroundImageView.setImage(backgroundImage);
+//        Image doorImage = new Image(getClass().getResourceAsStream("main/Resources/images/imageDoorClosed.png"));
+//        doorImageView.setImage(doorImage);
 
+        //scoreText.setText("Score: " + newPlayer.getScore());
+
+        // Update score text whenever score changes (if needed)
+        // For example, if score is updated in another class, you may need to listen for changes and update the text accordingly
+        // You can use listeners or binding to achieve this
+        // Example listener (assuming Player has a property for score):
+//        player.scoreProperty().addListener((obs, oldScore, newScore) -> {
+//            scoreText.setText("Score: " + newScore.intValue());
+
+
+        //Refraction and reflection
         Reflection reflectionMethod = new Reflection();
         Refraction reflectMethod = new Refraction();
         // create ray
@@ -35,7 +70,7 @@ public class LevelPageController {
 
         // create mirror one
         Line mirrorOne = new Line(800, 200, 800, 600);
-        mirrorOne.setStroke(Color.GRAY);
+        mirrorOne.setStroke(Color.BLUE);
         gamePane.getChildren().add(mirrorOne);
 
         Line reflectRay = new Line(200, 50, 200, 350);
@@ -86,8 +121,8 @@ public class LevelPageController {
             });
         }
 
-        //Next Game botton for Going to next level
-        //idea: make the botton only visible after finishing last level
+        //Next Game button for Going to next level
+        //idea: make the button only visible after finishing last level
         btnNextGame.setOnAction((event) -> {
 
             level = 2;

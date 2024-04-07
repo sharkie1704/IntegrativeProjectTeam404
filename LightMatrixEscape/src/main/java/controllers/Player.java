@@ -10,7 +10,7 @@ public class Player {
     private String username;
     private int levelProgress;
     private int score;
-    File progressFile = new File("player/progress.txt");
+    File progressFile = new File("/data/progress.txt");
 
     public Player(String username, int levelProgress, int score) {
         this.username = username;
@@ -23,7 +23,7 @@ public class Player {
         String scoreData = "The player " + username + "'s score: " + score;
         String progressData = "The player " + username + " is at level: " + levelProgress;
         
-        Files.saveToFile(scoreData, progressFile);
-        Files.saveToFile("/n" + progressData + "/n/n", progressFile);
+        String playerData = scoreData + "\n" + progressData;
+        Files.saveToFile(playerData, progressFile);
     }
 }

@@ -5,6 +5,6 @@ public class JUnitTest {
 
     @Test
     void justAnExample() {
-        System.out.println("This test method should be run");
+        System.out.println("This test method should run");
     }
 }

@@ -1,4 +1,5 @@
 
+import controllers.Files;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -16,7 +17,7 @@ public class PlayerTest {
     private int levelProgress;
     private int score;
     String str = null;
-    File progressFile = new File("C:\\Users\\2279307\\Desktop\\progress.txt");
+    File progressFile = new File(getClass().getResource("data/progress.txt").getFile());
 
     public PlayerTest() {
     }
@@ -30,8 +31,8 @@ public class PlayerTest {
         Files.saveToFile("/n" + progressData, progressFile);
     }
 
-    @Test  
-     //This method can access the saved data of the user based on username 
+    @Test
+    //This method can access the saved data of the user based on username 
     //Still needs some work
     public void importProgress() throws IOException {
         String str = null;
@@ -39,10 +40,14 @@ public class PlayerTest {
             String line;
             while ((line = reader.readLine()) != null) {
                 if (!line.isEmpty()) {
-                    if (line.startsWith("The player " + username + " has a score of ")) {
-                        str = line.substring(line.indexOf(":"), line.length() - 1);
-                        levelProgress = Integer.parseInt(str);
-                        System.out.println(levelProgress);
+                    if (line.startsWith("The player " + username + "'s score: ")) {
+                        //Saving score information from the line
+                        String scoreStr = line.substring(line.lastIndexOf(":") + 2);
+                        score = Integer.parseInt(scoreStr);
+                    } else if (line.startsWith("The player " + username + " is at level: ")) {
+                        //Saving level progress from the line
+                        String progressStr = line.substring(line.lastIndexOf(":") + 2);
+                        levelProgress = Integer.parseInt(progressStr);
                     }
                 }
             }

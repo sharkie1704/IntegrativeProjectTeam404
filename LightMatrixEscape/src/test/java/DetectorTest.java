@@ -1,5 +1,7 @@
 
+import controllers.Colour;
 import javafx.geometry.Bounds;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import org.junit.jupiter.api.Test;
 

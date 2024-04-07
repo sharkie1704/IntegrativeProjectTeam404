@@ -17,18 +17,27 @@ public class LoginPageController {
     Pane accountPane;
 
     @FXML
-    TextField logInTextField, signInTextField;
+    TextField logInTextField, signUpTextField;
 
     @FXML
     Button continuebtn;
-
+    LevelPageController levelPageController;
+    
     Stage stage;
+    private Player newPlayer;
 
     public void initialize() {
 
         continuebtn.setOnAction((event) -> {
 
-            //if (verification()){
+            // Assuming login text field contains username
+            String username = signUpTextField.getText();
+            // Create a new player with levelProgress 1 and score 0
+            newPlayer = new Player(username, 1, 0);
+            newPlayer.saveProgress();
+//            levelPageController.setPlayer(newPlayer);
+
+            // if (verification()){
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/fxml/game_page_layout.fxml")
             );
@@ -43,6 +52,7 @@ public class LoginPageController {
             }
             Scene scene = new Scene(root);
             stage.setScene(scene);
+
             //}
         });
     }
