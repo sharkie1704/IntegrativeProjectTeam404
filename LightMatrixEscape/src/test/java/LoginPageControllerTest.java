@@ -1,5 +1,10 @@
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.fxml.FXML;
@@ -58,7 +63,8 @@ public class LoginPageControllerTest {
             try {
                 root = loader.load();
             } catch (IOException ex) {
-                Logger.getLogger(LoginPageControllerTest.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(LoginPageControllerTest.class.getName())
+                        .log(Level.SEVERE, null, ex);
             }
             Scene scene = new Scene(root);
             stage.setScene(scene);
@@ -73,8 +79,8 @@ public class LoginPageControllerTest {
 
     //In this method, the username received from the textfield will be filtered
     @Test
-    public boolean verification(String log, String sign) {
-
+    public boolean verification(String log, String sign) throws IOException {
+        
         //Makes sure that one of the two string is empty
         if (( (log.isEmpty()||log == null) ^ (sign.isEmpty()|| sign == null) )) {
             //!(log.isEmpty() && sign.isEmpty()) && (log.isEmpty() || sign.isEmpty())
@@ -84,6 +90,7 @@ public class LoginPageControllerTest {
                 if (login.length() > 12) {
                     showError("size");
                     return false;
+                    
                 } else {
                     for (int i = 0; i < log.length(); i++) {
                         String letter = Character.toString(log.charAt(i));
@@ -95,7 +102,7 @@ public class LoginPageControllerTest {
                     }
                     
                      //here put some code that reads the file and make sure that it exists
-                     
+                     return searchUsername(log);
                 }
 
                
@@ -107,11 +114,15 @@ public class LoginPageControllerTest {
                     for (int i = 0; i < sign.length(); i++) {
                     String letter = Character.toString(sign.charAt(i));
                         if (!permitedChar.contains(letter)) {
+                        //calls error method that shows that a character is not accepted
                         showError("invalid");
+                        return false;
                         }
                     }
                 }
                     //here put some code that reads the file and make sure that it isn't already used
+                    return searchUsername(sign) != true;
+                    
             }
 
         } else if ((log.isEmpty()||log == null ) && (sign.isEmpty()||sign == null)) {
@@ -131,6 +142,28 @@ public class LoginPageControllerTest {
 //        }
     }
 
+    @Test
+    public static boolean searchUsername(String name) throws IOException{ //change the filname to the actual file
+        ArrayList namesList = new ArrayList();
+        String username ="";
+        try (BufferedReader bufferedReader = new BufferedReader
+            (new FileReader( new File("/data/progress.txt")))){
+            String line;
+            while ((line = bufferedReader.readLine()) != null){
+               username =  line.substring(11, line.indexOf("'"));
+               namesList.add(username);
+            }
+            
+            for (int i = 0; i< namesList.size();i++){
+                if(namesList.contains(name)){
+                return true;
+                }
+            } 
+        }
+        
+        return false;
+    }
+    
     @Test
     private void showError(String problem) {
         Alert error = new Alert(Alert.AlertType.ERROR);
