@@ -27,7 +27,9 @@ public class LoginPageController {
     private Player newPlayer;
 
     public void initialize() {
-
+        
+        continuebtn.getStyleClass().add("style.css");
+        
         continuebtn.setOnAction((event) -> {
 
             // Assuming login text field contains username
@@ -43,13 +45,14 @@ public class LoginPageController {
             );
             LevelPageController fxmlController = new LevelPageController();
             loader.setController(fxmlController);
-
+            
             Pane root = null;
             try {
                 root = loader.load();
             } catch (IOException ex) {
                 Logger.getLogger(LoginPageController.class.getName()).log(Level.SEVERE, null, ex);
             }
+            //root.getStylesheets().add(getClass().getResource("style.css").toString());
             Scene scene = new Scene(root);
             stage.setScene(scene);
 

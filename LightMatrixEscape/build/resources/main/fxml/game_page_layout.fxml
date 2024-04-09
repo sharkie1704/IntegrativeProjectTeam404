@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.media.MediaView?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.RadialGradient?>
 <?import javafx.scene.paint.Stop?>
@@ -14,43 +14,42 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="gamePane" prefHeight="538.0" prefWidth="881.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="gamePane" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="backgroundImageView" fitHeight="551.0" fitWidth="896.0" layoutX="-7.0" layoutY="-7.0" pickOnBounds="true">
+      <ImageView fx:id="backgroundImageView" fitHeight="700.0" fitWidth="900.0" pickOnBounds="true">
          <image>
             <Image url="@../images/background.png" />
          </image></ImageView>
-      <Pane fx:id="Pane" layoutX="-1.0" prefHeight="538.0" prefWidth="881.0">
+      <Slider fx:id="volumeSlider" layoutX="719.0" layoutY="670.0" prefHeight="32.0" prefWidth="181.0" value="30.0" />
+      <Text fx:id="levelText" fill="WHITE" layoutX="4.0" layoutY="17.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Level 1" wrappingWidth="62.66845929523731">
+         <font>
+            <Font name="Baskerville Old Face" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="scoreText" fill="WHITE" layoutX="110.0" layoutY="696.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score" wrappingWidth="47.79296875">
+         <font>
+            <Font name="Baskerville Old Face" size="18.0" />
+         </font>
+      </Text>
+      <Text fx:id="usernameText" fill="WHITE" layoutX="2.0" layoutY="696.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="87.0">
+         <font>
+            <Font name="Baskerville Old Face" size="18.0" />
+         </font>
+      </Text>
+      <Pane fx:id="Pane" layoutY="20.0" prefHeight="661.0" prefWidth="900.0">
          <children>
-            <Button fx:id="btnNextGame" layoutX="622.0" layoutY="512.0" mnemonicParsing="false" text="Next Game" />
-            <Slider fx:id="volumeSlider" layoutX="698.0" layoutY="507.0" prefHeight="32.0" prefWidth="181.0" value="30.0" />
-            <ImageView fx:id="doorImageView" fitHeight="103.0" fitWidth="75.0" layoutX="414.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="doorImageView" fitHeight="100.0" fitWidth="87.0" layoutX="414.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/imageDoorClosed.png" />
                </image></ImageView>
-            <Text fx:id="usernameText" layoutX="6.0" layoutY="19.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="87.0">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <Text fx:id="levelText" layoutX="759.0" layoutY="21.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Level progress" wrappingWidth="121.70703125">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <Text fx:id="scoreText" layoutX="6.0" layoutY="532.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score" wrappingWidth="60.79296875">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <ImageView fx:id="detectorImageView" fitHeight="46.0" fitWidth="46.0" layoutX="359.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" rotate="29.7">
+            <ImageView fx:id="detectorImageView" fitHeight="56.0" fitWidth="51.0" layoutX="355.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" rotate="29.7">
                <image>
                   <Image url="@../images/imageDetector.png" />
                </image></ImageView>
-            <Line fx:id="wallLine2" endX="100.0" layoutX="453.0" layoutY="248.0" startX="-105.0" startY="-46.0" stroke="#544d4d" strokeWidth="4.0" />
-            <Rectangle fx:id="flashlight" arcHeight="5.0" arcWidth="5.0" fill="#ffb01f" height="66.0" layoutX="424.0" layoutY="473.0" stroke="BLACK" strokeType="INSIDE" width="34.0" />
-            <Line fx:id="wallLine1" endX="91.0" endY="-59.0" fill="#544d4d" layoutX="139.0" layoutY="172.0" startX="-96.0" startY="56.0" stroke="#544d4d" strokeWidth="4.0" />
-            <Rectangle fx:id="mirror1" arcHeight="5.0" arcWidth="5.0" height="167.0" layoutX="845.0" layoutY="202.0" stroke="BLACK" strokeType="INSIDE" width="14.0">
+            <Line fx:id="wallLine2" endX="108.0" endY="27.0" layoutX="453.0" layoutY="248.0" startX="-192.0" startY="27.0" stroke="#544d4d" strokeWidth="4.0" />
+            <Rectangle fx:id="flashlight" arcHeight="5.0" arcWidth="5.0" fill="#ffb01f" height="66.0" layoutX="427.0" layoutY="588.0" stroke="BLACK" strokeType="INSIDE" width="34.0" />
+            <Line fx:id="wallLine1" endX="-96.0" endY="-212.0" fill="#544d4d" layoutX="143.0" layoutY="428.0" startX="-96.0" startY="56.0" stroke="#544d4d" strokeWidth="4.0" />
+            <Rectangle fx:id="mirror1" arcHeight="5.0" arcWidth="5.0" height="167.0" layoutX="845.0" layoutY="196.0" stroke="BLACK" strokeType="INSIDE" width="14.0">
                <fill>
                   <RadialGradient centerX="0.5" centerY="0.495260663507109" cycleMethod="REFLECT" radius="0.7758620689655172">
                      <stops>
@@ -67,8 +66,10 @@
                      </stops>
                   </RadialGradient>
                </fill></Rectangle>
-            <Line fx:id="wallLine3" endX="128.33021545410156" endY="58.28714370727539" layoutX="620.0" layoutY="315.0" rotate="-9.5" startX="-93.0" startY="55.0" stroke="#544d4d" strokeWidth="4.0" />
-            <Ellipse fx:id="lightBulb" fill="#dbfc0a" layoutX="441.0" layoutY="463.0" radiusX="17.0" radiusY="18.0" stroke="BLACK" strokeType="INSIDE" />
+            <Line fx:id="wallLine3" endX="200.38438415527344" endY="99.04075622558594" layoutX="591.0" layoutY="437.0" rotate="-9.5" startX="-93.0" startY="55.0" stroke="#544d4d" strokeWidth="4.0" />
+            <Ellipse fx:id="lightBulb" fill="#dbfc0a" layoutX="444.0" layoutY="588.0" radiusX="17.0" radiusY="18.0" stroke="BLACK" strokeType="INSIDE" />
+            <Line fx:id="wallLine4" endX="-90.0" endY="-238.0" fill="#544d4d" layoutX="887.0" layoutY="250.0" startX="-90.0" startY="-69.0" stroke="#544d4d" strokeWidth="4.0" />
          </children></Pane>
+      <MediaView fx:id="mediaView" fitHeight="10.0" fitWidth="50.0" layoutX="662.0" layoutY="681.0" />
    </children>
 </Pane>
