@@ -4,7 +4,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Mirror extends Line {
+public class Mirror extends Lines {
 
     private double length;
     private double width;

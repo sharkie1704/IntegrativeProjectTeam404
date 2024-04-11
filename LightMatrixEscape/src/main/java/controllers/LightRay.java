@@ -4,7 +4,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class LightRay extends Line {
+public class LightRay extends Lines {
 
     private Colour colour;
 }
