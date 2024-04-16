@@ -14,6 +14,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
@@ -61,7 +63,8 @@ public class LevelPageController {
 //        scoreText.setText("Score: " + newPlayer.getScore());
 //    }
     double level = 1;
-
+    
+    
     public void initialize() throws FileNotFoundException {
         //btnNextGame.setVisible(false);
         imageLevelUp = new Image(new FileInputStream(getClass().
@@ -72,10 +75,16 @@ public class LevelPageController {
         AudioClip clickAC = new AudioClip(urlsoundClick.toExternalForm());
         URL urlsoundLevelUp = this.getClass().getClassLoader().getResource("sounds/soundLevelUp.mp3");
         AudioClip levelUpAC = new AudioClip(urlsoundLevelUp.toExternalForm());
-
+        
+        URL URLMusic = this.getClass().getClassLoader().getResource("sounds/gameMusic.mp3");
+        AudioClip MusicGame = new AudioClip(URLMusic.toExternalForm());
+//        Media media = new Media(MusicGame);
+//        MediaPlayer mediaPlayer = new MediaPlayer(media);
         volumeSlider = new Slider(0, 100, 30);
         volumeSlider.setValue(50);
-        // mediaPlayer.volumeProperty().bind(volumeSlider.valueProperty().divide(100))
+        clickAC.volumeProperty().bind(volumeSlider.valueProperty().divide(50));
+        MusicGame.volumeProperty().bind(volumeSlider.valueProperty());
+//        mediaPlayer.volumeProperty().bind(volumeSlider.valueProperty().divide(100));
 
 //        scoreText.setText("Score: " + player.getScore());
 //        player.scoreProperty().addListener((obs, oldScore, newScore) -> {
