@@ -63,7 +63,7 @@ public class LevelPageController {
     double level = 1;
 
     public void initialize() throws FileNotFoundException {
-        btnNextGame.setVisible(false);
+        //btnNextGame.setVisible(false);
         imageLevelUp = new Image(new FileInputStream(getClass().
                 getResource("/images/imageLevelUp.png").getFile()));
 
@@ -225,15 +225,15 @@ public class LevelPageController {
 
         //Next Game button for Going to next level
         //idea: make the button only visible after finishing last level
-        btnNextGame.setOnAction((event) -> {
-
-            level = 2;
-            System.out.println("level is " + level);
-            btnNextGame.disableProperty();
-            //clear all the things from last game.
-            gamePane.getChildren().removeAll(mirrorOne, reflectRay, lightRay);
-
-        });
+//        btnNextGame.setOnAction((event) -> {
+//
+//            level = 2;
+//            System.out.println("level is " + level);
+//            btnNextGame.disableProperty();
+//            //clear all the things from last game.
+//            gamePane.getChildren().removeAll(mirrorOne, reflectRay, lightRay);
+//
+//        });
 
         // create ray in level 2
         Line lightRayLevelTwo = new Line(50, 25 + 100 * Math.sqrt(3),

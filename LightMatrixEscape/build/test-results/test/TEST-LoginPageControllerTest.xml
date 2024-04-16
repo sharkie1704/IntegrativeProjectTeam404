@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="LoginPageControllerTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2024-04-16T10:08:16" hostname="DESKTOP-B6KD4H1" time="0.005">
+<testsuite name="LoginPageControllerTest" tests="1" skipped="0" failures="1" errors="0" timestamp="2024-04-16T12:52:35" hostname="D21011-JZS13W2" time="0.026">
   <properties/>
-  <testcase name="initialize()" classname="LoginPageControllerTest" time="0.005">
+  <testcase name="initialize()" classname="LoginPageControllerTest" time="0.026">
     <failure message="java.lang.NullPointerException: Cannot invoke &quot;javafx.scene.control.Button.setOnAction(javafx.event.EventHandler)&quot; because &quot;this.continuebtn&quot; is null" type="java.lang.NullPointerException">java.lang.NullPointerException: Cannot invoke &quot;javafx.scene.control.Button.setOnAction(javafx.event.EventHandler)&quot; because &quot;this.continuebtn&quot; is null
 	at LoginPageControllerTest.initialize(LoginPageControllerTest.java:48)
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
