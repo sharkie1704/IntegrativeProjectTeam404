@@ -10,7 +10,7 @@ public class mainTest {
     @Test
     public static void main(String[] args) throws IOException {
 
-        File progressFile = new File("C:\\Users\\2279307\\Desktop\\progress.txt");
+        File progressFile = new File("data/progress.txt");
         String username = null;
         int levelProgress = 0;
         int score = 0;

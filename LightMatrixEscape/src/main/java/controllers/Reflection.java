@@ -4,7 +4,6 @@ package controllers;
  *
  * @author Hongyan Li
  */
-
 public class Reflection {
 
     public static double[] findIntersection(double[] startingCoordinateOfFirstLineA,
@@ -134,7 +133,7 @@ public class Reflection {
 
         //Calculate Normal end Point
         double[] endPointOfNormal = {intersection[0] - 0.5 * lengthOfNormal
-                * perpendicularVector[0], intersection[1] - 0.5 * lengthOfNormal * perpendicularVector[1]};
+            * perpendicularVector[0], intersection[1] - 0.5 * lengthOfNormal * perpendicularVector[1]};
         return endPointOfNormal;
     }
 }

@@ -4,8 +4,6 @@ package controllers;
  *
  * @author Hongyan Li
  */
-
-
 import java.util.Arrays;
 import javafx.scene.shape.Line;
 import javafx.scene.paint.Color;
@@ -94,7 +92,7 @@ public class Refraction {
         if (Type.equals("Glass")) {
             refractedAngle = -Math.toDegrees(Math.asin(Math.sin(incidentAngle) / 1.33));
 
-        //System.out.println("incidentAngle " + incidentAngleOne + " ; RefractedAngle " + refractedAngleOne);
+            //System.out.println("incidentAngle " + incidentAngleOne + " ; RefractedAngle " + refractedAngleOne);
         } else if (Type.equals("Air")) {
             refractedAngle = -Math.toDegrees(Math.asin(Math.sin(incidentAngle) * 1.33));
 

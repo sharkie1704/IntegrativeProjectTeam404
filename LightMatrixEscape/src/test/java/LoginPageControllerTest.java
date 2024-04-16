@@ -80,9 +80,9 @@ public class LoginPageControllerTest {
     //In this method, the username received from the textfield will be filtered
     @Test
     public boolean verification(String log, String sign) throws IOException {
-        
+
         //Makes sure that one of the two string is empty
-        if (( (log.isEmpty()||log == null) ^ (sign.isEmpty()|| sign == null) )) {
+        if (((log.isEmpty() || log == null) ^ (sign.isEmpty() || sign == null))) {
             //!(log.isEmpty() && sign.isEmpty()) && (log.isEmpty() || sign.isEmpty())
             // use the one above if the code doesn't work
 
@@ -90,7 +90,7 @@ public class LoginPageControllerTest {
                 if (login.length() > 12) {
                     showError("size");
                     return false;
-                    
+
                 } else {
                     for (int i = 0; i < log.length(); i++) {
                         String letter = Character.toString(log.charAt(i));
@@ -100,32 +100,31 @@ public class LoginPageControllerTest {
                             return false;
                         }
                     }
-                    
-                     //here put some code that reads the file and make sure that it exists
-                     return searchUsername(log);
+
+                    //here put some code that reads the file and make sure that it exists
+                    return searchUsername(log);
                 }
 
-               
             } else { //the signin option
                 if (login.length() > 12) {
                     showError("size");
                     return false;
-                } else { 
+                } else {
                     for (int i = 0; i < sign.length(); i++) {
-                    String letter = Character.toString(sign.charAt(i));
+                        String letter = Character.toString(sign.charAt(i));
                         if (!permitedChar.contains(letter)) {
-                        //calls error method that shows that a character is not accepted
-                        showError("invalid");
-                        return false;
+                            //calls error method that shows that a character is not accepted
+                            showError("invalid");
+                            return false;
                         }
                     }
                 }
-                    //here put some code that reads the file and make sure that it isn't already used
-                    return searchUsername(sign) != true;
-                    
+                //here put some code that reads the file and make sure that it isn't already used
+                return searchUsername(sign) != true;
+
             }
 
-        } else if ((log.isEmpty()||log == null ) && (sign.isEmpty()||sign == null)) {
+        } else if ((log.isEmpty() || log == null) && (sign.isEmpty() || sign == null)) {
             showError("empty");
             return false;
         }
@@ -143,27 +142,26 @@ public class LoginPageControllerTest {
     }
 
     @Test
-    public static boolean searchUsername(String name) throws IOException{ //change the filname to the actual file
+    public static boolean searchUsername(String name) throws IOException { //change the filname to the actual file
         ArrayList namesList = new ArrayList();
-        String username ="";
-        try (BufferedReader bufferedReader = new BufferedReader
-            (new FileReader( new File("/data/progress.txt")))){
+        String username = "";
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File("/data/progress.txt")))) {
             String line;
-            while ((line = bufferedReader.readLine()) != null){
-               username =  line.substring(11, line.indexOf("'"));
-               namesList.add(username);
+            while ((line = bufferedReader.readLine()) != null) {
+                username = line.substring(11, line.indexOf("'"));
+                namesList.add(username);
             }
-            
-            for (int i = 0; i< namesList.size();i++){
-                if(namesList.contains(name)){
-                return true;
+
+            for (int i = 0; i < namesList.size(); i++) {
+                if (namesList.contains(name)) {
+                    return true;
                 }
-            } 
+            }
         }
-        
+
         return false;
     }
-    
+
     @Test
     private void showError(String problem) {
         Alert error = new Alert(Alert.AlertType.ERROR);
@@ -195,10 +193,10 @@ public class LoginPageControllerTest {
                 content = "You have a limit of 12 characters for your username";
 
         }
-        
+
         this.login = null;
         this.signin = null;
-        
+
         error.setHeaderText(header);
         error.setContentText(content);
         error.showAndWait();

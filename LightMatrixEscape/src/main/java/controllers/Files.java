@@ -1,10 +1,14 @@
 package controllers;
+
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
 
+/*
+**Ishrak Mellah
+ */
 public class Files {
 
     public static String readFileGivenPath(String path) {
@@ -24,7 +28,7 @@ public class Files {
     public static void saveToFile(String content, File file) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
             writer.write(content);
-        } catch (IOException e) {            
+        } catch (IOException e) {
         }
     }
 
@@ -35,6 +39,5 @@ public class Files {
         } else {
             return "No file selected";
         }
-    }
-;
+    };
 }
