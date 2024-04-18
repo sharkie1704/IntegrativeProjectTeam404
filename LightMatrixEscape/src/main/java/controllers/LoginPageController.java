@@ -54,8 +54,8 @@ public class LoginPageController {
             newPlayer = new Player(username, 1, 0);
             newPlayer.saveProgress();
 //            levelPageController.setPlayer(newPlayer);
-            try {
-                if (verification()) {
+//            try {
+//                if (verification()) {
                     FXMLLoader loader = new FXMLLoader(
                             getClass().getResource("/fxml/game_page_layout.fxml")
                     );
@@ -72,10 +72,10 @@ public class LoginPageController {
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
 
-                }
-            } catch (IOException ex) {
-                Logger.getLogger(LoginPageController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+//                }
+//            } catch (IOException ex) {
+//                Logger.getLogger(LoginPageController.class.getName()).log(Level.SEVERE, null, ex);
+//            }
         });
     }
 
@@ -91,7 +91,7 @@ public class LoginPageController {
             //!(log.isEmpty() && sign.isEmpty()) && (log.isEmpty() || sign.isEmpty())
             // use the one above if the code doesn't work
 
-            if (!logIn.isEmpty()) {
+            if (!signUp.isEmpty()) {
                 if (logIn.length() > 12) {
                     showError("size");
                     return false;
@@ -105,14 +105,14 @@ public class LoginPageController {
                             return false;
                         }
                     }
-                    
-                     //here put some code that reads the file and make sure that it exists
-                    if(!searchUsername(logIn)){
-                        showError("new");
-                        return false;
-                    }else{
-                        return true;
-                    }
+//                    
+//                     //here put some code that reads the file and make sure that it exists
+//                    if(!searchUsername(logIn)){
+//                        showError("new");
+//                        return false;
+//                    }else{
+//                        return true;
+//                    }
                     
                 }
 
@@ -129,15 +129,15 @@ public class LoginPageController {
                             return false;
                         }
                     }
-                    
-                    if(searchUsername(signUp)){
-                        //here put some code that reads the file and make sure that it isn't already used
-                        showError("used");
-                        return false;
-                    }else{
-                        return true;
-                    }
-                    
+//                    
+//                    if(searchUsername(signUp)){
+//                        //here put some code that reads the file and make sure that it isn't already used
+//                        showError("used");
+//                        return false;
+//                    }else{
+//                        return true;
+//                    }
+//                    
                 }
                 
 

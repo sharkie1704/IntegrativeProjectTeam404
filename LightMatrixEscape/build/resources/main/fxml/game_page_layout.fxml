@@ -49,7 +49,7 @@
             <Line fx:id="lineWallTwo" endX="500.0" endY="280.0" startX="200.0" startY="280.0" stroke="#544d4d" strokeWidth="4.0" />
             <Rectangle fx:id="flashlight" arcHeight="5.0" arcWidth="5.0" fill="#ffb01f" height="66.0" layoutX="427.0" layoutY="588.0" stroke="BLACK" strokeType="INSIDE" width="34.0" />
             <Line fx:id="lineWallOne" endX="100.0" endY="500.0" fill="#544d4d" startX="100.0" startY="300.0" stroke="#544d4d" strokeWidth="4.0" />
-            <Rectangle fx:id="mirror1" arcHeight="5.0" arcWidth="5.0" height="167.0" layoutX="845.0" layoutY="196.0" stroke="BLACK" strokeType="INSIDE" width="14.0">
+            <Rectangle fx:id="mirror1" arcHeight="5.0" arcWidth="5.0" height="165.0" layoutX="845.0" layoutY="183.0" stroke="BLACK" strokeType="INSIDE" width="14.0">
                <fill>
                   <RadialGradient centerX="0.5" centerY="0.495260663507109" cycleMethod="REFLECT" radius="0.7758620689655172">
                      <stops>
@@ -71,5 +71,9 @@
             <Line fx:id="lineWallFour" endX="800.0" endY="150.0" fill="#544d4d" startX="800.0" startY="30.0" stroke="#544d4d" strokeWidth="4.0" />
          </children></Pane>
       <MediaView fx:id="mediaView" fitHeight="10.0" fitWidth="50.0" layoutX="662.0" layoutY="681.0" />
+      <Line fx:id="lineBorderUp" endX="900.0" />
+      <Line fx:id="lineBorderLeft" endY="700.0" />
+      <Line fx:id="lineBorderRight" endX="900.0" endY="700.0" startX="900.0" />
+      <Line fx:id="lineBorderBottom" endX="900.0" endY="700.0" startY="700.0" />
    </children>
 </Pane>
