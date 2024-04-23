@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import java.util.regex.*;
+import javafx.scene.control.Label;
 
 public class LoginPageController {
 
@@ -31,46 +32,44 @@ public class LoginPageController {
 
     Stage stage;
     String permitedChar = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ_.";
-//    char[] permittedChars = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
-//        'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '_', '.',
-//        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
-
     String logIn;
     String signUp;
-    private Player newPlayer;
+
+    Player player;
 
     public void initialize() {
-        
-        
-        
+
         continuebtn.getStyleClass().add("style.css");
 
         continuebtn.setOnAction((event) -> {
             logIn = logInTextField.getText();
             signUp = signUpTextField.getText();
+
             // Assuming login text field contains username
-            String username = signUpTextField.getText();
+            String username = signUpTextField.toString();
+
             // Create a new player with levelProgress 1 and score 0
-            newPlayer = new Player(username, 1, 0);
-            newPlayer.saveProgress();
-//            levelPageController.setPlayer(newPlayer);
+            player = new Player(username, 1, 0);
+            player.saveProgress();
+
+            //levelPageController.usernameLabel = new Label(username);
 //            try {
 //                if (verification()) {
-                    FXMLLoader loader = new FXMLLoader(
-                            getClass().getResource("/fxml/game_page_layout.fxml")
-                    );
-                    LevelPageController fxmlController = new LevelPageController();
-                    loader.setController(fxmlController);
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/fxml/game_page_layout.fxml")
+            );
+            LevelPageController fxmlController = new LevelPageController();
+            loader.setController(fxmlController);
 
-                    Pane root = null;
-                    try {
-                        root = loader.load();
-                    } catch (IOException ex) {
-                        Logger.getLogger(LoginPageController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    //root.getStylesheets().add(getClass().getResource("style.css").toString());
-                    Scene scene = new Scene(root);
-                    stage.setScene(scene);
+            Pane root = null;
+            try {
+                root = loader.load();
+            } catch (IOException ex) {
+                Logger.getLogger(LoginPageController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            //root.getStylesheets().add(getClass().getResource("style.css").toString());
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
 
 //                }
 //            } catch (IOException ex) {
@@ -79,7 +78,7 @@ public class LoginPageController {
         });
     }
 
-     public Stage giveStage(Stage stage) {
+    public Stage giveStage(Stage stage) {
         return this.stage = stage;
     }
 
@@ -113,7 +112,7 @@ public class LoginPageController {
 //                    }else{
 //                        return true;
 //                    }
-                    
+
                 }
 
             } else { //the signin option
@@ -139,7 +138,6 @@ public class LoginPageController {
 //                    }
 //                    
                 }
-                
 
             }
 
@@ -173,38 +171,37 @@ public class LoginPageController {
         return false;
     }
 
-    
     private void showError(String problem) {
         Alert error = new Alert(Alert.AlertType.ERROR);
         String header = "";
         String content = "";
         switch (problem) {
-            case "empty"->{ //both textfields are empty
+            case "empty" -> { //both textfields are empty
                 header = "Nothing has been inputed";
                 content = "The game won't start if you don't put a username";
             }
-            
-            case "bothfull"->{ //both textfields are used
+
+            case "bothfull" -> { //both textfields are used
                 header = "Both textfield are used";
                 content = "You can only enter your username in login or sign in";
             }
 
-            case "used"->{ //the username has already been used (sign in)
+            case "used" -> { //the username has already been used (sign in)
                 header = "This username is already taken";
                 content = "Either log in or find another username";
             }
-                
-            case "new"->{ //the username has never been used (log in)
+
+            case "new" -> { //the username has never been used (log in)
                 header = "This username is not registered";
                 content = "Either sign in with this username or login with an used username";
             }
-            
-            case "invalid"->{ //the username has at least one unauthorized character
+
+            case "invalid" -> { //the username has at least one unauthorized character
                 header = "The username contains unauthorized characters";
-                content = "You can put in your username lower and upper case English letters, periods and underscores.";  
+                content = "You can put in your username lower and upper case English letters, periods and underscores.";
             }
-            
-            case "size"->{ //the username exceeds 12 characters
+
+            case "size" -> { //the username exceeds 12 characters
                 header = "The username is too long";
                 content = "You have a limit of 12 characters for your username";
             }

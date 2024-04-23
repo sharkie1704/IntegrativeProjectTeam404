@@ -2,26 +2,18 @@ package controllers;
 
 /**
  *
- * @author Hongyan Li & sharkie
+ * @author Hongyan Li & Ishrak Mellah
  */
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.net.URL;
-import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Slider;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
-import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.Ellipse;
-import javafx.scene.shape.Line;
-import javafx.scene.text.Text;
+import javafx.fxml.*;
+import javafx.scene.control.*;
+import javafx.scene.image.*;
+import javafx.scene.layout.*;
+import javafx.scene.media.*;
+import javafx.scene.paint.*;
+import javafx.scene.shape.*;
+import javafx.scene.text.*;
 
 public class LevelPageController {
 
@@ -29,14 +21,19 @@ public class LevelPageController {
     Pane gamePane, actionPane;
 
     @FXML
-    Text scoreText, usernameText, levelText;
+    Text levelText;
+
+    @FXML
+    Label scoreLabel, usernameLabel;
 
     @FXML
     Button btnNextGame;
 
     @FXML
     Slider volumeSlider;
-    Player player;
+
+    @FXML
+    MediaView mediaView;
 
     @FXML
     Image imageLevelUp;
@@ -53,9 +50,11 @@ public class LevelPageController {
     @FXML
     Ellipse lightBulb;
 
-//    @FXML
-//    LoginPageController loginPageController;
-//    private Player newPlayer;
+    @FXML
+    LoginPageController loginPageController;
+
+    private Player player;
+
     // Method to set the player
 //    public void setPlayer(Player player) {
 //       // loginPageController.initialize();
@@ -78,30 +77,35 @@ public class LevelPageController {
     Wall wallMethod = new Wall();
 
     public void initialize() throws FileNotFoundException {
+
         //btnNextGame.setVisible(false);
         imageLevelUp = new Image(new FileInputStream(getClass().
                 getResource("/images/imageLevelUp.png").getFile()));
 
-        //Aduio Clips
+        //Audio Clips
         URL urlsoundClick = this.getClass().getClassLoader().getResource("sounds/soundClick.mp3");
         AudioClip clickAC = new AudioClip(urlsoundClick.toExternalForm());
         URL urlsoundLevelUp = this.getClass().getClassLoader().getResource("sounds/soundLevelUp.mp3");
         AudioClip levelUpAC = new AudioClip(urlsoundLevelUp.toExternalForm());
 
-        URL URLMusic = this.getClass().getClassLoader().getResource("sounds/gameMusic.mp3");
-        AudioClip MusicGame = new AudioClip(URLMusic.toExternalForm());
-//        Media media = new Media(MusicGame);
-//        MediaPlayer mediaPlayer = new MediaPlayer(media);
-        volumeSlider = new Slider(0, 100, 30);
-        volumeSlider.setValue(50);
-        clickAC.volumeProperty().bind(volumeSlider.valueProperty().divide(50));
-        MusicGame.volumeProperty().bind(volumeSlider.valueProperty());
-        MusicGame.play();
-//        mediaPlayer.volumeProperty().bind(volumeSlider.valueProperty().divide(100));
+        //Method to play game music and adjust volume with volume slider
+        File gameMusic = new File("gameMusic.mp3");
+        Media media = new Media(gameMusic.toURI().toString());
+        MediaPlayer mp = new MediaPlayer(media);
+        mediaView = new MediaView(mp);
 
+        mp.setAutoPlay(true);
+        volumeSlider = new Slider(0, 100, 50);
+        volumeSlider.setValue(50);
+        mp.volumeProperty().bind(volumeSlider.valueProperty().divide(100));
+
+        //Method to set the usernameText to the username of the player and update score
+         usernameLabel = new Label(player.getUsername());
+        System.out.println(usernameLabel.toString());
 //        scoreText.setText("Score: " + player.getScore());
 //        player.scoreProperty().addListener((obs, oldScore, newScore) -> {
 //            scoreText.setText("Score: " + newScore.intValue());
+
 //        Lines lineMethod = new Lines();
         // create ray
         Line lightRay = new Line(lightBulb.getLayoutX(), lightBulb.getLayoutY(), 800, 400);
@@ -162,7 +166,7 @@ public class LevelPageController {
                         endingPointOfRay, lineWallFour);
 //                System.out.println("isTouchingTheWallOne "+isTouchingTheWallOne);
                 System.out.println(" wall :1 " + isTouchingTheWallOne + " 2 " + isTouchingTheWallTwo + " 3 " + isTouchingTheWallThree);
-                
+
                 if (isTouchingTheWallOne || isTouchingTheWallTwo
                         || isTouchingTheWallThree || isTouchingTheWallFour) {
                     reflectRay.setStroke(Color.TRANSPARENT);
@@ -215,7 +219,7 @@ public class LevelPageController {
 
                             touchingTheBorder(startingPointOfRay, eventEndingPointOfRay, lightRay, reflectRay);
                             reflectRay.setStroke(Color.TRANSPARENT);
-                        } else if (eventEndingPointOfRay[0] > lightBulb.getLayoutX()){
+                        } else if (eventEndingPointOfRay[0] > lightBulb.getLayoutX()) {
                             lightRay.setEndX(intersection[0]);
                             lightRay.setEndY(intersection[1]);
 
