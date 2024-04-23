@@ -52,21 +52,21 @@ public class LevelPageTwoController {
         gamePane.getChildren().add(lightRay);
 
         // create left line of Prism
-        Line leftLineOfPrism = new Line(200, 25,
-                100, 25 + 100 * Math.sqrt(3)); //  /  
+        Line leftLineOfPrism = new Line(235, 25,
+                135, 25 + 100 * Math.sqrt(3)); //  /  
         leftLineOfPrism.setStroke(Color.TRANSPARENT);
 
         gamePane.getChildren().add(leftLineOfPrism);
 
         //create right line of Prism
-        Line rightLineOfPrism = new Line(200, 25,
-                300, 25 + 100 * Math.sqrt(3));  // \  
+        Line rightLineOfPrism = new Line(235, 25,
+                335, 25 + 100 * Math.sqrt(3));  // \  
         rightLineOfPrism.setStroke(Color.TRANSPARENT);
         gamePane.getChildren().add(rightLineOfPrism);
 
         //create bottom line of Prism
-        Line bottomLineOfPrism = new Line(100, 25 + 100 * Math.sqrt(3),
-                300, 25 + 100 * Math.sqrt(3));  // _  
+        Line bottomLineOfPrism = new Line(135, 25 + 100 * Math.sqrt(3),
+                335, 25 + 100 * Math.sqrt(3));  // _  
         bottomLineOfPrism.setStroke(Color.TRANSPARENT);
         gamePane.getChildren().add(bottomLineOfPrism);
 

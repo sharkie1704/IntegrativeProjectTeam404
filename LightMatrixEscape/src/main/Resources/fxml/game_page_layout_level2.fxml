@@ -92,6 +92,9 @@
                </fill>
             </Rectangle>
             <Line fx:id="wallTwo" endX="700.0" endY="130.0" fill="#544d4d" startX="700.0" startY="10.0" stroke="#544d4d" strokeWidth="4.0" />
+            <Line fx:id="leftLineOfPrism" endX="233.0" endY="550.0" startX="325.0" startY="402.0" />
+            <Line fx:id="bottomLineOfPrism" endX="415.0" endY="548.0" startX="233.0" startY="548.0" />
+            <Line fx:id="rightLineOfPrism" endX="415.0" endY="550.0" startX="325.0" startY="402.0" />
          </children></Pane>
       <MediaView fx:id="mediaView" fitHeight="10.0" fitWidth="50.0" layoutX="662.0" layoutY="681.0" />
    </children>
