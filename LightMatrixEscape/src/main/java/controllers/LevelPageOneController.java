@@ -6,8 +6,15 @@ package controllers;
  */
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.animation.RotateTransition;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
@@ -22,8 +29,10 @@ import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javafx.util.Duration;
 
-public class LevelPageController {
+public class LevelPageOneController {
 
     @FXML
     Pane gamePane, actionPane;
@@ -39,10 +48,10 @@ public class LevelPageController {
     Player player;
 
     @FXML
-    Image imageLevelUp;
+    Image imageLevelUp, imageDoorOpened;
 
     @FXML
-    ImageView detectorImageView;
+    ImageView detectorImageView, doorImageView;
 
     @FXML
     Line lineWallOne, lineWallTwo, lineWallThree, lineWallFour;
@@ -52,6 +61,8 @@ public class LevelPageController {
 
     @FXML
     Ellipse lightBulb;
+    Stage stage= new Stage();
+//    Stage stage;
 
 //    @FXML
 //    LoginPageController loginPageController;
@@ -69,18 +80,23 @@ public class LevelPageController {
 //       private void updateScoreText() {
 //        scoreText.setText("Score: " + newPlayer.getScore());
 //    }
-    double level = 1;
+    
+    
 
     //Refraction and reflection
     Reflection reflectionMethod = new Reflection();
-    Refraction refractMethod = new Refraction();
+    
     Detector detectorMethod = new Detector();
     Wall wallMethod = new Wall();
 
+    
     public void initialize() throws FileNotFoundException {
+        
         //btnNextGame.setVisible(false);
         imageLevelUp = new Image(new FileInputStream(getClass().
                 getResource("/images/imageLevelUp.png").getFile()));
+        imageDoorOpened = new Image(new FileInputStream(getClass().
+                getResource("/images/imageDoorOpened.png").getFile()));
 
         //Aduio Clips
         URL urlsoundClick = this.getClass().getClassLoader().getResource("sounds/soundClick.mp3");
@@ -126,143 +142,180 @@ public class LevelPageController {
 //        circleForImageLevelUp.setFill(new ImagePattern(imageLevelUp));
         gamePane.getChildren().add(circleForImageLevelUp);
 
-        if (level == 1) {
+        btnNextGame.setVisible(false);
+
 //         Click the mouse to change the incident light and reflected light
-            gamePane.setOnMouseClicked(event -> {
-                clickAC.play();
+        gamePane.setOnMouseClicked(event -> {
+            clickAC.play();
 
-                // Update the end point of the light
-                double[] startingPointOfRay = {lightRay.getStartX(), lightRay.getStartY()}; // The starting point of ray
-                double[] endingPointOfRay = {event.getX(), event.getY()}; // The end point of ray
-                double[] eventEndingPointOfRay = {event.getX(), event.getY()}; // The event point of ray
-                double[] startingPointOfMirrorOne = {lineMirrorOne.getStartX(), lineMirrorOne.getStartY()}; // The starting point of wall
-                double[] endingPointOfMirrorOne = {lineMirrorOne.getEndX(), lineMirrorOne.getEndY()}; // The end point of line segment CD (wall
+            // Update the end point of the light
+            double[] startingPointOfRay = {lightRay.getStartX(), lightRay.getStartY()}; // The starting point of ray
+            double[] endingPointOfRay = {event.getX(), event.getY()}; // The end point of ray
+            double[] eventEndingPointOfRay = {event.getX(), event.getY()}; // The event point of ray
+            double[] startingPointOfMirrorOne = {lineMirrorOne.getStartX(), lineMirrorOne.getStartY()}; // The starting point of wall
+            double[] endingPointOfMirrorOne = {lineMirrorOne.getEndX(), lineMirrorOne.getEndY()}; // The end point of line segment CD (wall
 
-                touchingTheBorder(startingPointOfRay, eventEndingPointOfRay, lightRay, reflectRay);
+            touchingTheBorder(startingPointOfRay, eventEndingPointOfRay, lightRay, reflectRay);
 
-                //determine if the line touch each wall
-                double[] interesctPointWithWallOne = wallMethod.findIntersectionWithWall(
-                        startingPointOfRay, endingPointOfRay,
-                        lineWallOne);
-                double[] interesctPointWithWallTwo = wallMethod.findIntersectionWithWall(
-                        startingPointOfRay, endingPointOfRay, lineWallTwo);
-                double[] interesctPointWithWallThree = wallMethod.findIntersectionWithWall(
-                        startingPointOfRay, endingPointOfRay, lineWallThree);
-                double[] interesctPointWithWallFour = wallMethod.findIntersectionWithWall(
-                        startingPointOfRay, endingPointOfRay, lineWallFour);
+            //determine if the line touch each wall
+            double[] interesctPointWithWallOne = wallMethod.findIntersectionWithWall(
+                    startingPointOfRay, endingPointOfRay,
+                    lineWallOne);
+            double[] interesctPointWithWallTwo = wallMethod.findIntersectionWithWall(
+                    startingPointOfRay, endingPointOfRay, lineWallTwo);
+            double[] interesctPointWithWallThree = wallMethod.findIntersectionWithWall(
+                    startingPointOfRay, endingPointOfRay, lineWallThree);
+            double[] interesctPointWithWallFour = wallMethod.findIntersectionWithWall(
+                    startingPointOfRay, endingPointOfRay, lineWallFour);
 
 //              
-                boolean isTouchingTheWallOne = wallMethod.wallTouched(startingPointOfRay,
-                        endingPointOfRay, lineWallOne);
-                boolean isTouchingTheWallTwo = wallMethod.wallTouched(startingPointOfRay,
-                        endingPointOfRay, lineWallTwo);
-                boolean isTouchingTheWallThree = wallMethod.wallTouched(startingPointOfRay,
-                        endingPointOfRay, lineWallThree);
-                boolean isTouchingTheWallFour = wallMethod.wallTouched(startingPointOfRay,
-                        endingPointOfRay, lineWallFour);
+            boolean isTouchingTheWallOne = wallMethod.wallTouched(startingPointOfRay,
+                    endingPointOfRay, lineWallOne);
+            boolean isTouchingTheWallTwo = wallMethod.wallTouched(startingPointOfRay,
+                    endingPointOfRay, lineWallTwo);
+            boolean isTouchingTheWallThree = wallMethod.wallTouched(startingPointOfRay,
+                    endingPointOfRay, lineWallThree);
+            boolean isTouchingTheWallFour = wallMethod.wallTouched(startingPointOfRay,
+                    endingPointOfRay, lineWallFour);
 //                System.out.println("isTouchingTheWallOne "+isTouchingTheWallOne);
-                System.out.println(" wall :1 " + isTouchingTheWallOne + " 2 " + isTouchingTheWallTwo + " 3 " + isTouchingTheWallThree);
-                
-                if (isTouchingTheWallOne || isTouchingTheWallTwo
-                        || isTouchingTheWallThree || isTouchingTheWallFour) {
-                    reflectRay.setStroke(Color.TRANSPARENT);
+            System.out.println(" wall :1 " + isTouchingTheWallOne + " 2 " + isTouchingTheWallTwo + " 3 " + isTouchingTheWallThree);
 
-                    if (isTouchingTheWallOne
-                            && eventEndingPointOfRay[0] < lightBulb.getLayoutX()
-                            && eventEndingPointOfRay[1] < lightBulb.getLayoutY()) {
-                        lightRay.setEndX(interesctPointWithWallOne[0]);
-                        lightRay.setEndY(interesctPointWithWallOne[1]);
+            if (isTouchingTheWallOne || isTouchingTheWallTwo
+                    || isTouchingTheWallThree || isTouchingTheWallFour) {
+                reflectRay.setStroke(Color.TRANSPARENT);
+
+                if (isTouchingTheWallOne
+                        && eventEndingPointOfRay[0] < lightBulb.getLayoutX()
+                        && eventEndingPointOfRay[1] < lightBulb.getLayoutY()) {
+                    lightRay.setEndX(interesctPointWithWallOne[0]);
+                    lightRay.setEndY(interesctPointWithWallOne[1]);
 //                        System.out.println("interesctPointWithWallOne "
 //                                +interesctPointWithWallOne[0]+"+"+interesctPointWithWallOne[1]);
 //                        System.out.println("lightRay end x"+ lightRay.getEndX());
-                    } else if (isTouchingTheWallTwo
-                            && eventEndingPointOfRay[0] <= Math.max(lineWallTwo.getStartX(), lineWallTwo.getEndX())
-                            && eventEndingPointOfRay[0] >= Math.min(lineWallTwo.getStartX(), lineWallTwo.getEndX())
-                            && eventEndingPointOfRay[1] < lightBulb.getLayoutY()) {
-                        lightRay.setEndX(interesctPointWithWallTwo[0]);
-                        lightRay.setEndY(interesctPointWithWallTwo[1] + 20);
+                } else if (isTouchingTheWallTwo
+                        && eventEndingPointOfRay[0] <= Math.max(lineWallTwo.getStartX(), lineWallTwo.getEndX())
+                        && eventEndingPointOfRay[0] >= Math.min(lineWallTwo.getStartX(), lineWallTwo.getEndX())
+                        && eventEndingPointOfRay[1] < lightBulb.getLayoutY()) {
+                    lightRay.setEndX(interesctPointWithWallTwo[0]);
+                    lightRay.setEndY(interesctPointWithWallTwo[1] + 20);
 
 //                        System.out.println("interesctPointWithWallTwo "
 //                                +interesctPointWithWallTwo[0]+"+"+interesctPointWithWallTwo[1]);
-                    } else if (isTouchingTheWallThree
-                            && eventEndingPointOfRay[0] > lightBulb.getLayoutX()
-                            && eventEndingPointOfRay[1] < lightBulb.getLayoutY()) {
-                        lightRay.setEndX(interesctPointWithWallThree[0]);
-                        lightRay.setEndY(interesctPointWithWallThree[1] + 20);
+                } else if (isTouchingTheWallThree
+                        && eventEndingPointOfRay[0] > lightBulb.getLayoutX()
+                        && eventEndingPointOfRay[1] < lightBulb.getLayoutY()) {
+                    lightRay.setEndX(interesctPointWithWallThree[0]);
+                    lightRay.setEndY(interesctPointWithWallThree[1] + 20);
 
-                    } else if (isTouchingTheWallFour
-                            && eventEndingPointOfRay[0] > lightBulb.getLayoutX()
-                            && eventEndingPointOfRay[1] < lightBulb.getLayoutY()) {
-                        lightRay.setEndX(interesctPointWithWallFour[0]);
-                        lightRay.setEndY(interesctPointWithWallFour[1]);
+                } else if (isTouchingTheWallFour
+                        && eventEndingPointOfRay[0] > lightBulb.getLayoutX()
+                        && eventEndingPointOfRay[1] < lightBulb.getLayoutY()) {
+                    lightRay.setEndX(interesctPointWithWallFour[0]);
+                    lightRay.setEndY(interesctPointWithWallFour[1]);
 
-                    }
+                }
 
-                    //if the ray does not intersect with the mirror
+                //if the ray does not intersect with the mirror
+            } else {
+                if (endingPointOfRay[0] <= lightBulb.getLayoutX() / 2) {
+
+                    touchingTheBorder(startingPointOfRay, eventEndingPointOfRay, lightRay, reflectRay);
+                    reflectRay.setStroke(Color.TRANSPARENT);
+
                 } else {
-                    if (endingPointOfRay[0] <= lightBulb.getLayoutX() / 2) {
+                    //Intersection of lightray and the mirror One
+                    double[] intersection = reflectionMethod.findIntersection(
+                            startingPointOfRay, endingPointOfRay,
+                            startingPointOfMirrorOne, endingPointOfMirrorOne);
+
+                    if (intersection[1] > 365 || intersection[1] < 200) {
 
                         touchingTheBorder(startingPointOfRay, eventEndingPointOfRay, lightRay, reflectRay);
                         reflectRay.setStroke(Color.TRANSPARENT);
+                    } else if (eventEndingPointOfRay[0] > lightBulb.getLayoutX()) {
+                        lightRay.setEndX(intersection[0]);
+                        lightRay.setEndY(intersection[1]);
 
-                    } else {
-                        //Intersection of lightray and the mirror One
-                        double[] intersection = reflectionMethod.findIntersection(
+                        // Calculate the incident angle of light
+                        double incidentAngle = reflectionMethod.findIncidentAngle(
                                 startingPointOfRay, endingPointOfRay,
                                 startingPointOfMirrorOne, endingPointOfMirrorOne);
 
-                        if (intersection[1] > 365 || intersection[1] < 200) {
+                        // Calculate the reflection angle of light
+                        double reflectedAngle = incidentAngle;
 
-                            touchingTheBorder(startingPointOfRay, eventEndingPointOfRay, lightRay, reflectRay);
-                            reflectRay.setStroke(Color.TRANSPARENT);
-                        } else if (eventEndingPointOfRay[0] > lightBulb.getLayoutX()){
-                            lightRay.setEndX(intersection[0]);
-                            lightRay.setEndY(intersection[1]);
+                        // Calculate the end point coordinates of the reflected light, assuming the length is 200
+                        double[] reflectedRayEndPoint = reflectionMethod.calculateReflectRayEndPoint(intersection,
+                                reflectedAngle, 800, startingPointOfMirrorOne,
+                                endingPointOfMirrorOne);
+                        double reflectedRayEndX = reflectedRayEndPoint[0];
+                        double reflectedRayEndY = reflectedRayEndPoint[1];
 
-                            // Calculate the incident angle of light
-                            double incidentAngle = reflectionMethod.findIncidentAngle(
-                                    startingPointOfRay, endingPointOfRay,
-                                    startingPointOfMirrorOne, endingPointOfMirrorOne);
+                        //Set ReflectRay proporties
+                        reflectRay.setStartX(intersection[0]);
+                        reflectRay.setStartY(intersection[1]);
+                        reflectRay.setEndX(reflectedRayEndX);
+                        reflectRay.setEndY(reflectedRayEndY);
+                        reflectRay.setStroke(Color.YELLOW);
 
-                            // Calculate the reflection angle of light
-                            double reflectedAngle = incidentAngle;
+                        boolean isInteresct = detectorMethod.isIntersecting(intersection[0],
+                                intersection[1], reflectedRayEndX,
+                                reflectedRayEndY, detectorImageView.getLayoutX() + 25,
+                                detectorImageView.getLayoutY() + 25, 20);
 
-                            // Calculate the end point coordinates of the reflected light, assuming the length is 200
-                            double[] reflectedRayEndPoint = reflectionMethod.calculateReflectRayEndPoint(intersection,
-                                    reflectedAngle, 800, startingPointOfMirrorOne,
-                                    endingPointOfMirrorOne);
-                            double reflectedRayEndX = reflectedRayEndPoint[0];
-                            double reflectedRayEndY = reflectedRayEndPoint[1];
+                        if (isInteresct) {
 
-                            //Set ReflectRay proporties
-                            reflectRay.setStartX(intersection[0]);
-                            reflectRay.setStartY(intersection[1]);
-                            reflectRay.setEndX(reflectedRayEndX);
-                            reflectRay.setEndY(reflectedRayEndY);
-                            reflectRay.setStroke(Color.YELLOW);
+                            //rotate the door
+                            RotateTransition rotateDoor = new RotateTransition(Duration.seconds(2), doorImageView);
+                            rotateDoor.setFromAngle(0);
+                            rotateDoor.setToAngle(360);
+                            rotateDoor.play();
 
-                            boolean isInteresct = detectorMethod.isIntersecting(intersection[0],
-                                    intersection[1], reflectedRayEndX,
-                                    reflectedRayEndY, detectorImageView.getLayoutX() + 25,
-                                    detectorImageView.getLayoutY() + 25, 20);
+                            doorImageView.setImage(imageDoorOpened);
 
-                            if (isInteresct) {
-                                levelUpAC.play();
-//                                btnNextGame.setVisible(true);
-                                circleForImageLevelUp.setFill(new ImagePattern(imageLevelUp));
-                                System.out.println("yes " + reflectRay.getBoundsInParent().getWidth());
-                            }
+                            levelUpAC.play(); //audio
+                            btnNextGame.setVisible(true);
 
+//                                circleForImageLevelUp.setFill(new ImagePattern(imageLevelUp));
+//                                System.out.println("yes " + reflectRay.getBoundsInParent().getWidth());
                         }
+
                     }
                 }
+            }
 
-                System.out.println("event.getX() " + event.getX() + " ; event.getY() " + event.getY());
+            System.out.println("event.getX() " + event.getX() + " ; event.getY() " + event.getY());
 
-            });
+        });
 
-        }
+        
+        btnNextGame.setOnMouseClicked((event) -> {
+            System.out.println("Going to next level");
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/fxml/game_page_layout_level2.fxml")
+            );
+            LevelPageTwoController fxmlController = new LevelPageTwoController();
+            loader.setController(fxmlController);
+//            fxmlController.giveStage(stage);
+           
 
+            Pane root =null;
+            try {
+                root = loader.load();
+            } catch (IOException ex) {
+                Logger.getLogger(LevelPageOneController.class.getName()).log(Level.SEVERE, null, ex);
+                
+            }
+            //root.getStylesheets().add(getClass().getResource("style.css").toString());
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+            stage.show();
+        });
+
+    }
+
+    public Stage giveStage(Stage stage) {
+        return this.stage = stage;
     }
 
     public void touchingTheBorder(double[] startingPointOfRay, double[] eventEndingPointOfRay,
@@ -322,148 +375,3 @@ public class LevelPageController {
     }
 }
 
-//Next Game button for Going to next level
-//idea: make the button only visible after finishing last level
-//        btnNextGame.setOnAction((event) -> {
-//
-//            level = 2;
-//            System.out.println("level is " + level);
-//            btnNextGame.disableProperty();
-//            //clear all the things from last game.
-//            gamePane.getChildren().removeAll(mirrorOne, reflectRay, lightRay);
-//
-//        });
-//
-//        // create ray in level 2
-//        Line lightRayLevelTwo = new Line(50, 25 + 100 * Math.sqrt(3),
-//                50, 25 + 100 * Math.sqrt(3));
-//        lightRayLevelTwo.setStroke(Color.TRANSPARENT);
-//        gamePane.getChildren().add(lightRayLevelTwo);
-//
-//        // create left line of Prism
-//        Line leftLineOfPrism = new Line(200, 25,
-//                100, 25 + 100 * Math.sqrt(3)); //  /  
-//        leftLineOfPrism.setStroke(Color.TRANSPARENT);
-//
-//        gamePane.getChildren().add(leftLineOfPrism);
-//
-//        //create right line of Prism
-//        Line rightLineOfPrism = new Line(200, 25,
-//                300, 25 + 100 * Math.sqrt(3));  // \  
-//        rightLineOfPrism.setStroke(Color.TRANSPARENT);
-//        gamePane.getChildren().add(rightLineOfPrism);
-//
-//        //create bottom line of Prism
-//        Line bottomLineOfPrism = new Line(100, 25 + 100 * Math.sqrt(3),
-//                300, 25 + 100 * Math.sqrt(3));  // _  
-//        bottomLineOfPrism.setStroke(Color.TRANSPARENT);
-//        gamePane.getChildren().add(bottomLineOfPrism);
-//
-//        Line firstRefractRay = new Line(200, 50, 200, 350);
-//        firstRefractRay.setStroke(Color.TRANSPARENT);
-//        gamePane.getChildren().addAll(firstRefractRay);
-//
-//        Line secondRefractRay = new Line(200, 50, 200, 350);
-//        secondRefractRay.setStroke(Color.TRANSPARENT);
-//        gamePane.getChildren().addAll(secondRefractRay);
-//
-//        Line firstNormal = new Line(50, 200, 50, 200); //random place
-//        firstNormal.setStroke(Color.TRANSPARENT);
-//        gamePane.getChildren().add(firstNormal);
-//
-//        Line secondNormal = new Line(50, 200, 50, 200); //random place
-//        secondNormal.setStroke(Color.TRANSPARENT);
-//        gamePane.getChildren().add(secondNormal);
-//
-//        if (level == 2) {
-//
-//            gamePane.setOnMouseClicked(event -> {
-//                System.out.println("Yes");//Try
-//                lightRayLevelTwo.setStroke(Color.BLACK);
-//                leftLineOfPrism.setStroke(Color.GRAY);
-//                rightLineOfPrism.setStroke(Color.GRAY);
-//                bottomLineOfPrism.setStroke(Color.GRAY);
-//
-//                //Click the mouse to change the incident light and Refracted light
-//                double[] startingPointOfRay = {50, 200}; // The starting point of ray
-//                double[] endingPointOfRay = {event.getX(), event.getY()}; // The end point of ray
-//                double[] startingPointOfLeftLineOfPrism = {leftLineOfPrism.getStartX(),
-//                    leftLineOfPrism.getStartY()}; // The starting point of /
-//                double[] endingPointOfLeftLineOfPrism = {leftLineOfPrism.getEndX(),
-//                    leftLineOfPrism.getEndY()}; // The end point of line /
-//                double[] startingPointOfRightLineOfPrism = {rightLineOfPrism.getStartX(),
-//                    rightLineOfPrism.getStartY()}; // The starting point of line \
-//                double[] endingPointOfRightLineOfPrism = {rightLineOfPrism.getEndX(),
-//                    rightLineOfPrism.getEndY()}; // The end point of line \
-//
-//                double[] reflectRayStartPoint = refractMethod.findIntersection(
-//                        startingPointOfRay,
-//                        endingPointOfRay,
-//                        startingPointOfLeftLineOfPrism,
-//                        endingPointOfLeftLineOfPrism);
-//
-//                double refractedAngleOne = refractMethod.FindrefractedAngle(
-//                        startingPointOfRay, endingPointOfRay,
-//                        startingPointOfLeftLineOfPrism,
-//                        endingPointOfLeftLineOfPrism, "Glass");
-//
-//                double[] firstNoramlStartPoint = refractMethod.calculateNormalStartPoint(
-//                        startingPointOfLeftLineOfPrism,
-//                        endingPointOfLeftLineOfPrism,
-//                        reflectRayStartPoint);
-//
-//                double[] firstNoramlEndPoint = refractMethod.calculateNormalEndPoint(
-//                        startingPointOfLeftLineOfPrism,
-//                        endingPointOfLeftLineOfPrism,
-//                        reflectRayStartPoint);
-//
-//                double[] firstRefractedRayEndPoint = refractMethod.calculateRefractRayEndPoint(
-//                        reflectRayStartPoint, refractedAngleOne,
-//                        200, firstNoramlStartPoint,
-//                        firstNoramlEndPoint);
-//
-//                lightRayLevelTwo.setEndX(reflectRayStartPoint[0]);
-//                lightRayLevelTwo.setEndY(reflectRayStartPoint[1]);
-//
-//                //make sure the ray only reflect when touching the prism
-//                if (reflectRayStartPoint[1] < leftLineOfPrism.getEndY()
-//                        && reflectRayStartPoint[1] > leftLineOfPrism.getStartY()) {
-//                    //First Reflection
-//                    refractMethod.reflectThings(startingPointOfRay, endingPointOfRay,
-//                            startingPointOfLeftLineOfPrism, endingPointOfLeftLineOfPrism, lightRayLevelTwo,
-//                            firstNormal, firstRefractRay, "Glass");
-//                    System.out.println("Yes");
-//
-//                    if (firstRefractedRayEndPoint[1] < rightLineOfPrism.getEndY()
-//                            && firstRefractedRayEndPoint[1] > rightLineOfPrism.getStartY()) {
-//                        //Second Reflection
-//                        refractMethod.reflectThings(reflectRayStartPoint,
-//                                firstRefractedRayEndPoint, startingPointOfRightLineOfPrism,
-//                                endingPointOfRightLineOfPrism, lightRayLevelTwo, secondNormal,
-//                                secondRefractRay, "Air");
-//
-//                        // Find intersection between ReflectRay and PrismTwoC-D
-//                        double[] intersectionSecond = refractMethod.findIntersection(
-//                                reflectRayStartPoint,
-//                                firstRefractedRayEndPoint,
-//                                startingPointOfRightLineOfPrism, endingPointOfRightLineOfPrism);
-//
-//                        firstRefractRay.setEndX(intersectionSecond[0]);
-//                        firstRefractRay.setEndY(intersectionSecond[1]);
-//                    } else { //if the lightTwo in wrong place
-//                        secondRefractRay.setStroke(Color.TRANSPARENT);
-//                        secondNormal.setStroke(Color.TRANSPARENT);
-//                    }
-//                } //if the lightOne in wrong place
-//                else {
-//                    lightRayLevelTwo.setEndX(event.getX());
-//                    lightRayLevelTwo.setEndY(event.getY());
-//                    firstRefractRay.setStroke(Color.TRANSPARENT);
-//                    secondRefractRay.setStroke(Color.TRANSPARENT);
-//                    firstNormal.setStroke(Color.TRANSPARENT);
-//                    secondNormal.setStroke(Color.TRANSPARENT);
-////                System.out.println("No");
-//                }
-//
-//            });
-//        }

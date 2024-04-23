@@ -27,7 +27,7 @@ public class LoginPageController {
 
     @FXML
     Button continuebtn;
-    LevelPageController levelPageController;
+    LevelPageOneController levelPageController;
 
     Stage stage;
     String permitedChar = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ_.";
@@ -58,8 +58,10 @@ public class LoginPageController {
 //                if (verification()) {
                     FXMLLoader loader = new FXMLLoader(
                             getClass().getResource("/fxml/game_page_layout.fxml")
+//                            getClass().getResource("/fxml/game_page_layout_level2.fxml")
                     );
-                    LevelPageController fxmlController = new LevelPageController();
+                    LevelPageOneController fxmlController = new LevelPageOneController();
+//                    LevelPageTwoController fxmlController = new LevelPageTwoController();
                     loader.setController(fxmlController);
 
                     Pane root = null;
