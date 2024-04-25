@@ -6,8 +6,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Paths;
 
-/*
-**Ishrak Mellah
+/**
+ *
+ * @author Ishrak Mellah
  */
 public class Files {
 
@@ -39,5 +40,5 @@ public class Files {
         } else {
             return "No file selected";
         }
-    };
+    }
 }

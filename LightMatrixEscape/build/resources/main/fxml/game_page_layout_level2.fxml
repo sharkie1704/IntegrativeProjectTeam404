@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="gamePane" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="gamePane" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fx:id="backgroundImageView" fitHeight="700.0" fitWidth="900.0" pickOnBounds="true">
          <image>
@@ -36,20 +36,20 @@
             <Font name="Baskerville Old Face" size="18.0" />
          </font>
       </Text>
-      <Pane fx:id="Pane" prefHeight="700.0" prefWidth="900.0">
+      <Pane fx:id="Pane" layoutY="30.0" prefHeight="661.0" prefWidth="900.0">
          <children>
-            <ImageView fx:id="doorImageView" fitHeight="100.0" fitWidth="87.0" layoutX="114.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="doorImageView" fitHeight="100.0" fitWidth="87.0" layoutX="414.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/imageDoorClosed.png" />
                </image></ImageView>
-            <ImageView fx:id="detectorImageView" fitHeight="56.0" fitWidth="51.0" layoutX="255.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true" rotate="29.7">
+            <ImageView fx:id="detectorImageView" fitHeight="56.0" fitWidth="51.0" layoutX="354.0" layoutY="44.0" pickOnBounds="true" preserveRatio="true" rotate="29.7">
                <image>
                   <Image url="@../images/imageDetector.png" />
                </image></ImageView>
-            <Line fx:id="wallThree" endX="450.0" endY="220.0" startX="500.0" startY="50.0" stroke="#544d4d" strokeWidth="4.0" />
-            <Rectangle fx:id="flashlight" arcHeight="5.0" arcWidth="5.0" fill="#ffb01f" height="66.0" layoutX="55.0" layoutY="454.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="34.0" />
-            <Line fx:id="wallOne" endX="300.0" endY="370.0" fill="#544d4d" startX="70.0" startY="350.0" stroke="#544d4d" strokeWidth="4.0" />
-            <Rectangle fx:id="mirrorOne" arcHeight="5.0" arcWidth="5.0" height="14.0" layoutX="706.0" layoutY="424.0" rotate="-90.0" stroke="BLACK" strokeType="INSIDE" width="161.0">
+            <Line fx:id="wallThree" endX="500.0" endY="320.0" startX="500.0" startY="260.0" stroke="#544d4d" strokeWidth="4.0" />
+            <Rectangle fx:id="flashlight" arcHeight="5.0" arcWidth="5.0" fill="#ffb01f" height="66.0" layoutX="55.0" layoutY="489.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="34.0" />
+            <Line fx:id="wallOne" endX="300.0" endY="50.0" fill="#544d4d" startX="70.0" startY="50.0" stroke="#544d4d" strokeWidth="4.0" />
+            <Rectangle fx:id="mirrorOne" arcHeight="5.0" arcWidth="5.0" height="14.0" layoutX="685.0" layoutY="275.0" rotate="-90.0" stroke="BLACK" strokeType="INSIDE" width="161.0">
                <fill>
                   <RadialGradient centerX="0.5" centerY="0.495260663507109" cycleMethod="REFLECT" radius="0.7758620689655172">
                      <stops>
@@ -66,9 +66,9 @@
                      </stops>
                   </RadialGradient>
                </fill></Rectangle>
-            <Line fx:id="wallFour" endX="150.0" endY="570.0" startX="70.0" startY="600.0" stroke="#544d4d" strokeWidth="4.0" />
-            <Ellipse fx:id="lightBulb" fill="#dbfc0a" layoutX="105.0" layoutY="487.0" radiusX="18.0" radiusY="18.0" stroke="BLACK" strokeType="INSIDE" />
-            <ImageView fx:id="imageOne" fitHeight="152.0" fitWidth="181.0" layoutX="235.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true">
+            <Line fx:id="wallLine3" endX="380.0" endY="600.0" startX="90.0" startY="600.0" stroke="#544d4d" strokeWidth="4.0" />
+            <Ellipse fx:id="lightBulb" fill="#dbfc0a" layoutX="105.0" layoutY="522.0" radiusX="18.0" radiusY="18.0" stroke="BLACK" strokeType="INSIDE" />
+            <ImageView fx:id="imageOne" fitHeight="152.0" fitWidth="181.0" layoutX="235.0" layoutY="402.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/imagePrism.png" />
                </image>
@@ -91,27 +91,10 @@
                   </RadialGradient>
                </fill>
             </Rectangle>
-            <Line fx:id="wallTwo" endX="550.0" endY="510.0" fill="#544d4d" startX="390.0" startY="373.0" stroke="#544d4d" strokeWidth="4.0" />
-            <Line fx:id="rightLineOfPrism" endX="415.0" endY="520.0" startX="326.0" startY="373.0" stroke="#8c7a7a" />
-            <Line fx:id="bottomLineOfPrism" endX="415.0" endY="520.0" startX="235.0" startY="520.0" stroke="#978888" />
-            <Line fx:id="leftLineOfPrism" endX="235.0" endY="520.0" startX="326.0" startY="373.0" stroke="#a19191" />
-            <Line fx:id="lightRay" endX="123.0" endY="487.0" startX="123.0" startY="487.0" stroke="#e8f22d" />
-            <Line fx:id="lineBorderUp" endX="900.0" />
-            <Line fx:id="lineBorderLeft" endY="700.0" />
-            <Line fx:id="lineBorderBottom" endX="900.0" endY="700.0" startY="700.0" />
-            <Line fx:id="lineBorderRight" endX="900.0" endY="700.0" startX="900.0" />
-            <Line fx:id="lineMirrorOne" endX="690.0" endY="556.0" startX="529.0" startY="556.0" />
-            <Line fx:id="lineMirrorTwo" endX="780.0" endY="510.0" startX="780.0" startY="350.0" />
-            <ImageView fx:id="imageViewWin" fitHeight="287.0" fitWidth="382.0" layoutX="547.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../images/imageWin.jpg" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="imageLightBulb" fitHeight="92.0" fitWidth="125.0" layoutX="-3.0" layoutY="447.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/imageLightLeft.png" />
-               </image>
-            </ImageView>
+            <Line fx:id="wallTwo" endX="700.0" endY="130.0" fill="#544d4d" startX="700.0" startY="10.0" stroke="#544d4d" strokeWidth="4.0" />
+            <Line fx:id="leftLineOfPrism" endX="233.0" endY="550.0" startX="325.0" startY="402.0" />
+            <Line fx:id="bottomLineOfPrism" endX="415.0" endY="548.0" startX="233.0" startY="548.0" />
+            <Line fx:id="rightLineOfPrism" endX="415.0" endY="550.0" startX="325.0" startY="402.0" />
          </children></Pane>
       <MediaView fx:id="mediaView" fitHeight="10.0" fitWidth="50.0" layoutX="662.0" layoutY="681.0" />
    </children>

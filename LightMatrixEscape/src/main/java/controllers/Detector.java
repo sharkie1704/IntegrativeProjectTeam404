@@ -6,7 +6,6 @@ package controllers;
  */
 public class Detector {
 
-    
     public static boolean isIntersecting(double XofStartPointOfRay,
             double YofStartPointOfRay, double XofEndPointOfRay, double YofEndPointOfRay,
             double centerX, double centerY, double radius) {
@@ -27,7 +26,6 @@ public class Detector {
                 return true;
             }
         }
-
         return false;
     }
 }

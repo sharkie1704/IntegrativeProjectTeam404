@@ -51,7 +51,5 @@ if (interesctedPoint != null) {
             }
         }
         return false;
-
     }
-
 }

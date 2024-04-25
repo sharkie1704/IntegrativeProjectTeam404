@@ -23,6 +23,3 @@ public class Lines {
         return EndPoint;
     }
 }
-
-
-
