@@ -53,6 +53,7 @@ public class LoginPageController {
             player.saveProgress();
             levelPageController.player = this.player;
 
+            
 //            levelPageController.usernameLabel = new Player(username, 1, 0);
 //            try {
 //                if (verification()) {

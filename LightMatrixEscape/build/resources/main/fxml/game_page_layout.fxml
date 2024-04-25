@@ -64,6 +64,24 @@
                 <Line fx:id="lineWallThree" endX="650.0" endY="500.0" startX="850.0" startY="500.0" stroke="#544d4d" strokeWidth="4.0" />
                 <Ellipse fx:id="lightBulb" fill="#dbfc0a" layoutX="444.0" layoutY="588.0" radiusX="17.0" radiusY="18.0" stroke="BLACK" strokeType="INSIDE" />
                 <Line fx:id="lineWallFour" endX="800.0" endY="150.0" fill="#544d4d" startX="800.0" startY="30.0" stroke="#544d4d" strokeWidth="4.0" />
+            <Rectangle fx:id="mirror1Clone" arcHeight="5.0" arcWidth="5.0" height="165.0" layoutX="443.0" layoutY="266.0" stroke="BLACK" strokeType="INSIDE" width="14.0">
+               <fill>
+                  <RadialGradient centerX="0.5" centerY="0.495260663507109" cycleMethod="REFLECT" radius="0.7758620689655172">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </fill>
+            </Rectangle>
             </children>
         </Pane>
         <MediaView fx:id="mediaView" fitHeight="10.0" fitWidth="50.0" layoutX="662.0" layoutY="681.0" />
