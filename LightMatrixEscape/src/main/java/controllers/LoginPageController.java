@@ -57,12 +57,13 @@ public class LoginPageController {
 //            try {
 //                if (verification()) {
                     FXMLLoader loader = new FXMLLoader(
-//                            getClass().getResource("/fxml/game_page_layout.fxml")
-                            getClass().getResource("/fxml/game_page_layout_level2.fxml")
+                            getClass().getResource("/fxml/game_page_layout.fxml")
+//                            getClass().getResource("/fxml/game_page_layout_level2.fxml")
                     );
-//                    LevelPageOneController fxmlController = new LevelPageOneController();
-                    LevelPageTwoController fxmlController = new LevelPageTwoController();
+                    LevelPageOneController fxmlController = new LevelPageOneController();
+//                    LevelPageTwoController fxmlController = new LevelPageTwoController();
                     loader.setController(fxmlController);
+                    fxmlController.giveStage(stage);
 
                     Pane root = null;
                     try {

@@ -35,34 +35,34 @@ import javafx.util.Duration;
 public class LevelPageOneController {
 
     @FXML
-    Pane gamePane, actionPane;
+    Pane gamePaneFOne, actionPane;
 
     @FXML
-    Text scoreText, usernameText, levelText;
+    Text scoreTextFOne, usernameTextFOne, levelTextFOne;
 
     @FXML
     Button btnNextGame;
 
     @FXML
-    Slider volumeSlider;
+    Slider volumeSliderFOne;
     Player player;
 
     @FXML
     Image imageLevelUp, imageDoorOpened;
 
     @FXML
-    ImageView detectorImageView, doorImageView;
+    ImageView detectorImageViewFOne, doorImageViewFOne;
 
     @FXML
     Line lineWallOne, lineWallTwo, lineWallThree, lineWallFour;
 
     @FXML
-    Line lineBorderUp, lineBorderLeft, lineBorderRight, lineBorderBottom;
+    Line lineBorderUpFOne, lineBorderLeftFOne, lineBorderRightFOne, lineBorderBottomFOne;
 
     @FXML
-    Ellipse lightBulb;
-    Stage stage= new Stage();
-//    Stage stage;
+    Ellipse lightBulbFOne;
+//    Stage stage= new Stage();
+    Stage stage;
 
 //    @FXML
 //    LoginPageController loginPageController;
@@ -108,10 +108,10 @@ public class LevelPageOneController {
         AudioClip MusicGame = new AudioClip(URLMusic.toExternalForm());
 //        Media media = new Media(MusicGame);
 //        MediaPlayer mediaPlayer = new MediaPlayer(media);
-        volumeSlider = new Slider(0, 100, 30);
-        volumeSlider.setValue(50);
-        clickAC.volumeProperty().bind(volumeSlider.valueProperty().divide(50));
-        MusicGame.volumeProperty().bind(volumeSlider.valueProperty());
+        volumeSliderFOne = new Slider(0, 100, 30);
+        volumeSliderFOne.setValue(50);
+        clickAC.volumeProperty().bind(volumeSliderFOne.valueProperty().divide(50));
+        MusicGame.volumeProperty().bind(volumeSliderFOne.valueProperty());
         MusicGame.play();
 //        mediaPlayer.volumeProperty().bind(volumeSlider.valueProperty().divide(100));
 
@@ -120,19 +120,19 @@ public class LevelPageOneController {
 //            scoreText.setText("Score: " + newScore.intValue());
 //        Lines lineMethod = new Lines();
         // create ray
-        Line lightRay = new Line(lightBulb.getLayoutX(), lightBulb.getLayoutY(), 800, 400);
+        Line lightRay = new Line(lightBulbFOne.getLayoutX(), lightBulbFOne.getLayoutY(), 900, 400);
         lightRay.setStroke(Color.YELLOW);
-        gamePane.getChildren().add(lightRay);
+        gamePaneFOne.getChildren().add(lightRay);
 
         // create mirror one
-        Line lineMirrorOne = new Line(845, 380, 845, 210);
+        Line lineMirrorOne = new Line(845, 380, 845, 255);
         lineMirrorOne.setStroke(Color.BLUE);
-        gamePane.getChildren().add(lineMirrorOne);
+        gamePaneFOne.getChildren().add(lineMirrorOne);
 
         Line reflectRay = new Line(0, 0, 0, 0);
         //whatever position and length of reflectRay, since this will change later.
         reflectRay.setStroke(Color.TRANSPARENT);
-        gamePane.getChildren().addAll(reflectRay);
+        gamePaneFOne.getChildren().addAll(reflectRay);
 
         Circle circleForImageLevelUp = new Circle();
         circleForImageLevelUp.setCenterX(450.0f);
@@ -140,12 +140,12 @@ public class LevelPageOneController {
         circleForImageLevelUp.setRadius(100.0f);
         circleForImageLevelUp.setFill(Color.TRANSPARENT);
 //        circleForImageLevelUp.setFill(new ImagePattern(imageLevelUp));
-        gamePane.getChildren().add(circleForImageLevelUp);
+        gamePaneFOne.getChildren().add(circleForImageLevelUp);
 
         btnNextGame.setVisible(false);
 
 //         Click the mouse to change the incident light and reflected light
-        gamePane.setOnMouseClicked(event -> {
+        gamePaneFOne.setOnMouseClicked(event -> {
             clickAC.play();
 
             // Update the end point of the light
@@ -178,15 +178,15 @@ public class LevelPageOneController {
             boolean isTouchingTheWallFour = wallMethod.wallTouched(startingPointOfRay,
                     endingPointOfRay, lineWallFour);
 //                System.out.println("isTouchingTheWallOne "+isTouchingTheWallOne);
-            System.out.println(" wall :1 " + isTouchingTheWallOne + " 2 " + isTouchingTheWallTwo + " 3 " + isTouchingTheWallThree);
+//            System.out.println(" wall :1 " + isTouchingTheWallOne + " 2 " + isTouchingTheWallTwo + " 3 " + isTouchingTheWallThree);
 
             if (isTouchingTheWallOne || isTouchingTheWallTwo
                     || isTouchingTheWallThree || isTouchingTheWallFour) {
                 reflectRay.setStroke(Color.TRANSPARENT);
 
                 if (isTouchingTheWallOne
-                        && eventEndingPointOfRay[0] < lightBulb.getLayoutX()
-                        && eventEndingPointOfRay[1] < lightBulb.getLayoutY()) {
+                        && eventEndingPointOfRay[0] < lightBulbFOne.getLayoutX()
+                        && eventEndingPointOfRay[1] < lightBulbFOne.getLayoutY()) {
                     lightRay.setEndX(interesctPointWithWallOne[0]);
                     lightRay.setEndY(interesctPointWithWallOne[1]);
 //                        System.out.println("interesctPointWithWallOne "
@@ -195,21 +195,21 @@ public class LevelPageOneController {
                 } else if (isTouchingTheWallTwo
                         && eventEndingPointOfRay[0] <= Math.max(lineWallTwo.getStartX(), lineWallTwo.getEndX())
                         && eventEndingPointOfRay[0] >= Math.min(lineWallTwo.getStartX(), lineWallTwo.getEndX())
-                        && eventEndingPointOfRay[1] < lightBulb.getLayoutY()) {
+                        && eventEndingPointOfRay[1] < lightBulbFOne.getLayoutY()) {
                     lightRay.setEndX(interesctPointWithWallTwo[0]);
-                    lightRay.setEndY(interesctPointWithWallTwo[1] + 20);
+                    lightRay.setEndY(interesctPointWithWallTwo[1] );
 
 //                        System.out.println("interesctPointWithWallTwo "
 //                                +interesctPointWithWallTwo[0]+"+"+interesctPointWithWallTwo[1]);
                 } else if (isTouchingTheWallThree
-                        && eventEndingPointOfRay[0] > lightBulb.getLayoutX()
-                        && eventEndingPointOfRay[1] < lightBulb.getLayoutY()) {
+                        && eventEndingPointOfRay[0] > lightBulbFOne.getLayoutX()
+                        && eventEndingPointOfRay[1] < lightBulbFOne.getLayoutY()) {
                     lightRay.setEndX(interesctPointWithWallThree[0]);
-                    lightRay.setEndY(interesctPointWithWallThree[1] + 20);
+                    lightRay.setEndY(interesctPointWithWallThree[1] );
 
                 } else if (isTouchingTheWallFour
-                        && eventEndingPointOfRay[0] > lightBulb.getLayoutX()
-                        && eventEndingPointOfRay[1] < lightBulb.getLayoutY()) {
+                        && eventEndingPointOfRay[0] > lightBulbFOne.getLayoutX()
+                        && eventEndingPointOfRay[1] < lightBulbFOne.getLayoutY()) {
                     lightRay.setEndX(interesctPointWithWallFour[0]);
                     lightRay.setEndY(interesctPointWithWallFour[1]);
 
@@ -217,7 +217,7 @@ public class LevelPageOneController {
 
                 //if the ray does not intersect with the mirror
             } else {
-                if (endingPointOfRay[0] <= lightBulb.getLayoutX() / 2) {
+                if (endingPointOfRay[0] <= lightBulbFOne.getLayoutX() / 2) {
 
                     touchingTheBorder(startingPointOfRay, eventEndingPointOfRay, lightRay, reflectRay);
                     reflectRay.setStroke(Color.TRANSPARENT);
@@ -228,11 +228,11 @@ public class LevelPageOneController {
                             startingPointOfRay, endingPointOfRay,
                             startingPointOfMirrorOne, endingPointOfMirrorOne);
 
-                    if (intersection[1] > 365 || intersection[1] < 200) {
+                    if (intersection[1] > 390 || intersection[1] < 225) {
 
                         touchingTheBorder(startingPointOfRay, eventEndingPointOfRay, lightRay, reflectRay);
                         reflectRay.setStroke(Color.TRANSPARENT);
-                    } else if (eventEndingPointOfRay[0] > lightBulb.getLayoutX()) {
+                    } else if (eventEndingPointOfRay[0] > lightBulbFOne.getLayoutX()) {
                         lightRay.setEndX(intersection[0]);
                         lightRay.setEndY(intersection[1]);
 
@@ -246,7 +246,7 @@ public class LevelPageOneController {
 
                         // Calculate the end point coordinates of the reflected light, assuming the length is 200
                         double[] reflectedRayEndPoint = reflectionMethod.calculateReflectRayEndPoint(intersection,
-                                reflectedAngle, 800, startingPointOfMirrorOne,
+                                reflectedAngle, 1300, startingPointOfMirrorOne,
                                 endingPointOfMirrorOne);
                         double reflectedRayEndX = reflectedRayEndPoint[0];
                         double reflectedRayEndY = reflectedRayEndPoint[1];
@@ -260,18 +260,18 @@ public class LevelPageOneController {
 
                         boolean isInteresct = detectorMethod.isIntersecting(intersection[0],
                                 intersection[1], reflectedRayEndX,
-                                reflectedRayEndY, detectorImageView.getLayoutX() + 25,
-                                detectorImageView.getLayoutY() + 25, 20);
+                                reflectedRayEndY, detectorImageViewFOne.getLayoutX() + 25,
+                                detectorImageViewFOne.getLayoutY() + 25, 20);
 
                         if (isInteresct) {
 
                             //rotate the door
-                            RotateTransition rotateDoor = new RotateTransition(Duration.seconds(2), doorImageView);
+                            RotateTransition rotateDoor = new RotateTransition(Duration.seconds(2), doorImageViewFOne);
                             rotateDoor.setFromAngle(0);
                             rotateDoor.setToAngle(360);
                             rotateDoor.play();
 
-                            doorImageView.setImage(imageDoorOpened);
+                            doorImageViewFOne.setImage(imageDoorOpened);
 
                             levelUpAC.play(); //audio
                             btnNextGame.setVisible(true);
@@ -284,7 +284,7 @@ public class LevelPageOneController {
                 }
             }
 
-            System.out.println("event.getX() " + event.getX() + " ; event.getY() " + event.getY());
+//            System.out.println("event.getX() " + event.getX() + " ; event.getY() " + event.getY());
 
         });
 
@@ -300,16 +300,18 @@ public class LevelPageOneController {
            
 
             Pane root =null;
+            fxmlController.giveStage(stage);
             try {
                 root = loader.load();
             } catch (IOException ex) {
+                
                 Logger.getLogger(LevelPageOneController.class.getName()).log(Level.SEVERE, null, ex);
                 
             }
             //root.getStylesheets().add(getClass().getResource("style.css").toString());
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            stage.show();
+//            stage.show();
         });
 
     }
@@ -321,51 +323,47 @@ public class LevelPageOneController {
     public void touchingTheBorder(double[] startingPointOfRay, double[] eventEndingPointOfRay,
             Line lightRay, Line reflectRay) {
         //Make the ray touches the border
-        double[] interesctPointWithBorderUp = wallMethod.findIntersectionWithWall(
-                startingPointOfRay, eventEndingPointOfRay,
-                lineBorderUp);
-        double[] interesctPointWithBorderLeft = wallMethod.findIntersectionWithWall(
-                startingPointOfRay, eventEndingPointOfRay,
-                lineBorderLeft);
-        double[] interesctPointWithBorderRight = wallMethod.findIntersectionWithWall(
-                startingPointOfRay, eventEndingPointOfRay,
-                lineBorderRight);
-        double[] interesctPointWithBorderBottom = wallMethod.findIntersectionWithWall(
-                startingPointOfRay, eventEndingPointOfRay,
-                lineBorderBottom);
+        double[] interesctPointWithBorderUp = wallMethod.findIntersectionWithWall(startingPointOfRay, eventEndingPointOfRay,
+                lineBorderUpFOne);
+        double[] interesctPointWithBorderLeft = wallMethod.findIntersectionWithWall(startingPointOfRay, eventEndingPointOfRay,
+                lineBorderLeftFOne);
+        double[] interesctPointWithBorderRight = wallMethod.findIntersectionWithWall(startingPointOfRay, eventEndingPointOfRay,
+                lineBorderRightFOne);
+        double[] interesctPointWithBorderBottom = wallMethod.findIntersectionWithWall(startingPointOfRay, eventEndingPointOfRay,
+                lineBorderBottomFOne);
 
         boolean isTouchingTheBorderUp = wallMethod.wallTouched(startingPointOfRay,
-                eventEndingPointOfRay, lineBorderUp);
+                eventEndingPointOfRay, lineBorderUpFOne);
         boolean isTouchingTheBorderLeft = wallMethod.wallTouched(startingPointOfRay,
-                eventEndingPointOfRay, lineBorderLeft);
+                eventEndingPointOfRay, lineBorderLeftFOne);
         boolean isTouchingTheBorderRight = wallMethod.wallTouched(startingPointOfRay,
-                eventEndingPointOfRay, lineBorderRight);
+                eventEndingPointOfRay, lineBorderRightFOne);
         boolean isTouchingTheBorderBottom = wallMethod.wallTouched(startingPointOfRay,
-                eventEndingPointOfRay, lineBorderBottom);
+                eventEndingPointOfRay, lineBorderBottomFOne);
 
         if (isTouchingTheBorderUp || isTouchingTheBorderLeft
                 || isTouchingTheBorderRight || isTouchingTheBorderBottom) {
-            System.out.println("Touching border");
+//            System.out.println("Touching border");
             reflectRay.setStroke(Color.TRANSPARENT);
-            if (isTouchingTheBorderUp && eventEndingPointOfRay[1] <= lightBulb.getLayoutY()) {
-                System.out.println("Touching borderUp");
+            if (isTouchingTheBorderUp && eventEndingPointOfRay[1] <= lightBulbFOne.getLayoutY()) {
+//                System.out.println("Touching borderUp");
                 lightRay.setEndX(interesctPointWithBorderUp[0]);
                 lightRay.setEndY(interesctPointWithBorderUp[1]);
 //                        System.out.println("interesctPointWithWallOne "
 //                                +interesctPointWithWallOne[0]+"+"+interesctPointWithWallOne[1]);
 //                        System.out.println("lightRay end x"+ lightRay.getEndX());
-            } else if (isTouchingTheBorderLeft && eventEndingPointOfRay[0] < lightBulb.getLayoutX()) {
-                System.out.println("Touching borderLeft");
+            } else if (isTouchingTheBorderLeft && eventEndingPointOfRay[0] < lightBulbFOne.getLayoutX()) {
+//                System.out.println("Touching borderLeft");
                 lightRay.setEndX(interesctPointWithBorderLeft[0]);
                 lightRay.setEndY(interesctPointWithBorderLeft[1]);
 
 //                        System.out.println("interesctPointWithWallTwo "
 //                                +interesctPointWithWallTwo[0]+"+"+interesctPointWithWallTwo[1]);
-            } else if (isTouchingTheBorderRight && eventEndingPointOfRay[0] >= lightBulb.getLayoutX()) {
+            } else if (isTouchingTheBorderRight && eventEndingPointOfRay[0] >= lightBulbFOne.getLayoutX()) {
                 lightRay.setEndX(interesctPointWithBorderRight[0]);
                 lightRay.setEndY(interesctPointWithBorderRight[1]);
 
-            } else if (isTouchingTheBorderBottom && eventEndingPointOfRay[1] > lightBulb.getLayoutY()) {
+            } else if (isTouchingTheBorderBottom && eventEndingPointOfRay[1] > lightBulbFOne.getLayoutY()) {
                 lightRay.setEndX(interesctPointWithBorderBottom[0]);
                 lightRay.setEndY(interesctPointWithBorderBottom[1]);
 

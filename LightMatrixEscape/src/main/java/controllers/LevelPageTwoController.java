@@ -431,7 +431,7 @@ public class LevelPageTwoController {
 
                 doorImageView.setImage(imageDoorOpened);
                 imageViewWin.setVisible(true);
-
+                
 //                                circleForImageLevelUp.setFill(new ImagePattern(imageLevelUp));
 //                                System.out.println("yes " + reflectRay.getBoundsInParent().getWidth());
             }

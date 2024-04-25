@@ -33,7 +33,7 @@ public class Refraction {
         //Calculate the refraction angle of light
         double refractedAngleOne = FindrefractedAngle(startPointOfRay, endPointOfRay,
                 startPointOfPrism, endPointOfPrism, Type);
-        System.out.println("refractedAngleOne"+refractedAngleOne);
+//        System.out.println("refractedAngleOne"+refractedAngleOne);
 //        System.out.println("startPointOfRay"+startPointOfRay[1]+" ?"+endPointOfRay[1]+" ? "+startPointOfPrism[1]+" ? "+endPointOfPrism[1]+" ? ");
         //Calculate the end point coordinates of the refracted light, assuming the length is 1200
         double[] refractedRayOneEndPoint = calculateRefractRayEndPoint(intersection,
