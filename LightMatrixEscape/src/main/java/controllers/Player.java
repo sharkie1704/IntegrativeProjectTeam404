@@ -1,65 +1,35 @@
 package controllers;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import lombok.Getter;
 import lombok.Setter;
 
-/**
- *
- * @author Ishrak Mellah
+
+/*
+* @author Ishrak Mellah
  */
+
 @Getter
 @Setter
-
 public class Player {
 
     private String username;
     private int levelProgress;
     private int score;
-    String str = null;
-    File progressFile = new File(getClass().getResource("/data/progress.txt").getFile());
-
-    public Player() {
-
-    }
+    File progressFile = new File("/data/progress.txt");
 
     public Player(String username, int levelProgress, int score) {
         this.username = username;
         this.levelProgress = levelProgress;
         this.score = score;
     }
-    
-    //This method saves the progress of the user in a txt file
+
+    //This method saves the progress of the player into a file to access it when they log back into the game
     public void saveProgress() {
         String scoreData = "The player " + username + "'s score: " + score;
         String progressData = "The player " + username + " is at level: " + levelProgress;
 
-        Files.saveToFile(scoreData, progressFile);
-        Files.saveToFile("/n" + progressData, progressFile);
-    }
-
-    //This method can access the saved data of the user based on username 
-    //Still needs some work
-    public void importProgress() throws IOException {
-        //String str = null;
-        try (BufferedReader reader = new BufferedReader(new FileReader(progressFile))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                if (!line.isEmpty()) {
-                    if (line.startsWith("The player " + username + "'s score: ")) {
-                        //Saving score information from the line
-                        String scoreStr = line.substring(line.lastIndexOf(":") + 2);
-                        score = Integer.parseInt(scoreStr);
-                    } else if (line.startsWith("The player " + username + " is at level: ")) {
-                        //Saving level progress from the line
-                        String progressStr = line.substring(line.lastIndexOf(":") + 2);
-                        levelProgress = Integer.parseInt(progressStr);
-                    }
-                }
-            }
-        }
+        String playerData = scoreData + "\n" + progressData;
+        Files.saveToFile(playerData, progressFile);
     }
 }
