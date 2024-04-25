@@ -10,66 +10,66 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.StackPane?>
 
 <Pane fx:id="accountPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <ImageView fitHeight="600.0" fitWidth="906.0" layoutX="-2.0" pickOnBounds="true">
-         <image>
-            <Image url="@../images/background.png" />
-         </image>
-      </ImageView>
-      <Text layoutX="286.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in/Sign up">
-         <font>
-            <Font name="Lucida Console" size="39.0" />
-         </font>
-         <fill>
-            <RadialGradient centerX="0.5276243093922652" centerY="0.5" radius="1.0">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color red="0.14477333426475525" green="0.07320000231266022" blue="0.6100000143051147" />
-                     </color>
-                  </Stop>
-                  <Stop offset="0.10738255033557047">
-                     <color>
-                        <Color red="0.14477333426475525" green="0.07320000231266022" blue="0.6100000143051147" />
-                     </color>
-                  </Stop>
-                  <Stop offset="0.785234899328859">
-                     <color>
-                        <Color red="0.5657894611358643" green="0.26979777216911316" blue="0.26979777216911316" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="0.5657894611358643" green="0.26979777216911316" blue="0.26979777216911316" />
-                     </color>
-                  </Stop>
-               </stops>
-            </RadialGradient>
-         </fill>
-      </Text>
-      <Text layoutX="216.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in">
-         <font>
-            <Font name="Lucida Console" size="25.0" />
-         </font>
-      </Text>
-      <Text layoutX="585.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign up">
-         <font>
-            <Font name="Lucida Console" size="25.0" />
-         </font>
-      </Text>
-      <TextField fx:id="logInTextField" layoutX="137.0" layoutY="315.0">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </TextField>
-      <TextField fx:id="signUpTextField" layoutX="514.0" layoutY="315.0">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </TextField>
-      <Button fx:id="continuebtn" layoutX="373.0" layoutY="458.0" mnemonicParsing="false" stylesheets="@style.css" text="Continue" textAlignment="CENTER" wrapText="true">
-      </Button>
-   </children>
+    <children>
+        <ImageView fitHeight="600.0" fitWidth="906.0" layoutX="-2.0" pickOnBounds="true">
+            <image>
+                <Image url="@../images/background.png" />
+            </image>
+        </ImageView>
+        <Text layoutX="251.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign up or log in">
+            <font>
+                <Font name="Lucida Console" size="39.0" />
+            </font>
+            <fill>
+                <RadialGradient centerX="0.5276243093922652" centerY="0.5" radius="1.0">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color red="0.14477333426475525" green="0.07320000231266022" blue="0.6100000143051147" />
+                            </color>
+                        </Stop>
+                        <Stop offset="0.10738255033557047">
+                            <color>
+                                <Color red="0.14477333426475525" green="0.07320000231266022" blue="0.6100000143051147" />
+                            </color>
+                        </Stop>
+                        <Stop offset="0.785234899328859">
+                            <color>
+                                <Color red="0.5657894611358643" green="0.26979777216911316" blue="0.26979777216911316" />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color red="0.5657894611358643" green="0.26979777216911316" blue="0.26979777216911316" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </RadialGradient>
+            </fill>
+        </Text>
+        <Text layoutX="592.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in">
+            <font>
+                <Font name="Lucida Console" size="25.0" />
+            </font>
+        </Text>
+        <Text layoutX="195.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign up">
+            <font>
+                <Font name="Lucida Console" size="25.0" />
+            </font>
+        </Text>
+        <TextField fx:id="logInTextField" layoutX="513.0" layoutY="314.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>
+        <TextField fx:id="signUpTextField" layoutX="123.0" layoutY="314.0">
+            <font>
+                <Font size="20.0" />
+            </font>
+        </TextField>   
+        <Button fx:id="continuebtn" layoutX="418.0" layoutY="452.0" mnemonicParsing="false" text="Continue" textAlignment="CENTER" wrapText="true" />
+    </children>
 </Pane>

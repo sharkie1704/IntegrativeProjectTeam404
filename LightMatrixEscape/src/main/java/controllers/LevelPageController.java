@@ -84,63 +84,63 @@ public class LevelPageController {
 
     public void initialize() throws FileNotFoundException, IOException {
 
-        double originalXCoord = mirror1.getTranslateX();
-        double originalYCoord = mirror1.getTranslateY();
-        mirror1Clone.setVisible(false);
-        double adjustX = mirror1.getLayoutX()-mirror1Clone.getLayoutX();
-        double adjustY = mirror1.getLayoutY()-mirror1Clone.getLayoutY();
-        // - Takes coordinates of the object in the scene when pressed
-        mirror1.setOnMousePressed(event->{
-            xCoord = event.getSceneX()-mirror1.getTranslateX();
-            yCoord = event.getSceneY()-mirror1.getTranslateY();
-            
-        });
-        // - Changes coordinates of the object in the scene when dragged
-        mirror1.setOnMouseDragged(event->{
-            double moveX = event.getSceneX()- xCoord;
-            mirror1.setTranslateX(moveX);
-                System.out.println(xCoord);
-                System.out.println(mirror1.getBoundsInParent().getMinX());
-            if(mirror1.getBoundsInParent().getMinX()< 0){
-                //rect.setTranslateX(-(midPane.getLayoutBounds().getWidth())/2 + rect.getWidth()/2);
-                mirror1.setTranslateX(-(actionPane.getLayoutBounds().getWidth())/2+ mirror1.getWidth()/2-adjustX);
-       
-            }
-            
-            if(mirror1.getBoundsInParent().getMaxX()> actionPane.getLayoutBounds().getWidth()){
-                //rect.setTranslateX((midPane.getLayoutBounds().getWidth())/2 - rect.getWidth()/2); 
-                mirror1.setTranslateX((actionPane.getLayoutBounds().getWidth())/2 - mirror1.getWidth()/2-adjustX);
-
-            }
-                
-            
-            double moveY = event.getSceneY()- yCoord;
-            mirror1.setTranslateY(moveY);
-            
-            if(mirror1.getBoundsInParent().getMinY()< 0){
-                mirror1.setTranslateY(-(actionPane.getLayoutBounds().getHeight())/2 + mirror1.getHeight()/2-adjustY);
-            }
-            
-            if(mirror1.getBoundsInParent().getMaxY()> actionPane.getLayoutBounds().getHeight()){
-                mirror1.setTranslateY((actionPane.getLayoutBounds().getHeight())/2 - mirror1.getHeight()/2-adjustY);
-            }
-            
-        });
-        
-                
-        // - Puts back object in original coordnates if in contact with another object
-        mirror1.setOnMouseReleased(event->{
-        if(mirror1.getBoundsInParent().intersects(lineWallOne.getBoundsInParent()) ||
-                mirror1.getBoundsInParent().intersects(lineWallTwo.getBoundsInParent())||
-                mirror1.getBoundsInParent().intersects(lineWallThree.getBoundsInParent())||
-                mirror1.getBoundsInParent().intersects(lineWallFour.getBoundsInParent())
-                ){
-                    mirror1.setTranslateX(originalXCoord);
-                    mirror1.setTranslateY(originalYCoord);
-                }
-            
-        });
-        
+//        double originalXCoord = mirror1.getTranslateX();
+//        double originalYCoord = mirror1.getTranslateY();
+       mirror1Clone.setVisible(false);
+//        double adjustX = mirror1.getLayoutX()-mirror1Clone.getLayoutX();
+//        double adjustY = mirror1.getLayoutY()-mirror1Clone.getLayoutY();
+//        // - Takes coordinates of the object in the scene when pressed
+//        mirror1.setOnMousePressed(event->{
+//            xCoord = event.getSceneX()-mirror1.getTranslateX();
+//            yCoord = event.getSceneY()-mirror1.getTranslateY();
+//            
+//        });
+//        // - Changes coordinates of the object in the scene when dragged
+//        mirror1.setOnMouseDragged(event->{
+//            double moveX = event.getSceneX()- xCoord;
+//            mirror1.setTranslateX(moveX);
+//                System.out.println(xCoord);
+//                System.out.println(mirror1.getBoundsInParent().getMinX());
+//            if(mirror1.getBoundsInParent().getMinX()< 0){
+//                //rect.setTranslateX(-(midPane.getLayoutBounds().getWidth())/2 + rect.getWidth()/2);
+//                mirror1.setTranslateX(-(actionPane.getLayoutBounds().getWidth())/2+ mirror1.getWidth()/2-adjustX);
+//       
+//            }
+//            
+//            if(mirror1.getBoundsInParent().getMaxX()> actionPane.getLayoutBounds().getWidth()){
+//                //rect.setTranslateX((midPane.getLayoutBounds().getWidth())/2 - rect.getWidth()/2); 
+//                mirror1.setTranslateX((actionPane.getLayoutBounds().getWidth())/2 - mirror1.getWidth()/2-adjustX);
+//
+//            }
+//                
+//            
+//            double moveY = event.getSceneY()- yCoord;
+//            mirror1.setTranslateY(moveY);
+//            
+//            if(mirror1.getBoundsInParent().getMinY()< 0){
+//                mirror1.setTranslateY(-(actionPane.getLayoutBounds().getHeight())/2 + mirror1.getHeight()/2-adjustY);
+//            }
+//            
+//            if(mirror1.getBoundsInParent().getMaxY()> actionPane.getLayoutBounds().getHeight()){
+//                mirror1.setTranslateY((actionPane.getLayoutBounds().getHeight())/2 - mirror1.getHeight()/2-adjustY);
+//            }
+//            
+//        });
+//        
+//                
+//        // - Puts back object in original coordnates if in contact with another object
+//        mirror1.setOnMouseReleased(event->{
+//        if(mirror1.getBoundsInParent().intersects(lineWallOne.getBoundsInParent()) ||
+//                mirror1.getBoundsInParent().intersects(lineWallTwo.getBoundsInParent())||
+//                mirror1.getBoundsInParent().intersects(lineWallThree.getBoundsInParent())||
+//                mirror1.getBoundsInParent().intersects(lineWallFour.getBoundsInParent())
+//                ){
+//                    mirror1.setTranslateX(originalXCoord);
+//                    mirror1.setTranslateY(originalYCoord);
+//                }
+//            
+//        });
+//        
         
         //btnNextGame.setVisible(false);
         imageLevelUp = new Image(new FileInputStream(getClass().
@@ -157,16 +157,16 @@ public class LevelPageController {
         Media media = new Media(gameMusic.toURI().toString());
         MediaPlayer mp = new MediaPlayer(media);
         mediaView = new MediaView(mp);
-
+    
         mp.setAutoPlay(true);
         volumeSlider = new Slider(0, 100, 50);
         volumeSlider.setValue(50);
         mp.volumeProperty().bind(volumeSlider.valueProperty().divide(100));
 
         //Method to set the usernameText to the username of the player and update score
-        player.importProgress();
+        //player.importProgress();
         //usernameLabel = new Label(player.getUsername());
-        System.out.println(player.getUsername());
+        //System.out.println(player.getUsername());
 //        scoreText.setText("Score: " + player.getScore());
 //        player.scoreProperty().addListener((obs, oldScore, newScore) -> {
 //            scoreText.setText("Score: " + newScore.intValue());

@@ -18,7 +18,7 @@
    <children>
       <ImageView fx:id="backgroundImageView" fitHeight="700.0" fitWidth="900.0" pickOnBounds="true">
          <image>
-            <Image url="@../images/background.png" />
+            <Image url="@../../../../../../../../Downloads/844946240_preview_4a7d4ace46f6c0799a9758c3f8be4b2a1f562b50.jpg" />
          </image></ImageView>
       <Slider fx:id="volumeSlider" layoutX="719.0" layoutY="670.0" prefHeight="32.0" prefWidth="181.0" value="30.0" />
       <Text fx:id="levelText" fill="WHITE" layoutX="4.0" layoutY="17.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Level 2" wrappingWidth="62.66845929523731">

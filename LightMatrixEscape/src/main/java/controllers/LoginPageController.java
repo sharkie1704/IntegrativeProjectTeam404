@@ -50,8 +50,8 @@ public class LoginPageController {
 
             // Create a new player with levelProgress 1 and score 0
             player = new Player(username, 1, 0);
-            player.saveProgress();
-            levelPageController.player = this.player;
+//            player.saveProgress();
+//            levelPageController.player = this.player;
 
             
 //            levelPageController.usernameLabel = new Player(username, 1, 0);

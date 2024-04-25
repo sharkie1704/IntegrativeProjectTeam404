@@ -1,1 +1,2 @@
-/nThe player TextField[id=signUpTextField, styleClass=text-input text-field] is at level: 1
+The player sharkie's score: 0
+The player sharkie is at level: 1
