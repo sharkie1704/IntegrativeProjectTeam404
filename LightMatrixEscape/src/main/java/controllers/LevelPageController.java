@@ -53,7 +53,7 @@ public class LevelPageController {
     @FXML
     LoginPageController loginPageController;
 
-    private Player player;
+    Player player;
 
     // Method to set the player
 //    public void setPlayer(Player player) {
@@ -76,7 +76,7 @@ public class LevelPageController {
     Detector detectorMethod = new Detector();
     Wall wallMethod = new Wall();
 
-    public void initialize() throws FileNotFoundException {
+    public void initialize() throws FileNotFoundException, IOException {
 
         //btnNextGame.setVisible(false);
         imageLevelUp = new Image(new FileInputStream(getClass().
@@ -100,8 +100,9 @@ public class LevelPageController {
         mp.volumeProperty().bind(volumeSlider.valueProperty().divide(100));
 
         //Method to set the usernameText to the username of the player and update score
-         usernameLabel = new Label(player.getUsername());
-        System.out.println(usernameLabel.toString());
+        player.importProgress();
+        //usernameLabel = new Label(player.getUsername());
+        System.out.println(player.getUsername());
 //        scoreText.setText("Score: " + player.getScore());
 //        player.scoreProperty().addListener((obs, oldScore, newScore) -> {
 //            scoreText.setText("Score: " + newScore.intValue());
