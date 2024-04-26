@@ -1,75 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
-<?import javafx.scene.paint.Color?>
-<?import javafx.scene.paint.RadialGradient?>
-<?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<Pane fx:id="accountPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="startingPagePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="1043.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fitHeight="600.0" fitWidth="906.0" layoutX="-2.0" pickOnBounds="true">
+      <ImageView fx:id="startImageView" fitHeight="598.0" fitWidth="1051.0" layoutX="-6.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/background.png" />
          </image>
-      </ImageView>
-      <Text layoutX="286.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in/Sign up">
+         <effect>
+            <Glow level="0.43" />
+         </effect></ImageView>
+      <Label alignment="CENTER" layoutX="113.0" layoutY="205.0" prefHeight="110.0" prefWidth="817.0" text="What is your username?" textAlignment="CENTER" textFill="#4b2d8d">
          <font>
-            <Font name="Lucida Console" size="39.0" />
+            <Font name="Agency FB" size="52.0" />
          </font>
-         <fill>
-            <RadialGradient centerX="0.5276243093922652" centerY="0.5" radius="1.0">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color red="0.14477333426475525" green="0.07320000231266022" blue="0.6100000143051147" />
-                     </color>
-                  </Stop>
-                  <Stop offset="0.10738255033557047">
-                     <color>
-                        <Color red="0.14477333426475525" green="0.07320000231266022" blue="0.6100000143051147" />
-                     </color>
-                  </Stop>
-                  <Stop offset="0.785234899328859">
-                     <color>
-                        <Color red="0.5657894611358643" green="0.26979777216911316" blue="0.26979777216911316" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="0.5657894611358643" green="0.26979777216911316" blue="0.26979777216911316" />
-                     </color>
-                  </Stop>
-               </stops>
-            </RadialGradient>
-         </fill>
-      </Text>
-      <Text layoutX="216.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Log in">
+      </Label>
+      <TextField fx:id="usernameTextField" alignment="CENTER" layoutX="420.0" layoutY="339.0" prefHeight="38.0" prefWidth="203.0" promptText="enter here">
          <font>
-            <Font name="Lucida Console" size="25.0" />
-         </font>
-      </Text>
-      <Text layoutX="585.0" layoutY="283.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign up">
-         <font>
-            <Font name="Lucida Console" size="25.0" />
-         </font>
-      </Text>
-      <TextField fx:id="logInTextField" layoutX="137.0" layoutY="315.0">
-         <font>
-            <Font size="20.0" />
+            <Font name="Berlin Sans FB" size="20.0" />
          </font>
       </TextField>
-      <TextField fx:id="signUpTextField" layoutX="514.0" layoutY="315.0">
-         <font>
-            <Font size="20.0" />
-         </font>
-      </TextField>
-      <Button fx:id="continuebtn" layoutX="373.0" layoutY="458.0" mnemonicParsing="false" stylesheets="@style.css" text="Continue" textAlignment="CENTER" wrapText="true">
-      </Button>
+      <Button fx:id="continuebtn" layoutX="494.0" layoutY="427.0" mnemonicParsing="false" text="Continue" />
    </children>
 </Pane>

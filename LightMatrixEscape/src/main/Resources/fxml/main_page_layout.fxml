@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Glow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.Pane?>
@@ -11,11 +12,14 @@
 
 <Pane fx:id="startingPagePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="1043.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="startImageView" fitHeight="598.0" fitWidth="1051.0" layoutX="-6.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="startImageView" fitHeight="598.0" fitWidth="1051.0" layoutX="-6.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../images/background.png" />
-         </image></ImageView>
-      <Label alignment="CENTER" blendMode="SCREEN" layoutX="167.0" layoutY="235.0" prefHeight="110.0" prefWidth="710.0" text="The Light Matrix Escape Game">
+         </image>
+         <effect>
+            <Glow level="0.43" />
+         </effect></ImageView>
+      <Label alignment="CENTER" blendMode="MULTIPLY" layoutX="113.0" layoutY="205.0" prefHeight="110.0" prefWidth="817.0" text="The Light Matrix Escape Game">
          <textFill>
             <RadialGradient centerX="0.505524861878453" centerY="0.5" focusDistance="0.16091954022988508" radius="1.0">
                <stops>
@@ -33,12 +37,12 @@
             </RadialGradient>
          </textFill>
          <font>
-            <Font name="Bauhaus 93" size="52.0" />
+            <Font name="Tw Cen MT Condensed Bold" size="52.0" />
          </font>
       </Label>
-      <Label blendMode="MULTIPLY" layoutX="369.0" layoutY="345.0" prefHeight="32.0" prefWidth="306.0" text="Click anywhere to start" textFill="#a14444">
+      <Label fx:id="myLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="374.0" layoutY="315.0" prefHeight="32.0" prefWidth="295.0" text="Click anywhere to start" textFill="#f5e6e6">
          <font>
-            <Font name="Copperplate Gothic Light" size="22.0" />
+            <Font name="Verdana Bold Italic" size="22.0" />
          </font>
       </Label>
    </children>

@@ -4,14 +4,12 @@ package controllers;
  *
  * @author Hongyan Li & sharkie
  */
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.animation.RotateTransition;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -21,10 +19,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
@@ -45,7 +40,6 @@ public class LevelPageOneController {
 
     @FXML
     Slider volumeSliderFOne;
-    Player player;
 
     @FXML
     Image imageLevelUp, imageDoorOpened;
@@ -61,7 +55,7 @@ public class LevelPageOneController {
 
     @FXML
     Ellipse lightBulbFOne;
-//    Stage stage= new Stage();
+
     Stage stage;
 
 //    @FXML
@@ -83,9 +77,8 @@ public class LevelPageOneController {
     
     
 
-    //Refraction and reflection
+    //Reflection, detector, and wall methods
     Reflection reflectionMethod = new Reflection();
-    
     Detector detectorMethod = new Detector();
     Wall wallMethod = new Wall();
 
@@ -93,12 +86,12 @@ public class LevelPageOneController {
     public void initialize() throws FileNotFoundException {
         
         //btnNextGame.setVisible(false);
-        imageLevelUp = new Image(new FileInputStream(getClass().
-                getResource("/images/imageLevelUp.png").getFile()));
-        imageDoorOpened = new Image(new FileInputStream(getClass().
-                getResource("/images/imageDoorOpened.png").getFile()));
+//        imageLevelUp = new Image(new FileInputStream(getClass().
+//                getResource("/images/imageLevelUp.png").getFile()));
+//        imageDoorOpened = new Image(new FileInputStream(getClass().
+//                getResource("/images/imageDoorOpened.png").getFile()));
 
-        //Aduio Clips
+        //Audio Clips
         URL urlsoundClick = this.getClass().getClassLoader().getResource("sounds/soundClick.mp3");
         AudioClip clickAC = new AudioClip(urlsoundClick.toExternalForm());
         URL urlsoundLevelUp = this.getClass().getClassLoader().getResource("sounds/soundLevelUp.mp3");

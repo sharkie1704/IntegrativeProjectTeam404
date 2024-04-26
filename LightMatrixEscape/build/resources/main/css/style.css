@@ -1,0 +1,15 @@
+.myLabel:hover {
+    -fx-background-color: #FFC125; /* Change background color on hover */
+}
+
+.myLabel:pressed {
+    -fx-background-color: #FFDAB9; /* Change background color when pressed */
+}
+
+.continuebtn:hover {
+    -fx-background-color: #FFC125; /* Change background color on hover */
+}
+
+.continuebtn:pressed {
+    -fx-background-color: #FFDAB9; /* Change background color when pressed */
+}

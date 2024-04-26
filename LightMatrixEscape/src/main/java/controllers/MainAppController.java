@@ -3,10 +3,11 @@ package controllers;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -15,17 +16,15 @@ import javafx.stage.Stage;
 public class MainAppController {
 
     @FXML
-    ImageView titleImageView, startImageView;
+    ImageView startImageView;
+
+    @FXML
+    Label myLabel;
 
     Stage stage;
 
     //don't forget to make it so that when you click on the image you'll open a new scene
     public void initialize() {
-        //Image title = new Image(getClass().getResourceAsStream("insert the image address"));
-        Image start = new Image(getClass().getResourceAsStream("/images/background.png"));
-        startImageView.fitWidthProperty().bind(start.widthProperty());
-        startImageView.fitHeightProperty().bind(start.heightProperty());
-        startImageView.setImage(start);
 
         startImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
             FXMLLoader loader = new FXMLLoader(
@@ -41,8 +40,12 @@ public class MainAppController {
             } catch (IOException ex) {
                 Logger.getLogger(MainAppController.class.getName()).log(Level.SEVERE, null, ex);
             }
+            
             Scene scene = new Scene(root);
             stage.setScene(scene);
+            myLabel.styleProperty().bind(Bindings.when(myLabel.hoverProperty())
+                    .then("-fx-background-color: #FFC125;")
+                    .otherwise("-fx-background-color: #FFDAB9;"));
         });
     }
 

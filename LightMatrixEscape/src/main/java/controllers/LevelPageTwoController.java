@@ -498,10 +498,7 @@ public class LevelPageTwoController {
 
                 lightRay.setEndX(interesctPointWithBorderBottom[0]);
                 lightRay.setEndY(interesctPointWithBorderBottom[1]);
-
             }
         }
-
     }
-
 }
