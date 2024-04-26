@@ -10,32 +10,34 @@ import javafx.scene.paint.Color;
 
 public class Refraction {
 
-    public static void reflectThings(double[] startPointOfRayA, double[] endPointOfRayB,
-            double[] startPointOfPrismC, double[] endPointOfPrismD, Line lightRay,
+    public static void refractThings(double[] startPointOfRay, double[] endPointOfRay,
+            double[] startPointOfPrism, double[] endPointOfPrism, Line lightRay,
             Line normal, Line refractRay, String Type) {
 
         //Update the end point of the ray
-        double[] intersection = findIntersection(startPointOfRayA, endPointOfRayB,
-                startPointOfPrismC, endPointOfPrismD);
+        double[] intersection = findIntersection(startPointOfRay, endPointOfRay,
+                startPointOfPrism, endPointOfPrism);
 
+        
         //Set normal's properties
-        double[] normalOneStartPoint = calculateNormalStartPoint(startPointOfPrismC,
-                endPointOfPrismD, intersection);
-        double[] noramlOneEndPoint = calculateNormalEndPoint(startPointOfPrismC,
-                endPointOfPrismD, intersection); //FInd the Normal endpoint      
+        double[] normalOneStartPoint = calculateNormalStartPoint(startPointOfPrism,
+                endPointOfPrism, intersection);
+        double[] noramlOneEndPoint = calculateNormalEndPoint(startPointOfPrism,
+                endPointOfPrism, intersection); //FInd the Normal endpoint      
         normal.setStartX(normalOneStartPoint[0]);
         normal.setStartY(normalOneStartPoint[1]);
         normal.setEndX(noramlOneEndPoint[0]);
         normal.setEndY(noramlOneEndPoint[1]);
-        normal.setStroke(Color.DARKSALMON);
+//        normal.setStroke(Color.DARKSALMON);
 
         //Calculate the refraction angle of light
-        double refractedAngleOne = FindrefractedAngle(startPointOfRayA, endPointOfRayB,
-                startPointOfPrismC, endPointOfPrismD, Type);
-
-        //Calculate the end point coordinates of the refracted light, assuming the length is 200
+        double refractedAngleOne = FindrefractedAngle(startPointOfRay, endPointOfRay,
+                startPointOfPrism, endPointOfPrism, Type);
+//        System.out.println("refractedAngleOne"+refractedAngleOne);
+//        System.out.println("startPointOfRay"+startPointOfRay[1]+" ?"+endPointOfRay[1]+" ? "+startPointOfPrism[1]+" ? "+endPointOfPrism[1]+" ? ");
+        //Calculate the end point coordinates of the refracted light, assuming the length is 1200
         double[] refractedRayOneEndPoint = calculateRefractRayEndPoint(intersection,
-                refractedAngleOne, 200, normalOneStartPoint, noramlOneEndPoint);
+                refractedAngleOne, 1200, normalOneStartPoint, noramlOneEndPoint);
         double refractedRayOneEndX = refractedRayOneEndPoint[0];
         double refractedRayOneEndY = refractedRayOneEndPoint[1];
 
@@ -44,10 +46,11 @@ public class Refraction {
         refractRay.setStartY(intersection[1]);
         refractRay.setEndX(refractedRayOneEndX);
         refractRay.setEndY(refractedRayOneEndY);
-        refractRay.setStroke(Color.BLACK);
+        refractRay.setStroke(Color.YELLOW);
+//        System.out.println("refractRay "+intersection[0]+" ? "+refractedRayOneEndX);
 
-        System.out.println(Type + Arrays.toString(intersection));
-
+//        System.out.println(Type + Arrays.toString(intersection));
+//System.out.println("refractRay="+intersection[1]);
     }
 
     public static double findIncidentAngle(double[] startingCoordinateOfRayA,
@@ -81,7 +84,6 @@ public class Refraction {
     public static double FindrefractedAngle(double[] startPointOfRayA,
             double[] endPointOfRayB, double[] startPointOfPrismC,
             double[] endPointOfPrismD, String Type) {
-
         //Calculate the incident angle of light
         double incidentAngle = Math.toRadians(findIncidentAngle(startPointOfRayA,
                 endPointOfRayB, startPointOfPrismC,
@@ -92,14 +94,13 @@ public class Refraction {
         if (Type.equals("Glass")) {
             refractedAngle = -Math.toDegrees(Math.asin(Math.sin(incidentAngle) / 1.33));
 
-            //System.out.println("incidentAngle " + incidentAngleOne + " ; RefractedAngle " + refractedAngleOne);
+            
         } else if (Type.equals("Air")) {
             refractedAngle = -Math.toDegrees(Math.asin(Math.sin(incidentAngle) * 1.33));
 
         } else {
             refractedAngle = 0;
         }
-
         return refractedAngle;
     }
 
@@ -146,10 +147,9 @@ public class Refraction {
                 + Math.pow(endingCoordinateOfWallB[1] - startingCoordinateOfWallA[1], 2));
         double[] abVector = {(endingCoordinateOfWallB[0] - startingCoordinateOfWallA[0]) / lengthAB,
             (endingCoordinateOfWallB[1] - startingCoordinateOfWallA[1]) / lengthAB};
-
+//        System.out.println("???"+abVector[0]+abVector[1]);
         //Convert angle to radians
         double angleRadians = Math.toRadians(angle);
-
         //Calculate the direction vector of line segment CD
         double[] cdVector = {
             Math.cos(angleRadians) * abVector[0] - Math.sin(angleRadians) * abVector[1],
@@ -207,3 +207,5 @@ public class Refraction {
         return endPointOfNormal;
     }
 }
+
+

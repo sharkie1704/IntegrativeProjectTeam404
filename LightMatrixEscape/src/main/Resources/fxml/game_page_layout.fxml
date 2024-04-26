@@ -19,7 +19,7 @@
    <children>
       <ImageView fx:id="backgroundImageViewFOne" fitHeight="700.0" fitWidth="900.0" pickOnBounds="true">
          <image>
-            <Image url="@../images/background.png" />
+            <Image url="@../images/backgroundOld.png" />
          </image></ImageView>
       <Slider fx:id="volumeSliderFOne" layoutX="719.0" layoutY="670.0" prefHeight="32.0" prefWidth="181.0" value="30.0" />
       <Text fx:id="levelTextFOne" fill="WHITE" layoutX="4.0" layoutY="17.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Level 1" wrappingWidth="62.66845929523731">
@@ -47,9 +47,9 @@
                <image>
                   <Image url="@../images/imageDetector.png" />
                </image></ImageView>
-            <Line fx:id="lineWallTwo" endX="500.0" endY="280.0" startX="200.0" startY="280.0" stroke="#544d4d" strokeWidth="4.0" />
+            <Line fx:id="lineWallTwo" endX="500.0" endY="280.0" startX="200.0" startY="280.0" stroke="#544d4d" strokeWidth="15.0" />
             <Rectangle fx:id="flashlightFOne" arcHeight="5.0" arcWidth="5.0" fill="#ffb01f" height="66.0" layoutX="427.0" layoutY="588.0" stroke="BLACK" strokeType="INSIDE" width="34.0" />
-            <Line fx:id="lineWallOne" endX="100.0" endY="500.0" fill="#544d4d" startX="100.0" startY="300.0" stroke="#544d4d" strokeWidth="4.0" />
+            <Line fx:id="lineWallOne" endX="100.0" endY="500.0" fill="#544d4d" startX="100.0" startY="300.0" stroke="#544d4d" strokeWidth="15.0" />
             <Rectangle fx:id="mirror1FOne" arcHeight="5.0" arcWidth="5.0" height="165.0" layoutX="845.0" layoutY="220.0" stroke="BLACK" strokeType="INSIDE" width="14.0">
                <fill>
                   <RadialGradient centerX="0.5" centerY="0.495260663507109" cycleMethod="REFLECT" radius="0.7758620689655172">
@@ -61,23 +61,23 @@
                         </Stop>
                         <Stop offset="1.0">
                            <color>
-                              <Color />
+                              <Color red="0.2685726583003998" green="0.5981336832046509" blue="0.9064327478408813" />
                            </color>
                         </Stop>
                      </stops>
                   </RadialGradient>
                </fill></Rectangle>
-            <Line fx:id="lineWallThree" endX="650.0" endY="500.0" startX="850.0" startY="500.0" stroke="#544d4d" strokeWidth="4.0" />
+            <Line fx:id="lineWallThree" endX="650.0" endY="500.0" startX="850.0" startY="500.0" stroke="#544d4d" strokeWidth="15.0" />
             <Ellipse fx:id="lightBulbFOne" fill="#dbfc0a" layoutX="444.0" layoutY="588.0" radiusX="17.0" radiusY="18.0" stroke="BLACK" strokeType="INSIDE" />
-            <Line fx:id="lineWallFour" endX="800.0" endY="150.0" fill="#544d4d" startX="800.0" startY="30.0" stroke="#544d4d" strokeWidth="4.0" />
+            <Line fx:id="lineWallFour" endX="800.0" endY="150.0" fill="#544d4d" startX="800.0" startY="30.0" stroke="#544d4d" strokeWidth="15.0" />
             <Button fx:id="btnNextGame" layoutX="308.0" layoutY="422.0" mnemonicParsing="false" text="Click For Next Level" textAlignment="CENTER" textFill="#432323">
                <font>
                   <Font name="Californian FB Italic" size="35.0" />
                </font>
             </Button>
-            <ImageView fx:id="imageLightBulbFOne" fitHeight="131.0" fitWidth="98.0" layoutX="401.0" layoutY="570.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imageLightBulbFOne" fitHeight="131.0" fitWidth="98.0" layoutX="418.0" layoutY="570.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/imageLightBulb.png" />
+                  <Image url="@../images/imageFlashLight.png" />
                </image>
             </ImageView>
          </children></Pane>
