@@ -39,8 +39,6 @@ public class LoginPageController {
 
     public void initialize() {
 
-        continuebtn.getStyleClass().add("style.css");
-
         continuebtn.setOnAction((event) -> {
             logIn = logInTextField.getText();
             signUp = signUpTextField.getText();
@@ -53,7 +51,6 @@ public class LoginPageController {
 //            player.saveProgress();
 //            levelPageController.player = this.player;
 
-            
 //            levelPageController.usernameLabel = new Player(username, 1, 0);
 //            try {
 //                if (verification()) {
@@ -72,6 +69,9 @@ public class LoginPageController {
             //root.getStylesheets().add(getClass().getResource("style.css").toString());
             Scene scene = new Scene(root);
             stage.setScene(scene);
+//            String css = this.getClass().getResource("/style.css").toExternalForm();
+            //button.getStyleClass().add(css);
+            scene.getStylesheets().add(getClass().getResource("/css/style.css").toExternalForm());
 
 //                }
 //            } catch (IOException ex) {

@@ -6,6 +6,8 @@ package controllers;
  */
 import java.io.*;
 import java.net.URL;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.*;
 import javafx.scene.control.*;
 import javafx.scene.image.*;
@@ -143,8 +145,8 @@ public class LevelPageController {
 //        
         
         //btnNextGame.setVisible(false);
-        imageLevelUp = new Image(new FileInputStream(getClass().
-                getResource("/images/imageLevelUp.png").getFile()));
+        //imageLevelUp = new Image(new FileInputStream(getClass().
+               // getResource("/images/imageLevelUp.png").getFile()));
 
         //Audio Clips
         URL urlsoundClick = this.getClass().getClassLoader().getResource("sounds/soundClick.mp3");
@@ -161,6 +163,11 @@ public class LevelPageController {
         mp.setAutoPlay(true);
         volumeSlider = new Slider(0, 100, 50);
         volumeSlider.setValue(50);
+//        volumeSlider.valueProperty().addListener(new ChangeListener<Number>() {
+//           @Override
+//           public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+//               mp.volumeProperty().bind();}
+//        }
         mp.volumeProperty().bind(volumeSlider.valueProperty().divide(100));
 
         //Method to set the usernameText to the username of the player and update score

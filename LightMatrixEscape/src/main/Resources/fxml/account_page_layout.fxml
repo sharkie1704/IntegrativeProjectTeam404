@@ -10,13 +10,13 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.layout.StackPane?>
+<?scenebuilder-stylesheet ../style.css?>
 
-<Pane fx:id="accountPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="accountPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <ImageView fitHeight="600.0" fitWidth="906.0" layoutX="-2.0" pickOnBounds="true">
             <image>
-                <Image url="@../images/background.png" />
+                <Image url="@../images/background.jpg" />
             </image>
         </ImageView>
         <Text layoutX="251.0" layoutY="106.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign up or log in">
@@ -70,6 +70,6 @@
                 <Font size="20.0" />
             </font>
         </TextField>   
-        <Button fx:id="continuebtn" layoutX="418.0" layoutY="452.0" mnemonicParsing="false" text="Continue" textAlignment="CENTER" wrapText="true" />
+        <Button fx:id="continuebtn" alignment="CENTER" layoutX="418.0" layoutY="452.0" mnemonicParsing="false" text="Continue" textAlignment="CENTER" wrapText="true" />
     </children>
 </Pane>
