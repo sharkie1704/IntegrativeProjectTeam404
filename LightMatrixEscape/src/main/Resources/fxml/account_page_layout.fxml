@@ -10,32 +10,34 @@
 <?import javafx.scene.text.Font?>
 
 <Pane fx:id="startingPagePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="1043.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <ImageView fx:id="startImageView" fitHeight="598.0" fitWidth="1051.0" layoutX="-6.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/background.png" />
-         </image>
-         <effect>
-            <Glow level="0.43" />
-         </effect></ImageView>
-      <Label alignment="CENTER" layoutX="114.0" layoutY="168.0" prefHeight="110.0" prefWidth="817.0" style="-fx-font-weight: bold;" text="What is your username?" textAlignment="CENTER" textFill="#492d8c">
-         <font>
-            <Font name="High Tower Text" size="50.0" />
-         </font>
-      </Label>
-      <TextField fx:id="usernameTextField" alignment="CENTER" layoutX="322.0" layoutY="316.0" prefHeight="38.0" prefWidth="401.0" promptText="enter here">
-         <font>
-            <Font name="Berlin Sans FB" size="20.0" />
-         </font>
-      </TextField>
-      <Button fx:id="continuebtn" alignment="CENTER" layoutX="461.0" layoutY="417.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="124.0" style="-fx-background-color: #D9E8D8; -fx-background-radius: 54; -fx-background-insets: 4; -fx-border-color: white; -fx-border-radius: 54; -fx-border-insets: 1.5; -fx-cursor: pointer; -fx-padding: 10; -fx-text-alignment: center;" text="Continue" textFill="#8569cd">
-         <font>
-            <Font name="High Tower Text" size="23.0" />
-         </font></Button>
-      <Label alignment="CENTER" layoutX="113.0" layoutY="166.0" opacity="0.58" prefHeight="110.0" prefWidth="817.0" style="-fx-font-weight: bold;" text="What is your username?" textAlignment="CENTER" textFill="WHITE">
-         <font>
-            <Font name="High Tower Text" size="50.0" />
-         </font>
-      </Label>
-   </children>
+    <children>
+        <ImageView fx:id="startImageView" fitHeight="598.0" fitWidth="1051.0" layoutX="-6.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../images/background.png" />
+            </image>
+            <effect>
+                <Glow level="0.43" />
+            </effect>
+        </ImageView>
+        <Label alignment="CENTER" layoutX="114.0" layoutY="168.0" prefHeight="110.0" prefWidth="817.0" style="-fx-font-weight: bold;" text="What is your username?" textAlignment="CENTER" textFill="#492d8c">
+            <font>
+                <Font name="High Tower Text" size="50.0" />
+            </font>
+        </Label>
+        <TextField fx:id="usernameTextField" alignment="CENTER" layoutX="322.0" layoutY="316.0" prefHeight="38.0" prefWidth="401.0" promptText="enter here">
+            <font>
+                <Font name="Berlin Sans FB" size="20.0" />
+            </font>
+        </TextField>
+        <Button fx:id="continuebtn" alignment="CENTER" layoutX="461.0" layoutY="417.0" mnemonicParsing="false" prefHeight="53.0" prefWidth="124.0" style="-fx-background-color: #D9E8D8; -fx-background-radius: 54; -fx-background-insets: 4; -fx-border-color: white; -fx-border-radius: 54; -fx-border-insets: 1.5; -fx-cursor: pointer; -fx-padding: 10; -fx-text-alignment: center;" text="Continue" textFill="#8569cd">
+            <font>
+                <Font name="High Tower Text" size="23.0" />
+            </font>
+        </Button>
+        <Label alignment="CENTER" layoutX="113.0" layoutY="166.0" opacity="0.58" prefHeight="110.0" prefWidth="817.0" style="-fx-font-weight: bold;" text="What is your username?" textAlignment="CENTER" textFill="WHITE">
+            <font>
+                <Font name="High Tower Text" size="50.0" />
+            </font>
+        </Label>
+    </children>
 </Pane>
