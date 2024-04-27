@@ -79,7 +79,7 @@ public class LevelPageTwoController {
         volumeSlider.setValue(50);
         clickAC.volumeProperty().bind(volumeSlider.valueProperty().divide(50));
         MusicGame.volumeProperty().bind(volumeSlider.valueProperty());
-        MusicGame.play();
+        //MusicGame.play();
 
         //Create lines of ray
         

@@ -35,13 +35,13 @@ public class LoginPageController {
             username = usernameTextField.getText();
             // Create a new player with levelProgress 1 and score 0
             newPlayer = new Player(username, 1, 0);
-            System.out.println(newPlayer.getUsername());                    
+            System.out.println("Username: " + newPlayer.getUsername());
             newPlayer.saveProgress();
 
             try {
                 if (verification()) {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/game_page_layout.fxml"));
-                    LevelPageOneController fxmlController = new LevelPageOneController();
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/how_to_play_layout.fxml"));
+                    HowToPlayController fxmlController = new HowToPlayController();
                     loader.setController(fxmlController);
                     fxmlController.giveStage(stage);
 

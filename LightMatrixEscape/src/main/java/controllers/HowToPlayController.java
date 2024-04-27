@@ -1,13 +1,12 @@
+
 package controllers;
 
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
@@ -15,25 +14,22 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author Ntela and Ishrak
+ * @author Ishrak Mellah
  */
-public class MainAppController {
+public class HowToPlayController {
 
     @FXML
-    ImageView startImageView;
-
-    @FXML
-    Label myLabel;
+    ImageView howToPlayImageView;
 
     Stage stage;
 
     public void initialize() {
-        startImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/account_page_layout.fxml"));
-            LoginPageController fxmlController = new LoginPageController();
+        howToPlayImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/game_page_layout.fxml"));
+            LevelPageOneController fxmlController = new LevelPageOneController();
             loader.setController(fxmlController);
-
             fxmlController.giveStage(stage);
+
             Pane root = null;
             try {
                 root = loader.load();
@@ -43,9 +39,6 @@ public class MainAppController {
 
             Scene scene = new Scene(root);
             stage.setScene(scene);
-            myLabel.styleProperty().bind(Bindings.when(myLabel.hoverProperty())
-                    .then("-fx-background-color: #FFC125;")
-                    .otherwise("-fx-background-color: #FFDAB9;"));
         });
     }
 

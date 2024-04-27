@@ -14,7 +14,7 @@
     <children>
         <ImageView fx:id="startImageView" fitHeight="598.0" fitWidth="1051.0" layoutX="-6.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
             <image>
-                <Image url="@../images/background.png" />
+                <Image url="@../images/backgroundOld.png" />
             </image>
             <effect>
                 <Glow level="0.43" />
