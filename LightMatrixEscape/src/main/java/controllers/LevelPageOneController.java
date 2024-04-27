@@ -35,7 +35,7 @@ import javafx.util.Duration;
 public class LevelPageOneController {
 
     @FXML
-    Pane gamePaneFOne, actionPane;
+    Pane gamePaneFOne;
 
     @FXML
     Text scoreTextFOne, usernameTextFOne, levelTextFOne;
@@ -45,7 +45,6 @@ public class LevelPageOneController {
 
     @FXML
     Slider volumeSliderFOne;
-    Player player;
 
     @FXML
     Image imageLevelUp, imageDoorOpened;
@@ -61,18 +60,18 @@ public class LevelPageOneController {
 
     @FXML
     Ellipse lightBulbFOne;
-//    Stage stage= new Stage();
-    Stage stage;
 
-//    @FXML
+    Player newPlayer;
+    Stage stage;
+//
 //    LoginPageController loginPageController;
-//    private Player newPlayer;
-    // Method to set the player
+//
+//    // Method to set the player
 //    public void setPlayer(Player player) {
-//       // loginPageController.initialize();
+//        loginPageController.initialize();
 //        this.newPlayer = player;
 //        if (player != null) {
-//            updateScoreText(); // Update score text when player is set
+//            // updateScoreText(); // Update score text when player is set
 //        }
 //    }
 //
@@ -80,25 +79,20 @@ public class LevelPageOneController {
 //       private void updateScoreText() {
 //        scoreText.setText("Score: " + newPlayer.getScore());
 //    }
-    
-    
 
-    //Refraction and reflection
+    //Reflection, dectector, and wall methods
     Reflection reflectionMethod = new Reflection();
-    
     Detector detectorMethod = new Detector();
     Wall wallMethod = new Wall();
 
-    
     public void initialize() throws FileNotFoundException {
-        
         //btnNextGame.setVisible(false);
-        imageLevelUp = new Image(new FileInputStream(getClass().
-                getResource("/images/imageLevelUp.png").getFile()));
-        imageDoorOpened = new Image(new FileInputStream(getClass().
-                getResource("/images/imageDoorOpened.png").getFile()));
+//        imageLevelUp = new Image(new FileInputStream(getClass().
+//                getResource("/images/imageLevelUp.png").getFile()));
+//        imageDoorOpened = new Image(new FileInputStream(getClass().
+//                getResource("/images/imageDoorOpened.png").getFile()));
 
-        //Aduio Clips
+        //Audio clips
         URL urlsoundClick = this.getClass().getClassLoader().getResource("sounds/soundClick.mp3");
         AudioClip clickAC = new AudioClip(urlsoundClick.toExternalForm());
         URL urlsoundLevelUp = this.getClass().getClassLoader().getResource("sounds/soundLevelUp.mp3");
@@ -113,6 +107,7 @@ public class LevelPageOneController {
         clickAC.volumeProperty().bind(volumeSliderFOne.valueProperty().divide(50));
         MusicGame.volumeProperty().bind(volumeSliderFOne.valueProperty());
         MusicGame.play();
+//        System.out.println(newPlayer.getUsername());
 //        mediaPlayer.volumeProperty().bind(volumeSlider.valueProperty().divide(100));
 
 //        scoreText.setText("Score: " + player.getScore());
@@ -199,7 +194,7 @@ public class LevelPageOneController {
                         && eventEndingPointOfRay[0] >= Math.min(lineWallTwo.getStartX(), lineWallTwo.getEndX())
                         && eventEndingPointOfRay[1] < lightBulbFOne.getLayoutY()) {
                     lightRay.setEndX(interesctPointWithWallTwo[0]);
-                    lightRay.setEndY(interesctPointWithWallTwo[1] );
+                    lightRay.setEndY(interesctPointWithWallTwo[1]);
 
 //                        System.out.println("interesctPointWithWallTwo "
 //                                +interesctPointWithWallTwo[0]+"+"+interesctPointWithWallTwo[1]);
@@ -207,7 +202,7 @@ public class LevelPageOneController {
                         && eventEndingPointOfRay[0] > lightBulbFOne.getLayoutX()
                         && eventEndingPointOfRay[1] < lightBulbFOne.getLayoutY()) {
                     lightRay.setEndX(interesctPointWithWallThree[0]);
-                    lightRay.setEndY(interesctPointWithWallThree[1] );
+                    lightRay.setEndY(interesctPointWithWallThree[1]);
 
                 } else if (isTouchingTheWallFour
                         && eventEndingPointOfRay[0] > lightBulbFOne.getLayoutX()
@@ -273,24 +268,19 @@ public class LevelPageOneController {
                             rotateDoor.setToAngle(360);
                             rotateDoor.play();
 
-                            doorImageViewFOne.setImage(imageDoorOpened);
-
+//                            doorImageViewFOne.setImage(imageDoorOpened);
                             levelUpAC.play(); //audio
                             btnNextGame.setVisible(true);
 
 //                                circleForImageLevelUp.setFill(new ImagePattern(imageLevelUp));
 //                                System.out.println("yes " + reflectRay.getBoundsInParent().getWidth());
                         }
-
                     }
                 }
             }
-
 //            System.out.println("event.getX() " + event.getX() + " ; event.getY() " + event.getY());
-
         });
 
-        
         btnNextGame.setOnMouseClicked((event) -> {
             System.out.println("Going to next level");
             FXMLLoader loader = new FXMLLoader(
@@ -299,23 +289,20 @@ public class LevelPageOneController {
             LevelPageTwoController fxmlController = new LevelPageTwoController();
             loader.setController(fxmlController);
 //            fxmlController.giveStage(stage);
-           
 
-            Pane root =null;
+            Pane root = null;
             fxmlController.giveStage(stage);
             try {
                 root = loader.load();
             } catch (IOException ex) {
-                
+
                 Logger.getLogger(LevelPageOneController.class.getName()).log(Level.SEVERE, null, ex);
-                
             }
             //root.getStylesheets().add(getClass().getResource("style.css").toString());
             Scene scene = new Scene(root);
             stage.setScene(scene);
 //            stage.show();
         });
-
     }
 
     public Stage giveStage(Stage stage) {
@@ -368,10 +355,7 @@ public class LevelPageOneController {
             } else if (isTouchingTheBorderBottom && eventEndingPointOfRay[1] > lightBulbFOne.getLayoutY()) {
                 lightRay.setEndX(interesctPointWithBorderBottom[0]);
                 lightRay.setEndY(interesctPointWithBorderBottom[1]);
-
             }
         }
-
     }
 }
-

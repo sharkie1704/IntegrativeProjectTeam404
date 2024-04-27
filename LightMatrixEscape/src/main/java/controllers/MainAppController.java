@@ -1,5 +1,9 @@
 package controllers;
 
+/**
+ *
+ * @author Ntela and Ishrak
+ */
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,13 +27,9 @@ public class MainAppController {
 
     Stage stage;
 
-    //don't forget to make it so that when you click on the image you'll open a new scene
     public void initialize() {
-
         startImageView.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            FXMLLoader loader = new FXMLLoader(
-                    getClass().getResource("/fxml/account_page_layout.fxml")
-            );
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/account_page_layout.fxml"));
             LoginPageController fxmlController = new LoginPageController();
             loader.setController(fxmlController);
 
@@ -40,7 +40,7 @@ public class MainAppController {
             } catch (IOException ex) {
                 Logger.getLogger(MainAppController.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
             Scene scene = new Scene(root);
             stage.setScene(scene);
             myLabel.styleProperty().bind(Bindings.when(myLabel.hoverProperty())

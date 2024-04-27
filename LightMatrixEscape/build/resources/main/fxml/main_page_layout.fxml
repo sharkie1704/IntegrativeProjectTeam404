@@ -11,39 +11,40 @@
 <?import javafx.scene.text.Font?>
 
 <Pane fx:id="startingPagePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="1043.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <ImageView fx:id="startImageView" fitHeight="598.0" fitWidth="1051.0" layoutX="-6.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/background.png" />
-         </image>
-         <effect>
-            <Glow level="0.43" />
-         </effect></ImageView>
-      <Label alignment="CENTER" blendMode="MULTIPLY" layoutX="113.0" layoutY="205.0" prefHeight="110.0" prefWidth="817.0" text="The Light Matrix Escape Game">
-         <textFill>
-            <RadialGradient centerX="0.505524861878453" centerY="0.5" focusDistance="0.16091954022988508" radius="1.0">
-               <stops>
-                  <Stop>
-                     <color>
-                        <Color red="0.10599415004253387" green="0.7211257219314575" blue="0.7894737124443054" />
-                     </color>
-                  </Stop>
-                  <Stop offset="1.0">
-                     <color>
-                        <Color red="0.8100000023841858" green="0.024299999698996544" blue="0.024299999698996544" />
-                     </color>
-                  </Stop>
-               </stops>
-            </RadialGradient>
-         </textFill>
-         <font>
-            <Font name="Tw Cen MT Condensed Bold" size="52.0" />
-         </font>
-      </Label>
-      <Label fx:id="myLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="374.0" layoutY="315.0" prefHeight="32.0" prefWidth="295.0" text="Click anywhere to start" textFill="#f5e6e6">
-         <font>
-            <Font name="Verdana Bold Italic" size="22.0" />
-         </font>
-      </Label>
-   </children>
+    <children>
+        <ImageView fx:id="startImageView" fitHeight="598.0" fitWidth="1051.0" layoutX="-6.0" opacity="0.8" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../images/background.png" />
+            </image>
+            <effect>
+                <Glow level="0.43" />
+            </effect>
+        </ImageView>
+        <Label alignment="CENTER" blendMode="MULTIPLY" layoutX="113.0" layoutY="205.0" prefHeight="110.0" prefWidth="817.0" text="The Light Matrix Escape Game">
+            <textFill>
+                <RadialGradient centerX="0.505524861878453" centerY="0.5" focusDistance="0.16091954022988508" radius="1.0">
+                    <stops>
+                        <Stop>
+                            <color>
+                                <Color red="0.10599415004253387" green="0.7211257219314575" blue="0.7894737124443054" />
+                            </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                            <color>
+                                <Color red="0.8100000023841858" green="0.024299999698996544" blue="0.024299999698996544" />
+                            </color>
+                        </Stop>
+                    </stops>
+                </RadialGradient>
+            </textFill>
+            <font>
+                <Font name="Tw Cen MT Condensed Bold" size="52.0" />
+            </font>
+        </Label>
+        <Label fx:id="myLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="374.0" layoutY="315.0" prefHeight="32.0" prefWidth="295.0" text="Click anywhere to start" textFill="#f5e6e6">
+            <font>
+                <Font name="Verdana Bold Italic" size="22.0" />
+            </font>
+        </Label>
+    </children>
 </Pane>

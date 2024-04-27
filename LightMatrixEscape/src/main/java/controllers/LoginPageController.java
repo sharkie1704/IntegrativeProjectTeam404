@@ -1,5 +1,9 @@
 package controllers;
 
+/**
+ *
+ * @author Ntela & Ishrak
+ */
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,23 +27,17 @@ public class LoginPageController {
 
     Stage stage;
     String permitedChar = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ_.";
-//    char[] permittedChars = {1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
-//        'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '_', '.',
-//        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
-
     private Player newPlayer;
     String username;
 
     public void initialize() {
-
         continuebtn.setOnAction((event) -> {
-
             username = usernameTextField.getText();
-
             // Create a new player with levelProgress 1 and score 0
             newPlayer = new Player(username, 1, 0);
+            System.out.println(newPlayer.getUsername());                    
             newPlayer.saveProgress();
-//            levelPageController.setPlayer(newPlayer);
+
             try {
                 if (verification()) {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/game_page_layout.fxml"));
@@ -53,13 +51,11 @@ public class LoginPageController {
                     } catch (IOException ex) {
                         Logger.getLogger(LoginPageController.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    //root.getStylesheets().add(getClass().getResource("style.css").toString());
                     Scene scene = new Scene(root);
                     stage.setScene(scene);
                     continuebtn.styleProperty().bind(Bindings.when(continuebtn.hoverProperty())
                             .then("-fx-background-color: #FFC125;")
                             .otherwise("-fx-background-color: #FFDAB9;"));
-
                 }
             } catch (IOException ex) {
                 Logger.getLogger(LoginPageController.class.getName()).log(Level.SEVERE, null, ex);
@@ -77,18 +73,18 @@ public class LoginPageController {
             String letter = Character.toString(username.charAt(i));
             if (!permitedChar.contains(letter)) {
                 showError("invalid");
-                return false; // Exit immediately if an invalid character is found
+                return false;
             }
         }
 
         if (username.isEmpty()) {
             showError("empty");
-            return false; // Exit immediately if the username is empty
+            return false;
         }
 
         if (username.length() > 12) {
             showError("size");
-            return false; // Exit immediately if the username is too long
+            return false;
         }
 
         // If none of the conditions are met, return true

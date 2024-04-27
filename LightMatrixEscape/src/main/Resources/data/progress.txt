@@ -1,2 +1,0 @@
-The player sharkie's score: 0
-The player sharkie is at level: 1

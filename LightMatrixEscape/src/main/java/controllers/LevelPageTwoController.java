@@ -67,10 +67,10 @@ public class LevelPageTwoController {
 
     public void initialize() throws FileNotFoundException {
 
-        imageDoorOpened = new Image(new FileInputStream(getClass().
-                getResource("/images/imageDoorOpened.png").getFile()));
+//        imageDoorOpened = new Image(new FileInputStream(getClass().
+//                getResource("/images/imageDoorOpened.png").getFile()));
 
-        //Aduio Clips
+        //Audio Clips
         URL urlsoundClick = this.getClass().getClassLoader().getResource("sounds/soundClick.mp3");
         AudioClip clickAC = new AudioClip(urlsoundClick.toExternalForm());
         URL URLMusic = this.getClass().getClassLoader().getResource("sounds/gameMusic.mp3");
@@ -437,7 +437,7 @@ public class LevelPageTwoController {
                 rotateDoor.setToAngle(360);
                 rotateDoor.play();
 
-                doorImageView.setImage(imageDoorOpened);
+//                doorImageView.setImage(imageDoorOpened);
                 imageViewWin.setVisible(true);
                 
 //                                circleForImageLevelUp.setFill(new ImagePattern(imageLevelUp));
