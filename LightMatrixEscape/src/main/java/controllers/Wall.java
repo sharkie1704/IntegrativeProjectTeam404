@@ -42,7 +42,13 @@ public class Wall extends Lines {
                 startPointOfRay, endPointOfRay, lineWall);
 //        System.out.println("interesctedPoint:" + interesctedPoint[0] + " + " + interesctedPoint[1]);
 
-if (interesctedPoint != null) {
+        if (interesctedPoint != null) {
+
+            double xValueOfInteresctedPoint = Math.round(interesctedPoint[0]);
+            double yValueOfInteresctedPoint = Math.round(interesctedPoint[1]);
+            interesctedPoint[0] = xValueOfInteresctedPoint;
+            interesctedPoint[1] = yValueOfInteresctedPoint;
+
             if (interesctedPoint[0] >= Math.min(startPointOfWall[0], endPointOfWall[0])
                     && interesctedPoint[0] <= Math.max(startPointOfWall[0], endPointOfWall[0])
                     && interesctedPoint[1] >= Math.min(startPointOfWall[1], endPointOfWall[1])
