@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package controllers;
 
 import java.io.FileInputStream;
@@ -67,23 +64,24 @@ public class LevelPageTwoController {
 
     public void initialize() throws FileNotFoundException {
 
-        imageDoorOpened = new Image(new FileInputStream(getClass().
-                getResource("/images/imageDoorOpened.png").getFile()));
+//        imageDoorOpened = new Image(new FileInputStream(getClass().
+//                getResource("/images/imageDoorOpened.png").getFile()));
 
-        //Aduio Clips
+        //Audio Clips
         URL urlsoundClick = this.getClass().getClassLoader().getResource("sounds/soundClick.mp3");
         AudioClip clickAC = new AudioClip(urlsoundClick.toExternalForm());
         URL URLMusic = this.getClass().getClassLoader().getResource("sounds/gameMusic.mp3");
         AudioClip MusicGame = new AudioClip(URLMusic.toExternalForm());
-        volumeSlider = new Slider(0, 100, 30);
-        volumeSlider.setValue(50);
-        clickAC.volumeProperty().bind(volumeSlider.valueProperty().divide(50));
-        MusicGame.volumeProperty().bind(volumeSlider.valueProperty());
-        MusicGame.play();
+//        volumeSlider = new Slider(0, 100, 30);
+//        volumeSlider.setValue(50);
+//        clickAC.volumeProperty().bind(volumeSlider.valueProperty().divide(50));
+//        MusicGame.volumeProperty().bind(volumeSlider.valueProperty());
+//        MusicGame.play();
 
         //Create lines of ray
         Line firstRefractRay = new Line(0, 0, 0, 0);
         firstRefractRay.setStroke(Color.TRANSPARENT);
+        firstRefractRay.setVisible(false);
         gamePane.getChildren().addAll(firstRefractRay);
 
         Line secondRefractRay = new Line(0, 0, 0, 0);
@@ -160,24 +158,23 @@ public class LevelPageTwoController {
                     startingPointOfLeftLineOfPrism,
                     endingPointOfLeftLineOfPrism, "Glass");
 
-            double[] firstNoramlStartPoint = refractMethod.calculateNormalStartPoint(
+            double[] firstNormalStartPoint = refractMethod.calculateNormalStartPoint(
                     startingPointOfLeftLineOfPrism,
                     endingPointOfLeftLineOfPrism,
                     reflectRayStartPoint);
 
-            double[] firstNoramlEndPoint = refractMethod.calculateNormalEndPoint(
+            double[] firstNormalEndPoint = refractMethod.calculateNormalEndPoint(
                     startingPointOfLeftLineOfPrism,
                     endingPointOfLeftLineOfPrism,
                     reflectRayStartPoint);
 
             double[] firstRefractedRayEndPoint = refractMethod.calculateRefractRayEndPoint(
                     reflectRayStartPoint, refractedAngleOne,
-                    150, firstNoramlStartPoint,
-                    firstNoramlEndPoint);
+                    150, firstNormalStartPoint,
+                    firstNormalEndPoint);
 
             touchingTheBorder(startingPointOfRay, endingPointOfRay, lightRay, firstRefractRay);
 
-            
             //make sure the ray only reflect when touching the prism
             //determine if the line touch each wall
             double[] interesctPointWithWallOne = wallMethod.findIntersectionWithWall(

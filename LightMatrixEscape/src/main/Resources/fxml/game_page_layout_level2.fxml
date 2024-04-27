@@ -14,29 +14,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="gamePane" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="gamePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="1043.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <ImageView fx:id="backgroundImageView" fitHeight="700.0" fitWidth="900.0" pickOnBounds="true">
+      <ImageView fx:id="backgroundImageView" fitHeight="598.0" fitWidth="1051.0" layoutX="-6.0" pickOnBounds="true">
          <image>
             <Image url="@../images/background.png" />
          </image></ImageView>
-      <Slider fx:id="volumeSlider" layoutX="719.0" layoutY="670.0" prefHeight="32.0" prefWidth="181.0" value="30.0" />
-      <Text fx:id="levelText" fill="WHITE" layoutX="4.0" layoutY="17.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Level 2" wrappingWidth="62.66845929523731">
-         <font>
-            <Font name="Baskerville Old Face" size="18.0" />
-         </font>
-      </Text>
-      <Text fx:id="scoreText" fill="WHITE" layoutX="110.0" layoutY="696.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score" wrappingWidth="47.79296875">
-         <font>
-            <Font name="Baskerville Old Face" size="18.0" />
-         </font>
-      </Text>
-      <Text fx:id="usernameText" fill="WHITE" layoutX="5.0" layoutY="696.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" wrappingWidth="87.0">
-         <font>
-            <Font name="Baskerville Old Face" size="18.0" />
-         </font>
-      </Text>
-      <Pane fx:id="Pane" prefHeight="700.0" prefWidth="900.0">
+      <Pane fx:id="Pane" layoutX="10.0" layoutY="10.0" prefHeight="566.0" prefWidth="1033.0">
          <children>
             <ImageView fx:id="doorImageView" fitHeight="100.0" fitWidth="87.0" layoutX="114.0" layoutY="136.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -96,10 +80,10 @@
             <Line fx:id="bottomLineOfPrism" endX="415.0" endY="520.0" startX="235.0" startY="520.0" stroke="#978888" />
             <Line fx:id="leftLineOfPrism" endX="235.0" endY="520.0" startX="326.0" startY="373.0" stroke="#a19191" />
             <Line fx:id="lightRay" endX="123.0" endY="487.0" startX="123.0" startY="487.0" stroke="#e8f22d" />
-            <Line fx:id="lineBorderUp" endX="900.0" />
-            <Line fx:id="lineBorderLeft" endY="700.0" />
-            <Line fx:id="lineBorderBottom" endX="900.0" endY="700.0" startY="700.0" />
-            <Line fx:id="lineBorderRight" endX="900.0" endY="700.0" startX="900.0" />
+            <Line fx:id="lineBorderUp" endX="1035.0" endY="-10.0" layoutY="1.0" startX="-8.0" startY="-10.0" />
+            <Line fx:id="lineBorderLeft" endX="-10.0" endY="588.0" startX="-10.0" startY="-10.0" />
+            <Line fx:id="lineBorderBottom" endX="1035.0" endY="588.0" startX="-8.0" startY="588.0" />
+            <Line fx:id="lineBorderRight" endX="1035.0" endY="588.0" layoutX="1.0" startX="1033.0" startY="-10.0" />
             <Line fx:id="lineMirrorOne" endX="690.0" endY="556.0" startX="529.0" startY="556.0" />
             <Line fx:id="lineMirrorTwo" endX="780.0" endY="510.0" startX="780.0" startY="350.0" />
             <ImageView fx:id="imageViewWin" fitHeight="287.0" fitWidth="382.0" layoutX="547.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" visible="false">
@@ -112,7 +96,23 @@
                   <Image url="@../images/imageLightLeft.png" />
                </image>
             </ImageView>
+            <Text fx:id="levelText" fill="WHITE" layoutX="958.0" layoutY="278.0" rotate="90.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Level 2" textAlignment="CENTER" wrappingWidth="78.66845929523731">
+               <font>
+                  <Font name="Corbel Bold" size="25.0" />
+               </font>
+            </Text>
+            <Text fx:id="scoreText" fill="#483ec2" layoutX="490.0" layoutY="25.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="2.0" text="Score" textAlignment="CENTER" wrappingWidth="57.79296875">
+               <font>
+                  <Font name="Corbel Bold" size="21.0" />
+               </font>
+            </Text>
          </children></Pane>
       <MediaView fx:id="mediaView" fitHeight="10.0" fitWidth="50.0" layoutX="662.0" layoutY="681.0" />
+      <Text fx:id="usernameText" fill="#483ec2" layoutX="16.0" layoutY="24.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="2.0" text="Username" textAlignment="CENTER" wrappingWidth="96.0">
+         <font>
+            <Font name="Corbel Bold" size="21.0" />
+         </font>
+      </Text>
+      <Slider fx:id="volumeSlider" layoutX="862.0" layoutY="3.0" prefHeight="32.0" prefWidth="172.0" value="30.0" />
    </children>
 </Pane>

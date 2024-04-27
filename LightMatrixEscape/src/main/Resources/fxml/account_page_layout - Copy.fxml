@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.media.MediaView?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.RadialGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Ellipse?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane fx:id="startingPagePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="579.0" prefWidth="1043.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fx:id="startImageView" fitHeight="598.0" fitWidth="1051.0" layoutX="-6.0" pickOnBounds="true">
+         <image>
+            <Image url="@../images/cave.png" />
+         </image>
+         <effect>
+            <Glow level="0.43" />
+         </effect>
+      </ImageView>
+      <Rectangle fx:id="mirror1FOne" arcHeight="5.0" arcWidth="5.0" height="165.0" layoutX="855.0" layoutY="230.0" stroke="BLACK" strokeType="INSIDE" width="14.0">
+         <fill>
+            <RadialGradient centerX="0.5" centerY="0.495260663507109" cycleMethod="REFLECT" radius="0.7758620689655172">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color />
+                     </color>
+                  </Stop>
+               </stops>
+            </RadialGradient>
+         </fill>
+      </Rectangle>
+      <Pane fx:id="PaneFOne" layoutX="10.0" layoutY="10.0" prefHeight="566.0" prefWidth="1033.0">
+         <children>
+            <ImageView fitHeight="532.0" fitWidth="960.0" layoutX="34.0" layoutY="20.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/background.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="doorImageViewFOne" fitHeight="117.0" fitWidth="87.0" layoutX="463.0" layoutY="28.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/imageDoorClosed.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="detectorImageViewFOne" fitHeight="56.0" fitWidth="51.0" layoutX="402.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true" rotate="29.7">
+               <image>
+                  <Image url="@../images/imageDetector.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="btnNextGame" contentDisplay="CENTER" layoutX="365.0" layoutY="301.0" mnemonicParsing="false" text="Click For Next Level" textAlignment="CENTER" textFill="#432323">
+               <font>
+                  <Font name="Californian FB Italic" size="35.0" />
+               </font>
+            </Button>
+            <Line fx:id="lineWallTwo" endX="500.0" endY="280.0" startX="200.0" startY="280.0" stroke="#544d4d" strokeWidth="10.0" />
+            <Rectangle fx:id="flashlightFOne" arcHeight="5.0" arcWidth="5.0" fill="#ffb01f" height="66.0" layoutX="500.0" layoutY="477.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="34.0" />
+            <Line fx:id="lineWallOne" endX="100.0" endY="500.0" fill="#462f2f" startX="100.0" startY="300.0" stroke="#544d4d" strokeWidth="10.0" />
+            <Rectangle fx:id="mirror1FOne1" arcHeight="5.0" arcWidth="5.0" height="165.0" layoutX="845.0" layoutY="220.0" stroke="BLACK" strokeType="INSIDE" width="14.0">
+               <fill>
+                  <RadialGradient centerX="0.5" centerY="0.495260663507109" cycleMethod="REFLECT" radius="0.7758620689655172">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </fill>
+            </Rectangle>
+            <Line fx:id="lineWallThree" endX="650.0" endY="500.0" startX="850.0" startY="500.0" stroke="#544d4d" strokeWidth="10.0" />
+            <Ellipse fx:id="lightBulbFOne" fill="#dbfc0a" layoutX="517.0" layoutY="459.0" radiusX="17.0" radiusY="18.0" stroke="BLACK" strokeType="INSIDE" visible="false" />
+            <Line fx:id="lineWallFour" endX="800.0" endY="150.0" fill="#544d4d" layoutY="5.0" startX="800.0" startY="20.0" stroke="#544d4d" strokeWidth="10.0" />
+            <ImageView fx:id="imageLightBulbFOne" fitHeight="98.0" fitWidth="96.0" layoutX="470.0" layoutY="447.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/flashlight.png" />
+               </image>
+            </ImageView>
+            <Slider fx:id="volumeSliderFOne" layoutX="852.0" layoutY="-7.0" prefHeight="32.0" prefWidth="172.0" value="30.0" />
+            <MediaView fx:id="mediaViewFOne" fitHeight="10.0" fitWidth="50.0" layoutX="803.0" layoutY="538.0" />
+            <Text fx:id="usernameTextFOne" fill="#483ec2" layoutX="6.0" layoutY="14.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="2.0" text="Username" textAlignment="CENTER" wrappingWidth="96.0">
+               <font>
+                  <Font name="Corbel Bold" size="21.0" />
+               </font>
+            </Text>
+            <Text fx:id="scoreTextFOne" fill="#483ec2" layoutX="480.0" layoutY="15.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="2.0" text="Score" textAlignment="CENTER" wrappingWidth="57.79296875">
+               <font>
+                  <Font name="Corbel Bold" size="21.0" />
+               </font>
+            </Text>
+            <Text fx:id="levelTextFOne" fill="WHITE" layoutX="-24.0" layoutY="308.0" rotate="-90.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Level 1" textAlignment="CENTER" wrappingWidth="78.66845929523731">
+               <font>
+                  <Font name="Corbel Bold" size="25.0" />
+               </font>
+            </Text>
+         </children>
+      </Pane>
+   </children>
+</Pane>

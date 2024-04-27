@@ -5,11 +5,74 @@
 .myLabel:pressed {
     -fx-background-color: #FFDAB9; /* Change background color when pressed */
 }
-
+.continuebtn {
+    width: 10em;
+    position: relative;
+    height: 3.5em;
+    border: 3px ridge #149CEA;
+    outline: none;
+    background-color: transparent;
+    color: white;
+    transition: 1s;
+    border-radius: 0.3em;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
 .continuebtn:hover {
     -fx-background-color: #FFC125; /* Change background color on hover */
 }
 
 .continuebtn:pressed {
     -fx-background-color: #FFDAB9; /* Change background color when pressed */
+}
+
+.usernameTextField {
+    .container {
+        -fx-display: flex;
+        -fx-flex-direction: column;
+        -fx-gap: 7px;
+        -fx-position: relative;
+        -fx-text-fill: white;
+    }
+
+    .container .label {
+        -fx-font-size: 15px;
+        -fx-padding: 0px 0px 0px 10px;
+        -fx-position: absolute;
+        -fx-top: 13px;
+        -fx-transition: 0.3s;
+        -fx-pointer-events: none;
+    }
+
+    .input {
+        -fx-pref-width: 200px;
+        -fx-pref-height: 45px;
+        -fx-border-width: 0px;
+        -fx-padding: 0px 7px;
+        -fx-border-radius: 6px;
+        -fx-text-fill: white;
+        -fx-font-size: 15px;
+        -fx-background-color: transparent;
+        -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,1) , 3, 3, 10, 0);
+    }
+
+    .input:focused {
+        -fx-border-width: 2px;
+        -fx-border-color: transparent;
+        -fx-text-fill: white;
+        -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,1) , 3, 3, 10, 0), dropshadow( three-pass-box , rgba(255, 255, 255, 0.4) , -1, -1, 6, 0), inset dropshadow( three-pass-box , rgba(0,0,0,1) , 3, 3, 10, 0), inset dropshadow( three-pass-box , rgba(255, 255, 255, 0.4) , -1, -1, 6, 0);
+    }
+
+    .container .input:valid ~ .label,
+        .container .input:focused ~ .label {
+        -fx-transition: 0.3s;
+        -fx-padding-left: 2px;
+        -fx-translate-y: -35px;
+    }
+
+    .container .input:valid,
+        .container .input:focused {
+        -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,1) , 3, 3, 10, 0), dropshadow( three-pass-box , rgba(255, 255, 255, 0.4) , -1, -1, 6, 0), inset dropshadow( three-pass-box , rgba(0,0,0,1) , 3, 3, 10, 0), inset dropshadow( three-pass-box , rgba(255, 255, 255, 0.4) , -1, -1, 6, 0);
+    }
 }
