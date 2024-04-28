@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.animation.KeyFrame;
 import javafx.animation.RotateTransition;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -16,7 +18,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
 import javafx.scene.text.Text;
@@ -33,7 +34,7 @@ public class LevelPageOneController {
     Pane gamePaneFOne;
 
     @FXML
-    Text scoreTextFOne, usernameTextFOne, levelTextFOne;
+    Text scoreTextFOne, usernameTextFOne, gameOver;
 
     @FXML
     Button btnNextGame;
@@ -58,6 +59,8 @@ public class LevelPageOneController {
 
     Player newPlayer;
     Stage stage;
+    int score = 10;
+    private final int initialScore = 100;
 
 //    LoginPageController loginPageController;
 //
@@ -70,16 +73,41 @@ public class LevelPageOneController {
 //        }
 //    }
 //
-//    // Method to update the score text
-//       private void updateScoreText() {
-//        scoreText.setText("Score: " + newPlayer.getScore());
-//    }
     //Reflection, detector, and wall methods
     Reflection reflectionMethod = new Reflection();
     Detector detectorMethod = new Detector();
     Wall wallMethod = new Wall();
 
-    public void initialize() throws FileNotFoundException {
+    private void updateScoreText() {
+        //Update score text
+        scoreTextFOne.setText("Score: " + score);
+    }
+
+    private void showFailMessage() {
+        gameOver.setVisible(true);
+    }
+
+    private void resetGame() {
+        //Reset score to initial value
+        score = initialScore;
+        gameOver.setVisible(false);
+    }
+
+public void initialize() throws FileNotFoundException {
+        // Create a Timeline to update the score every second
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.05), event -> {
+            if (score > 0) {
+                score--;
+            } else {
+                // Score is zero, game failed
+                showFailMessage();
+                resetGame();
+            }
+            updateScoreText();
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
+
         btnNextGame.setVisible(false);
         imageDoorOpened = new Image("/images/imageDoorOpened.png");
 
@@ -244,7 +272,8 @@ public class LevelPageOneController {
                                 detectorImageViewFOne.getLayoutY() + 25, 20);
 
                         if (isIntersect) {
-                            //rotate the door
+                            //Stop score and rotate the door
+                            timeline.stop();
                             RotateTransition rotateDoor = new RotateTransition(Duration.seconds(2), doorImageViewFOne);
                             rotateDoor.setFromAngle(0);
                             rotateDoor.setToAngle(360);
@@ -271,9 +300,12 @@ public class LevelPageOneController {
             fxmlController.giveStage(stage);
             try {
                 root = loader.load();
-            } catch (IOException ex) {
 
-                Logger.getLogger(LevelPageOneController.class.getName()).log(Level.SEVERE, null, ex);
+} catch (IOException ex) {
+
+                Logger.getLogger(LevelPageOneController.class  
+
+.getName()).log(Level.SEVERE, null, ex);
             }
             Scene scene = new Scene(root);
             stage.setScene(scene);
