@@ -102,12 +102,12 @@
                   <Font name="Microsoft JhengHei" size="29.0" />
                </font>
             </Text>
-            <Text fx:id="scoreText" fill="#802118" layoutX="928.0" layoutY="21.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="1.5" text="Score" textAlignment="CENTER" wrappingWidth="57.79296875">
+            <Text fx:id="scoreText" fill="#802118" layoutX="794.0" layoutY="23.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="1.5" text="Score" wrappingWidth="181.0">
                <font>
                   <Font name="Corbel Bold" size="21.0" />
                </font>
             </Text>
-            <Text fx:id="usernameText" fill="#802118" layoutX="7.0" layoutY="20.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="1.5" text="Username" textAlignment="CENTER" wrappingWidth="96.0">
+            <Text fx:id="usernameText" fill="#802118" layoutX="12.0" layoutY="20.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="1.5" text="Username" wrappingWidth="276.0">
                <font>
                   <Font name="Corbel Bold" size="21.0" />
                </font>

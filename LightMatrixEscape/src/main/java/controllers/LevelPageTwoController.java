@@ -4,10 +4,11 @@
  */
 package controllers;
 
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.net.URL;
+import javafx.animation.KeyFrame;
 import javafx.animation.RotateTransition;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.scene.control.Slider;
 import javafx.scene.image.Image;
@@ -18,12 +19,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
  *
- * @author Hongyan Li
+ * @author Hongyan Li and Ishrak
  */
 public class LevelPageTwoController {
 
@@ -52,12 +54,16 @@ public class LevelPageTwoController {
     Ellipse lightBulb;
 
     @FXML
+    Text scoreText;
+
+    @FXML
     ImageView doorImageView, detectorImageView, imageViewWin;
 
     @FXML
     Image imageDoorOpened;
 
     Stage stage;
+    int score = 100000;
 
     Refraction refractMethod = new Refraction();
     Reflection reflectionMethod = new Reflection();
@@ -65,11 +71,23 @@ public class LevelPageTwoController {
     Wall wallMethod = new Wall();
     Lines lineMethod = new Lines();
 
+    private void updateScoreText() {
+        //Update score text
+        scoreText.setText("Score: " + score);
+    }
+
     public void initialize() throws FileNotFoundException {
 
-//        imageDoorOpened = new Image(new FileInputStream(getClass().
-//                getResource("/images/imageDoorOpened.png").getFile()));
+        imageDoorOpened = new Image("/images/imageDoorOpened.png");
 
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.05), event -> {
+            if (score > 0) {
+                score--;
+            }
+            updateScoreText();
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
         //Audio Clips
         URL urlsoundClick = this.getClass().getClassLoader().getResource("sounds/soundClick.mp3");
         AudioClip clickAC = new AudioClip(urlsoundClick.toExternalForm());
@@ -82,9 +100,8 @@ public class LevelPageTwoController {
         //MusicGame.play();
 
         //Create lines of ray
-        
         lightRay.setStrokeWidth(5);
-        
+
         Line firstRefractRay = new Line(0, 0, 0, 0);
         firstRefractRay.setStroke(Color.TRANSPARENT);
         firstRefractRay.setStrokeWidth(5);
@@ -112,17 +129,16 @@ public class LevelPageTwoController {
         secReflectRay.setStroke(Color.TRANSPARENT);
         secReflectRay.setStrokeWidth(5);
         gamePane.getChildren().add(secReflectRay);
-        
+
         Line internalReflectRay = new Line(0, 0, 0, 0);
         internalReflectRay.setStroke(Color.TRANSPARENT);
         internalReflectRay.setStrokeWidth(5);
         gamePane.getChildren().add(internalReflectRay);
-        
 
         gamePane.setOnMouseClicked(event -> {
 
             clickAC.play();
-//            System.out.println("Yes");//Try
+
             lightRay.setStroke(Color.YELLOW);
             leftLineOfPrism.setStroke(Color.GRAY);
             rightLineOfPrism.setStroke(Color.GRAY);
@@ -185,7 +201,6 @@ public class LevelPageTwoController {
 
             touchingTheBorder(startingPointOfRay, endingPointOfRay, lightRay, firstRefractRay);
 
-            
             //make sure the ray only reflect when touching the prism
             //determine if the line touch each wall
             double[] interesctPointWithWallOne = wallMethod.findIntersectionWithWall(
@@ -240,81 +255,77 @@ public class LevelPageTwoController {
                     lightRay.setEndY(interesctPointWithWallFour[1]);
 
                 }
-            } 
+            }
 
-                //First reflection happens
-                if (reflectRayStartPoint[1] < leftLineOfPrism.getEndY()
-                        && reflectRayStartPoint[1] > leftLineOfPrism.getStartY()) {
-                    //First Reflection
-                    refractMethod.refractThings(startingPointOfRay, endingPointOfRay,
-                            startingPointOfLeftLineOfPrism, endingPointOfLeftLineOfPrism, lightRay,
-                            firstNormal, firstRefractRay, "Glass");
-                    lightRay.setEndX(reflectRayStartPoint[0]);
-                    lightRay.setEndY(reflectRayStartPoint[1]);
+            //First reflection happens
+            if (reflectRayStartPoint[1] < leftLineOfPrism.getEndY()
+                    && reflectRayStartPoint[1] > leftLineOfPrism.getStartY()) {
+                //First Reflection
+                refractMethod.refractThings(startingPointOfRay, endingPointOfRay,
+                        startingPointOfLeftLineOfPrism, endingPointOfLeftLineOfPrism, lightRay,
+                        firstNormal, firstRefractRay, "Glass");
+                lightRay.setEndX(reflectRayStartPoint[0]);
+                lightRay.setEndY(reflectRayStartPoint[1]);
 
-                    // Find intersection between ReflectRay and Prism right line
-                    double[] intersectionWithRightPrismLine = refractMethod.findIntersection(
-                            reflectRayStartPoint,
-                            firstRefractedRayEndPoint,
-                            startingPointOfRightLineOfPrism, endingPointOfRightLineOfPrism);
+                // Find intersection between ReflectRay and Prism right line
+                double[] intersectionWithRightPrismLine = refractMethod.findIntersection(
+                        reflectRayStartPoint,
+                        firstRefractedRayEndPoint,
+                        startingPointOfRightLineOfPrism, endingPointOfRightLineOfPrism);
 
-                    // Find intersection between ReflectRay and Prism right line
-                    double[] intersectionBottomPrism = refractMethod.findIntersection(
-                            reflectRayStartPoint,
-                            firstRefractedRayEndPoint,
-                            startingPointOfBottomLineOfPrism, endingPointOfBottomLineOfPrism);
+                // Find intersection between ReflectRay and Prism right line
+                double[] intersectionBottomPrism = refractMethod.findIntersection(
+                        reflectRayStartPoint,
+                        firstRefractedRayEndPoint,
+                        startingPointOfBottomLineOfPrism, endingPointOfBottomLineOfPrism);
 
-                    if ((intersectionBottomPrism[0] < bottomLineOfPrism.getEndX()
-                            && intersectionBottomPrism[0] > bottomLineOfPrism.getStartX())
-                            ||(intersectionWithRightPrismLine[1] < rightLineOfPrism.getEndY()
-                            && intersectionWithRightPrismLine[1] > rightLineOfPrism.getStartY())) {
-                        
-                    
+                if ((intersectionBottomPrism[0] < bottomLineOfPrism.getEndX()
+                        && intersectionBottomPrism[0] > bottomLineOfPrism.getStartX())
+                        || (intersectionWithRightPrismLine[1] < rightLineOfPrism.getEndY()
+                        && intersectionWithRightPrismLine[1] > rightLineOfPrism.getStartY())) {
+
                     //Second reflection (touch bottom line or right line)
                     if (intersectionBottomPrism[0] < bottomLineOfPrism.getEndX()
                             && intersectionBottomPrism[0] > bottomLineOfPrism.getStartX()) {
                         //Reflection internal(
 //                        System.out.println("YYes");
-                        
 
-                            // Calculate the incident angle of light
-                            double incidentAngleInternal = reflectionMethod.findIncidentAngle(
-                                    reflectRayStartPoint, firstRefractedRayEndPoint,
-                                    startingPointOfBottomLineOfPrism, endingPointOfBottomLineOfPrism);
+                        // Calculate the incident angle of light
+                        double incidentAngleInternal = reflectionMethod.findIncidentAngle(
+                                reflectRayStartPoint, firstRefractedRayEndPoint,
+                                startingPointOfBottomLineOfPrism, endingPointOfBottomLineOfPrism);
 
-                            // Calculate the end point coordinates of the reflected light, assuming the length is 1200
-                            double[] internalReflectedRayEndPoint = reflectionMethod.calculateReflectRayEndPoint(intersectionBottomPrism,
-                                    incidentAngleInternal, 1200, startingPointOfBottomLineOfPrism,
-                                    endingPointOfBottomLineOfPrism);
-                            double internalReflectedRayEndX = internalReflectedRayEndPoint[0];
-                            double internalReflectedRayEndY = internalReflectedRayEndPoint[1];
+                        // Calculate the end point coordinates of the reflected light, assuming the length is 1200
+                        double[] internalReflectedRayEndPoint = reflectionMethod.calculateReflectRayEndPoint(intersectionBottomPrism,
+                                incidentAngleInternal, 1200, startingPointOfBottomLineOfPrism,
+                                endingPointOfBottomLineOfPrism);
+                        double internalReflectedRayEndX = internalReflectedRayEndPoint[0];
+                        double internalReflectedRayEndY = internalReflectedRayEndPoint[1];
 
-                            //Set ReflectRay proporties
-                            internalReflectRay.setStartX(intersectionBottomPrism[0]);
-                            internalReflectRay.setStartY(intersectionBottomPrism[1]);
-                            internalReflectRay.setEndX(internalReflectedRayEndX);
-                            internalReflectRay.setEndY(internalReflectedRayEndY);
-                            internalReflectRay.setStroke(Color.YELLOW);
-                            firstRefractRay.setEndX(intersectionBottomPrism[0]);
-                            firstRefractRay.setEndY(intersectionBottomPrism[1]);
-                            
-                            
-                            //Refraction after internal reflection
-                            refractMethod.refractThings(intersectionBottomPrism,
+                        //Set ReflectRay proporties
+                        internalReflectRay.setStartX(intersectionBottomPrism[0]);
+                        internalReflectRay.setStartY(intersectionBottomPrism[1]);
+                        internalReflectRay.setEndX(internalReflectedRayEndX);
+                        internalReflectRay.setEndY(internalReflectedRayEndY);
+                        internalReflectRay.setStroke(Color.YELLOW);
+                        firstRefractRay.setEndX(intersectionBottomPrism[0]);
+                        firstRefractRay.setEndY(intersectionBottomPrism[1]);
+
+                        //Refraction after internal reflection
+                        refractMethod.refractThings(intersectionBottomPrism,
                                 internalReflectedRayEndPoint, startingPointOfRightLineOfPrism,
                                 endingPointOfRightLineOfPrism, lightRay, secondNormal,
                                 secondRefractRay, "Air");
-                            
-                            double[] intersectionInternalWithRightPrismLine = refractMethod.findIntersection(
-                            intersectionBottomPrism,
-                            internalReflectedRayEndPoint,
-                            startingPointOfRightLineOfPrism, endingPointOfRightLineOfPrism);
+
+                        double[] intersectionInternalWithRightPrismLine = refractMethod.findIntersection(
+                                intersectionBottomPrism,
+                                internalReflectedRayEndPoint,
+                                startingPointOfRightLineOfPrism, endingPointOfRightLineOfPrism);
 
                         internalReflectRay.setEndX(intersectionInternalWithRightPrismLine[0]);
                         internalReflectRay.setEndY(intersectionInternalWithRightPrismLine[1]);
-                        
-                        
-                    }else {//Without internal reflection
+
+                    } else {//Without internal reflection
                         //Second Reflection
                         refractMethod.refractThings(reflectRayStartPoint,
                                 firstRefractedRayEndPoint, startingPointOfRightLineOfPrism,
@@ -324,26 +335,24 @@ public class LevelPageTwoController {
                         firstRefractRay.setEndX(intersectionWithRightPrismLine[0]);
                         firstRefractRay.setEndY(intersectionWithRightPrismLine[1]);
                     }
-                    
-                    
+
                     //determine refracted line and wall 
                     double[] startPofSecRefrRay = lineMethod.getTheStartPointOfLine(secondRefractRay);
-                        double[] endPofSecRefrRay = lineMethod.getTheEndPointOfLine(secondRefractRay);
-                        
+                    double[] endPofSecRefrRay = lineMethod.getTheEndPointOfLine(secondRefractRay);
+
                     double[] interesctPRefWithWallTwo = wallMethod.findIntersectionWithWall(
-                    startPofSecRefrRay, endPofSecRefrRay, wallTwo);
+                            startPofSecRefrRay, endPofSecRefrRay, wallTwo);
 
-            boolean isRefTouchingTheWallTwo = wallMethod.wallTouched(startPofSecRefrRay,
-                    endPofSecRefrRay, wallTwo);
+                    boolean isRefTouchingTheWallTwo = wallMethod.wallTouched(startPofSecRefrRay,
+                            endPofSecRefrRay, wallTwo);
 
-            if (isRefTouchingTheWallTwo) {
+                    if (isRefTouchingTheWallTwo) {
 
-                    secondRefractRay.setEndX(interesctPRefWithWallTwo[0]);
-                    secondRefractRay.setEndY(interesctPRefWithWallTwo[1]);
-            }else{
+                        secondRefractRay.setEndX(interesctPRefWithWallTwo[0]);
+                        secondRefractRay.setEndY(interesctPRefWithWallTwo[1]);
+                    } else {
 
                         //Find intersection of second refract ray with Mirror One 
-                        
                         double[] startPofMirrorOne = lineMethod.getTheStartPointOfLine(lineMirrorOne);
                         double[] endPofMirrorOne = lineMethod.getTheEndPointOfLine(lineMirrorOne);
 
@@ -413,16 +422,15 @@ public class LevelPageTwoController {
 
                         }
 
-            }
                     }
-                } //if the lightOne in wrong place
+                }
+            } //if the lightOne in wrong place
 //                else {
 //                    firstRefractRay.setStroke(Color.TRANSPARENT);
 //                    secondRefractRay.setStroke(Color.TRANSPARENT);
 //                    firstNormal.setStroke(Color.TRANSPARENT);
 //                    secondNormal.setStroke(Color.TRANSPARENT);
 //                }
-            
 
             boolean isInteresctWithDetector = detectorMethod.isIntersecting(secReflectRay.getStartX(),
                     secReflectRay.getStartY(), secReflectRay.getEndX(),
@@ -430,16 +438,16 @@ public class LevelPageTwoController {
                     detectorImageView.getLayoutY() + 25, 25);
 
             if (isInteresctWithDetector) {
-
+                timeline.stop();
                 //rotate the door
                 RotateTransition rotateDoor = new RotateTransition(Duration.seconds(2), doorImageView);
                 rotateDoor.setFromAngle(0);
                 rotateDoor.setToAngle(360);
                 rotateDoor.play();
 
-//                doorImageView.setImage(imageDoorOpened);
+                doorImageView.setImage(imageDoorOpened);
                 imageViewWin.setVisible(true);
-                
+
 //                                circleForImageLevelUp.setFill(new ImagePattern(imageLevelUp));
 //                                System.out.println("yes " + reflectRay.getBoundsInParent().getWidth());
             }

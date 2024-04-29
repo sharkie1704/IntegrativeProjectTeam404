@@ -1,0 +1,1 @@
+radial-gradient(focus-angle 0.0deg, focus-distance 16.092% , center 50.5525% 50.0%, radius 100.0%, #1bb8c9 0.0%, #ffffff 100.0%)

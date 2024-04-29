@@ -27,7 +27,7 @@
                <image>
                   <Image url="@../images/imageDoorClosed.png" />
                </image></ImageView>
-            <ImageView fx:id="detectorImageViewFOne" fitHeight="56.0" fitWidth="51.0" layoutX="384.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true" rotate="29.7">
+            <ImageView fx:id="detectorImageViewFOne" fitHeight="56.0" fitWidth="51.0" layoutX="385.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true" rotate="29.7">
                <image>
                   <Image url="@../images/imageDetector.png" />
                </image></ImageView>
@@ -65,9 +65,9 @@
                </image>
             </ImageView>
             <Slider fx:id="volumeSliderFOne" layoutX="808.0" layoutY="600.0" max="200.0" prefHeight="32.0" prefWidth="181.0" style="-fx-shape: circle;" value="50.0" />
-            <Text fx:id="usernameTextFOne" fill="#483ec2" layoutX="8.0" layoutY="22.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="1.5" text="Username" textAlignment="CENTER" wrappingWidth="96.0">
+            <Text fx:id="usernameTextFOne" fill="#483ec2" layoutX="9.0" layoutY="20.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="1.5" text="Username" wrappingWidth="215.0000000000001">
                <font>
-                  <Font name="Corbel Bold" size="18.0" />
+                  <Font name="Corbel Bold" size="21.0" />
                </font>
             </Text>
             <Text fx:id="levelTextFOne" fill="#96331b" layoutX="-2.0" layoutY="622.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="1.5" text="Level 1" textAlignment="CENTER" wrappingWidth="115.66846024891163">
@@ -75,9 +75,9 @@
                   <Font name="Microsoft JhengHei" size="29.0" />
                </font>
             </Text>
-            <Text fx:id="scoreTextFOne" fill="#483ec2" layoutX="858.0" layoutY="19.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="1.5" text="Score" wrappingWidth="123.79296875">
+            <Text fx:id="scoreTextFOne" fill="#483ec2" layoutX="845.0" layoutY="20.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="1.5" text="Score" wrappingWidth="123.79296875">
                <font>
-                  <Font name="Corbel Bold" size="18.0" />
+                  <Font name="Corbel Bold" size="21.0" />
                </font>
             </Text>
             <Text fx:id="gameOver" fill="#96331b" layoutX="389.0" layoutY="328.0" stroke="WHITE" strokeType="OUTSIDE" strokeWidth="1.5" text="GAME OVER" textAlignment="CENTER" visible="false" wrappingWidth="206.66846024891163">

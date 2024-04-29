@@ -34,7 +34,7 @@ public class LevelPageOneController {
     Pane gamePaneFOne;
 
     @FXML
-    Text scoreTextFOne, usernameTextFOne, gameOver;
+    Text scoreTextFOne, usernameTextFOne;
 
     @FXML
     Button btnNextGame;
@@ -59,20 +59,8 @@ public class LevelPageOneController {
 
     Player newPlayer;
     Stage stage;
-    int score = 10;
-    private final int initialScore = 100;
+    int score = 100000;
 
-//    LoginPageController loginPageController;
-//
-//    // Method to set the player
-//    public void setPlayer(Player player) {
-//        loginPageController.initialize();
-//        this.newPlayer = player;
-//        if (player != null) {
-//            // updateScoreText(); // Update score text when player is set
-//        }
-//    }
-//
     //Reflection, detector, and wall methods
     Reflection reflectionMethod = new Reflection();
     Detector detectorMethod = new Detector();
@@ -83,33 +71,37 @@ public class LevelPageOneController {
         scoreTextFOne.setText("Score: " + score);
     }
 
-    private void showFailMessage() {
-        gameOver.setVisible(true);
-    }
+//    private void showFailMessage() {
+//        gameOver.setVisible(true);
+//    }
+//
+//    private void resetGame() {
+//        //Reset score to initial value
+//        score = initialScore;
+//        gameOver.setVisible(false);
+//    }
+    public void initialize() throws FileNotFoundException, IOException {
 
-    private void resetGame() {
-        //Reset score to initial value
-        score = initialScore;
-        gameOver.setVisible(false);
-    }
+        btnNextGame.setVisible(false);
+        imageDoorOpened = new Image("/images/imageDoorOpened.png");
 
-public void initialize() throws FileNotFoundException {
+        newPlayer = new Player();
+        newPlayer.setUsername(newPlayer.importProgress());
+        System.out.println(newPlayer.getUsername());
+
+        if (newPlayer != null) {
+            usernameTextFOne.setText(newPlayer.getUsername());
+        }
+
         // Create a Timeline to update the score every second
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(0.05), event -> {
             if (score > 0) {
                 score--;
-            } else {
-                // Score is zero, game failed
-                showFailMessage();
-                resetGame();
             }
             updateScoreText();
         }));
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.play();
-
-        btnNextGame.setVisible(false);
-        imageDoorOpened = new Image("/images/imageDoorOpened.png");
 
         //Audio files
         URL urlsoundClick = this.getClass().getClassLoader().getResource("sounds/soundClick.mp3");
@@ -301,11 +293,10 @@ public void initialize() throws FileNotFoundException {
             try {
                 root = loader.load();
 
-} catch (IOException ex) {
+            } catch (IOException ex) {
 
-                Logger.getLogger(LevelPageOneController.class  
-
-.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(LevelPageOneController.class
+                        .getName()).log(Level.SEVERE, null, ex);
             }
             Scene scene = new Scene(root);
             stage.setScene(scene);
