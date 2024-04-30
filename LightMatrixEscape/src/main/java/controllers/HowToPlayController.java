@@ -28,9 +28,11 @@ public class HowToPlayController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/game_page_layout.fxml"));
             LevelPageOneController fxmlController = new LevelPageOneController();
             loader.setController(fxmlController);
+            
+            Pane root = null;
+            
             fxmlController.giveStage(stage);
 
-            Pane root = null;
             try {
                 root = loader.load();
             } catch (IOException ex) {

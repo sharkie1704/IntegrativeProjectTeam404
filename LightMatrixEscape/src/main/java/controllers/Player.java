@@ -20,9 +20,18 @@ public class Player {
     private int levelProgress;
     private int score;
     String str = null;
-    File playerFile = new File("C:\\Users\\Alaa Mellah\\Documents\\GitHub\\IntegrativeProjectTeam404\\LightMatrixEscape\\src\\main\\resources\\data\\player.txt");
-    
+    String fileName = "player";
+//    File playerFile = new File("C:\\Users\\Alaa Mellah\\Documents\\GitHub\\IntegrativeProjectTeam404\\LightMatrixEscape\\src\\main\\resources\\data\\player.txt");
+
+     File playerFile = new File(findFilePath(fileName));
     public Player() {
+
+    }
+
+    public String findFilePath(String fileName) {
+        File file = new File(fileName);
+        String path = file.getAbsolutePath();
+        return path;
 
     }
 
@@ -34,6 +43,8 @@ public class Player {
 
     //This method saves the progress of the user in a txt file
     public void saveProgress() {
+       
+
         String scoreData = "Username: " + username;
         //String progressData = "The player " + username + " is at level: " + levelProgress;
 
