@@ -25,7 +25,7 @@ import javafx.util.Duration;
 
 /**
  *
- * @author Hongyan Li and Ishrak
+ * @author Hongyan Li,Ishrak and Ntela
  */
 public class LevelPageTwoController {
 
@@ -36,7 +36,7 @@ public class LevelPageTwoController {
     Slider volumeSlider;
 
     @FXML
-    Rectangle mirrorOne, mirrorTwo;
+    Rectangle mirrorTwo, mirrorOne,mirrorOneClone,mirrorTwoClone;
 
     @FXML
     Line lineMirrorOne, lineMirrorTwo;
@@ -64,7 +64,12 @@ public class LevelPageTwoController {
 
     Stage stage;
     int score = 100000;
-
+    
+    double xCoordOne;
+    double yCoordOne;
+    double xCoordTwo;
+    double yCoordTwo;
+    
     Refraction refractMethod = new Refraction();
     Reflection reflectionMethod = new Reflection();
     Detector detectorMethod = new Detector();
@@ -99,6 +104,153 @@ public class LevelPageTwoController {
         MusicGame.volumeProperty().bind(volumeSlider.valueProperty());
         //MusicGame.play();
 
+        
+        // Movement for horizontal mirror (MirrorOne)
+
+        Line lineMirrorOneClone = new Line(lineMirrorOne.getStartX(), 
+                lineMirrorOne.getStartY(), lineMirrorOne.getEndX(), 
+                lineMirrorOne.getEndY());
+        
+        lineMirrorOneClone.setStroke(Color.HOTPINK);
+        gamePane.getChildren().add(lineMirrorOneClone);
+        lineMirrorOneClone.setVisible(false);
+ 
+        double originalStartXOne = lineMirrorOne.getStartX();
+        double originalEndXOne = lineMirrorOne.getEndX();
+        
+        ///// The Lower section is for moving a object \\\\\ 
+        double originalXCoordOne = mirrorOne.getTranslateX();
+
+        
+        double adjustX = mirrorOne.getLayoutX()-mirrorOneClone.getLayoutX();
+
+        
+        // - Takes coordinates of the object in the scene when pressed
+        mirrorOne.setOnMousePressed(event->{
+            xCoordOne = event.getSceneX()-mirrorOne.getTranslateX();
+            yCoordOne = event.getSceneY()-mirrorOne.getTranslateY();
+            
+        });
+        
+        
+        // - Changes coordinates of the object in the scene when dragged
+        mirrorOne.setOnMouseDragged(event->{
+            
+            double moveX = event.getSceneX()- xCoordOne;
+            
+            mirrorOne.setTranslateX(moveX);
+            lineMirrorOne.setTranslateX(moveX);
+            if(mirrorOne.getBoundsInParent().getMinX()< 415){
+                mirrorOne.setTranslateX(-114);
+                lineMirrorOne.setTranslateX(-114);
+                
+            }
+
+            if(mirrorOne.getBoundsInParent().getMaxX()> gamePane.getLayoutBounds().getWidth()){
+                mirrorOne.setTranslateX((gamePane.getLayoutBounds().getWidth())/2- mirrorOne.getWidth()/2 -adjustX);
+                lineMirrorOne.setTranslateX((gamePane.getLayoutBounds().getWidth())/2- mirrorOne.getWidth()/2 -adjustX);
+            }
+
+        });
+        
+
+        // - Puts back object in original coordnates if in contact with another object
+        mirrorOne.setOnMouseReleased(event->{
+        if(mirrorOne.getBoundsInParent().intersects(wallFour.getBoundsInParent())
+                ){
+                    mirrorOne.setTranslateX(originalXCoordOne);
+                    lineMirrorOne.setTranslateX(originalXCoordOne);
+                }
+            lineMirrorOneClone.setStartX(originalStartXOne+lineMirrorOne.getTranslateX());
+            lineMirrorOneClone.setEndX(originalEndXOne+lineMirrorOne.getTranslateX());
+        });
+        
+        
+        // Movement for mirror (MirrorTwo)
+        //-> only modified the names to fit the things (didn't test it yet)
+         //Create the clone of mirrorTwo
+        Line lineMirrorTwoClone = new Line(lineMirrorTwo.getStartX(), 
+                lineMirrorTwo.getStartY(), lineMirrorTwo.getEndX(), 
+                lineMirrorTwo.getEndY());
+        lineMirrorTwoClone.setStroke(Color.HOTPINK);
+        gamePane.getChildren().add(lineMirrorTwoClone);
+        lineMirrorTwoClone.setVisible(false);
+        
+        double originalLineXTwo = lineMirrorTwo.getStartX();
+        double originalStartYTwo = lineMirrorTwo.getStartY();
+        double originalEndYTwo = lineMirrorTwo.getEndY();
+        ///// The Lower section is for moving a object \\\\\ 
+        double originalXCoordTwo = mirrorTwo.getTranslateX();
+        double originalYCoordTwo = mirrorTwo.getTranslateY();
+        
+        double adjustXTwo = mirrorTwo.getLayoutX()-mirrorTwoClone.getLayoutX();
+        double adjustYTwo = mirrorTwo.getLayoutY()-mirrorTwoClone.getLayoutY();
+        
+        // - Takes coordinates of the object in the scene when pressed
+        mirrorTwo.setOnMousePressed(event->{
+            xCoordTwo = event.getSceneX()-mirrorTwo.getTranslateX();
+            yCoordTwo = event.getSceneY()-mirrorTwo.getTranslateY();
+            
+        });
+        
+        
+        // - Changes coordinates of the object in the scene when dragged
+        mirrorTwo.setOnMouseDragged(event->{
+            
+            double moveX = event.getSceneX()- xCoordTwo;
+            
+            mirrorTwo.setTranslateX(moveX);
+            lineMirrorTwo.setTranslateX(moveX);
+            if(mirrorTwo.getBoundsInParent().getMinX()< mirrorTwoClone.getBoundsInParent().getMinX()){
+                mirrorTwo.setTranslateX(mirrorTwo.getWidth()-adjustXTwo);
+                lineMirrorTwo.setTranslateX(mirrorTwo.getWidth()-adjustXTwo);
+                
+            }
+
+            if(mirrorTwo.getBoundsInParent().getMaxX()> gamePane.getLayoutBounds().getWidth()){
+                mirrorTwo.setTranslateX((gamePane.getLayoutBounds().getWidth())/2 -adjustXTwo);
+                lineMirrorTwo.setTranslateX((gamePane.getLayoutBounds().getWidth())/2 -adjustXTwo);
+            }
+                
+            
+            double moveY = event.getSceneY()- yCoordTwo;
+            mirrorTwo.setTranslateY(moveY);
+            lineMirrorTwo.setTranslateY(moveY);
+            
+            if(mirrorTwo.getBoundsInParent().getMinY()< 0){
+                mirrorTwo.setTranslateY(-(gamePane.getLayoutBounds().getHeight())/2 + mirrorTwo.getHeight()/3-adjustYTwo);
+                lineMirrorTwo.setTranslateY(-(gamePane.getLayoutBounds().getHeight())/2 + mirrorTwo.getHeight()/3-adjustYTwo);
+                
+            }
+            
+            if(mirrorTwo.getBoundsInParent().getMaxY()> gamePane.getLayoutBounds().getHeight()){
+                mirrorTwo.setTranslateY((gamePane.getLayoutBounds().getHeight())/2 - mirrorTwo.getHeight()/2-adjustYTwo);
+                lineMirrorTwo.setTranslateY((gamePane.getLayoutBounds().getHeight())/2 - mirrorTwo.getHeight()/2-adjustYTwo);
+            }
+            
+        });
+        
+
+        // - Puts back object in original coordnates if in contact with another object
+        mirrorTwo.setOnMouseReleased(event->{
+        if(mirrorTwo.getBoundsInParent().intersects(wallOne.getBoundsInParent()) ||
+                mirrorTwo.getBoundsInParent().intersects(wallTwo.getBoundsInParent())||
+                mirrorTwo.getBoundsInParent().intersects(wallThree.getBoundsInParent())||
+                mirrorTwo.getBoundsInParent().intersects(wallFour.getBoundsInParent())
+                ){
+                    mirrorTwo.setTranslateX(originalXCoordTwo);
+                    mirrorTwo.setTranslateY(originalYCoordTwo);
+                    lineMirrorOne.setTranslateY(originalXCoordTwo);
+                    lineMirrorOne.setTranslateY(originalYCoordTwo);
+                }
+        
+            lineMirrorTwoClone.setStartX(originalLineXTwo+lineMirrorTwo.getTranslateX());
+            lineMirrorTwoClone.setEndX(originalLineXTwo+lineMirrorTwo.getTranslateX());
+            lineMirrorTwoClone.setStartY(originalStartYTwo+lineMirrorTwo.getTranslateY());
+            lineMirrorTwoClone.setEndY(originalEndYTwo+lineMirrorTwo.getTranslateY());
+            
+        });
+        
         //Create lines of ray
         lightRay.setStrokeWidth(5);
 
@@ -353,11 +505,11 @@ public class LevelPageTwoController {
                     } else {
 
                         //Find intersection of second refract ray with Mirror One 
-                        double[] startPofMirrorOne = lineMethod.getTheStartPointOfLine(lineMirrorOne);
-                        double[] endPofMirrorOne = lineMethod.getTheEndPointOfLine(lineMirrorOne);
+                        double[] startPofMirrorOne = lineMethod.getTheStartPointOfLine(lineMirrorOneClone);
+                        double[] endPofMirrorOne = lineMethod.getTheEndPointOfLine(lineMirrorOneClone);
 
                         boolean isTouchingTheMirrorOne = wallMethod.wallTouched(startPofSecRefrRay,
-                                endPofSecRefrRay, lineMirrorOne);
+                                endPofSecRefrRay, lineMirrorOneClone);
 
                         if (isTouchingTheMirrorOne) {
                             double[] intersectionWithMirrorOne = reflectionMethod.findIntersection(startPofSecRefrRay,
@@ -388,11 +540,11 @@ public class LevelPageTwoController {
                         //determine ray with mirror two
                         double[] startPofFirstReflRay = lineMethod.getTheStartPointOfLine(firstReflectRay);
                         double[] endPofFirstReflRay = lineMethod.getTheEndPointOfLine(firstReflectRay);
-                        double[] startPofMirrorTwo = lineMethod.getTheStartPointOfLine(lineMirrorTwo);
-                        double[] endPofMirrorTwo = lineMethod.getTheEndPointOfLine(lineMirrorTwo);
+                        double[] startPofMirrorTwo = lineMethod.getTheStartPointOfLine(lineMirrorTwoClone);
+                        double[] endPofMirrorTwo = lineMethod.getTheEndPointOfLine(lineMirrorTwoClone);
 
                         boolean secReflectRayIsTouchingTheMirrorTwo = wallMethod.wallTouched(startPofFirstReflRay,
-                                endPofFirstReflRay, lineMirrorTwo);
+                                endPofFirstReflRay, lineMirrorTwoClone);
 
                         if (secReflectRayIsTouchingTheMirrorTwo) {
 //                                System.out.println("Touching Mirror Two");

@@ -33,7 +33,7 @@
             <Line fx:id="wallThree" endX="450.0" endY="220.0" startX="500.0" startY="50.0" stroke="#544d4d" strokeWidth="10.0" />
             <Rectangle fx:id="flashlight" arcHeight="5.0" arcWidth="5.0" fill="#ffb01f" height="66.0" layoutX="55.0" layoutY="454.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="34.0" />
             <Line fx:id="wallOne" endX="300.0" endY="370.0" fill="#544d4d" startX="70.0" startY="350.0" stroke="#544d4d" strokeWidth="10.0" />
-            <Rectangle fx:id="mirrorOne" arcHeight="5.0" arcWidth="5.0" height="14.0" layoutX="706.0" layoutY="424.0" rotate="-90.0" stroke="BLACK" strokeType="INSIDE" width="161.0">
+            <Rectangle fx:id="mirrorTwo" arcHeight="5.0" arcWidth="5.0" height="161.0" layoutX="780.0" layoutY="350.0" stroke="BLACK" strokeType="INSIDE" width="14.0">
                <fill>
                   <RadialGradient centerX="0.5" centerY="0.495260663507109" cycleMethod="REFLECT" radius="0.7758620689655172">
                      <stops>
@@ -57,7 +57,7 @@
                   <Image url="@../images/imagePrism.png" />
                </image>
             </ImageView>
-            <Rectangle fx:id="mirrorTwo" arcHeight="5.0" arcWidth="5.0" height="14.0" layoutX="529.0" layoutY="556.0" stroke="BLACK" strokeType="INSIDE" width="161.0">
+            <Rectangle fx:id="mirrorOne" arcHeight="5.0" arcWidth="5.0" height="14.0" layoutX="529.0" layoutY="556.0" stroke="BLACK" strokeType="INSIDE" width="161.0">
                <fill>
                   <RadialGradient centerX="0.5" centerY="0.495260663507109" cycleMethod="REFLECT" radius="0.7758620689655172">
                      <stops>
@@ -84,8 +84,8 @@
             <Line fx:id="lineBorderLeft" endY="634.0" />
             <Line fx:id="lineBorderBottom" endX="1000.0" endY="700.0" layoutY="-67.0" startY="700.0" />
             <Line fx:id="lineBorderRight" endX="900.0" endY="634.0" layoutX="100.0" startX="900.0" />
-            <Line fx:id="lineMirrorOne" endX="690.0" endY="556.0" startX="529.0" startY="556.0" />
-            <Line fx:id="lineMirrorTwo" endX="780.0" endY="510.0" startX="780.0" startY="350.0" />
+            <Line fx:id="lineMirrorOne" endX="690.0" endY="556.0" startX="529.0" startY="556.0" visible="false" />
+            <Line fx:id="lineMirrorTwo" endX="780.0" endY="510.0" startX="780.0" startY="350.0" visible="false" />
             <ImageView fx:id="imageViewWin" fitHeight="287.0" fitWidth="382.0" layoutX="547.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../images/imageWin.jpg" />
@@ -112,6 +112,42 @@
                   <Font name="Corbel Bold" size="21.0" />
                </font>
             </Text>
+            <Rectangle fx:id="mirrorOneClone" arcHeight="5.0" arcWidth="5.0" height="14.0" layoutX="427.0" layoutY="310.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="161.0">
+               <fill>
+                  <RadialGradient centerX="0.5" centerY="0.495260663507109" cycleMethod="REFLECT" radius="0.7758620689655172">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.1757514476776123" green="0.48981982469558716" blue="0.7836257219314575" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </fill>
+            </Rectangle>
+            <Rectangle fx:id="mirrorTwoClone" arcHeight="5.0" arcWidth="5.0" height="161.0" layoutX="500.0" layoutY="237.0" stroke="BLACK" strokeType="INSIDE" visible="false" width="14.0">
+               <fill>
+                  <RadialGradient centerX="0.5" centerY="0.495260663507109" cycleMethod="REFLECT" radius="0.7758620689655172">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="0.2651072144508362" green="0.5632228851318359" blue="0.8421052694320679" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </RadialGradient>
+               </fill>
+            </Rectangle>
          </children></Pane>
       <MediaView fx:id="mediaView" fitHeight="10.0" fitWidth="50.0" layoutX="662.0" layoutY="681.0" />
    </children>

@@ -20,6 +20,7 @@ import javafx.scene.media.AudioClip;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Ellipse;
 import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -31,7 +32,7 @@ import javafx.util.Duration;
 public class LevelPageOneController {
 
     @FXML
-    Pane gamePaneFOne;
+    Pane gamePaneFOne,Pane1FOne;
 
     @FXML
     Text scoreTextFOne, usernameTextFOne;
@@ -56,7 +57,13 @@ public class LevelPageOneController {
 
     @FXML
     Ellipse lightBulbFOne;
-
+    
+    @FXML
+    Rectangle mirror1FOne,mirror1FOneClone;
+    
+    double xCoord;
+    double yCoord;
+    
     Player newPlayer;
     Stage stage;
     int score = 100000;
@@ -124,17 +131,103 @@ public class LevelPageOneController {
 //        scoreText.setText("Score: " + player.getScore());
 //        player.scoreProperty().addListener((obs, oldScore, newScore) -> {
 //            scoreText.setText("Score: " + newScore.intValue());
+
+        //Create mirror one
+        Line lineMirrorOne = new Line(845, 385, 845, 220);
+        lineMirrorOne.setStroke(Color.BLUE);
+        gamePaneFOne.getChildren().add(lineMirrorOne);
+        lineMirrorOne.setVisible(false);
+        
+        
+        Line lineMirrorOneClone = new Line(845, 385, 845, 220);
+        lineMirrorOneClone.setStroke(Color.HOTPINK);
+        gamePaneFOne.getChildren().add(lineMirrorOneClone);
+        lineMirrorOneClone.setVisible(false);
+        
+        double originalLineX = 845;
+        double originalStartY = 385;
+        double originalEndY = 220;
+        ///// The Lower section is for moving a object \\\\\ 
+        double originalXCoord = mirror1FOne.getTranslateX();
+        double originalYCoord = mirror1FOne.getTranslateY();
+        
+        double adjustX = mirror1FOne.getLayoutX()-mirror1FOneClone.getLayoutX();
+        double adjustY = mirror1FOne.getLayoutY()-mirror1FOneClone.getLayoutY();
+        
+        // - Takes coordinates of the object in the scene when pressed
+        mirror1FOne.setOnMousePressed(event->{
+            xCoord = event.getSceneX()-mirror1FOne.getTranslateX();
+            yCoord = event.getSceneY()-mirror1FOne.getTranslateY();
+            
+        });
+        
+        
+        // - Changes coordinates of the object in the scene when dragged
+        mirror1FOne.setOnMouseDragged(event->{
+            
+            double moveX = event.getSceneX()- xCoord;
+            
+            mirror1FOne.setTranslateX(moveX);
+            lineMirrorOne.setTranslateX(moveX);
+            if(mirror1FOne.getBoundsInParent().getMinX()< mirror1FOneClone.getBoundsInParent().getMinX()){
+                mirror1FOne.setTranslateX( mirror1FOne.getWidth()-adjustX);
+                lineMirrorOne.setTranslateX(mirror1FOne.getWidth()-adjustX);
+                
+            }
+
+            if(mirror1FOne.getBoundsInParent().getMaxX()> gamePaneFOne.getLayoutBounds().getWidth()){
+                mirror1FOne.setTranslateX((gamePaneFOne.getLayoutBounds().getWidth())/2 -adjustX);
+                lineMirrorOne.setTranslateX((gamePaneFOne.getLayoutBounds().getWidth())/2 -adjustX);
+            }
+                
+            
+            double moveY = event.getSceneY()- yCoord;
+            mirror1FOne.setTranslateY(moveY);
+            lineMirrorOne.setTranslateY(moveY);
+            
+            if(mirror1FOne.getBoundsInParent().getMinY()< 0){
+                mirror1FOne.setTranslateY(-(gamePaneFOne.getLayoutBounds().getHeight())/2 + mirror1FOne.getHeight()/3-adjustY);
+                lineMirrorOne.setTranslateY(-(gamePaneFOne.getLayoutBounds().getHeight())/2 + mirror1FOne.getHeight()/3-adjustY);
+                
+            }
+            
+            if(mirror1FOne.getBoundsInParent().getMaxY()> gamePaneFOne.getLayoutBounds().getHeight()){
+                mirror1FOne.setTranslateY((gamePaneFOne.getLayoutBounds().getHeight())/2 - mirror1FOne.getHeight()/2-adjustY);
+                lineMirrorOne.setTranslateY((gamePaneFOne.getLayoutBounds().getHeight())/2 - mirror1FOne.getHeight()/2-adjustY);
+            }
+            
+        });
+        
+
+        // - Puts back object in original coordnates if in contact with another object
+        mirror1FOne.setOnMouseReleased(event->{
+        if(mirror1FOne.getBoundsInParent().intersects(lineWallOne.getBoundsInParent()) ||
+                mirror1FOne.getBoundsInParent().intersects(lineWallTwo.getBoundsInParent())||
+                mirror1FOne.getBoundsInParent().intersects(lineWallThree.getBoundsInParent())||
+                mirror1FOne.getBoundsInParent().intersects(lineWallFour.getBoundsInParent())
+                ){
+                    mirror1FOne.setTranslateX(originalXCoord);
+                    mirror1FOne.setTranslateY(originalYCoord);
+                    lineMirrorOne.setTranslateY(originalXCoord);
+                    lineMirrorOne.setTranslateY(originalYCoord);
+                }
+        
+            lineMirrorOneClone.setStartX(originalLineX+lineMirrorOne.getTranslateX());
+            lineMirrorOneClone.setEndX(originalLineX+lineMirrorOne.getTranslateX());
+            lineMirrorOneClone.setStartY(originalStartY+lineMirrorOne.getTranslateY());
+            lineMirrorOneClone.setEndY(originalEndY+lineMirrorOne.getTranslateY());
+            
+        });
+    
+    
+
         //Create ray
         Line lightRay = new Line(lightBulbFOne.getLayoutX(), lightBulbFOne.getLayoutY(), 100, 400);
         lightRay.setStroke(Color.YELLOW);
         lightRay.setStrokeWidth(5);
         gamePaneFOne.getChildren().add(lightRay);
-
-        //Create mirror one
-        Line lineMirrorOne = new Line(845, 380, 845, 255);
-        lineMirrorOne.setStroke(Color.BLUE);
-        gamePaneFOne.getChildren().add(lineMirrorOne);
-
+        
+        
         Line reflectRay = new Line(0, 0, 0, 0);
 
         //Whatever position and length of reflectRay, since this will change later.
@@ -156,8 +249,8 @@ public class LevelPageOneController {
             double[] startingPointOfRay = {lightRay.getStartX(), lightRay.getStartY()}; // The starting point of ray
             double[] endingPointOfRay = {event.getX(), event.getY()}; // The end point of ray
             double[] eventEndingPointOfRay = {event.getX(), event.getY()}; // The event point of ray
-            double[] startingPointOfMirrorOne = {lineMirrorOne.getStartX(), lineMirrorOne.getStartY()}; // The starting point of wall
-            double[] endingPointOfMirrorOne = {lineMirrorOne.getEndX(), lineMirrorOne.getEndY()}; // The end point of line segment CD (wall
+            double[] startingPointOfMirrorOne = {lineMirrorOneClone.getStartX(), lineMirrorOneClone.getStartY()}; // The starting point of wall
+            double[] endingPointOfMirrorOne = {lineMirrorOneClone.getEndX(), lineMirrorOneClone.getEndY()}; // The end point of line segment CD (wall
 
             touchingTheBorder(startingPointOfRay, eventEndingPointOfRay, lightRay, reflectRay);
 
@@ -229,7 +322,8 @@ public class LevelPageOneController {
                             startingPointOfRay, endingPointOfRay,
                             startingPointOfMirrorOne, endingPointOfMirrorOne);
 
-                    if (intersection[1] > 390 || intersection[1] < 225) {
+                    if (intersection[1] > lineMirrorOneClone.getStartY()
+                            || intersection[1] < lineMirrorOneClone.getEndY()) {
 //                        touchingTheBorder(startingPointOfRay, eventEndingPointOfRay, lightRay, reflectRay);
                         reflectRay.setStroke(Color.TRANSPARENT);
                     } else if (eventEndingPointOfRay[0] > lightBulbFOne.getLayoutX()) {
