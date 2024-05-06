@@ -84,8 +84,8 @@
             <Line fx:id="lineBorderLeft" endY="634.0" />
             <Line fx:id="lineBorderBottom" endX="1000.0" endY="700.0" layoutY="-67.0" startY="700.0" />
             <Line fx:id="lineBorderRight" endX="900.0" endY="634.0" layoutX="100.0" startX="900.0" />
-            <Line fx:id="lineMirrorOne" endX="690.0" endY="556.0" startX="529.0" startY="556.0" />
-            <Line fx:id="lineMirrorTwo" endX="780.0" endY="510.0" startX="780.0" startY="350.0" />
+            <Line fx:id="lineMirrorOne" endX="690.0" endY="556.0" startX="529.0" startY="556.0" visible="false" />
+            <Line fx:id="lineMirrorTwo" endX="780.0" endY="510.0" startX="780.0" startY="350.0" visible="false" />
             <ImageView fx:id="imageViewWin" fitHeight="287.0" fitWidth="382.0" layoutX="547.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
                   <Image url="@../images/imageWin.jpg" />
