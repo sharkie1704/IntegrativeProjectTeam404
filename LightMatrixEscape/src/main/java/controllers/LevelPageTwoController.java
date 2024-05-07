@@ -543,7 +543,6 @@ public class LevelPageTwoController {
                                 endPofFirstReflRay, lineMirrorTwoClone);
 
                         if (secReflectRayIsTouchingTheMirrorTwo) {
-                            System.out.println("Touching Mirror Two");
                             double[] intersectionWithMirrorTwo = reflectionMethod.findIntersection(startPofFirstReflRay,
                                     endPofFirstReflRay, startPofMirrorTwo, endPofMirrorTwo);
 

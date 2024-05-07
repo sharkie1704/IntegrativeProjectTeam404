@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 
 public class mainClass extends Application {
 
