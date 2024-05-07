@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="JUnitTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2024-05-06T23:35:28" hostname="DESKTOP-UIFO0GO" time="0.049">
+  <properties/>
+  <testcase name="justAnExample()" classname="JUnitTest" time="0.049"/>
+  <system-out><![CDATA[This test method should run
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

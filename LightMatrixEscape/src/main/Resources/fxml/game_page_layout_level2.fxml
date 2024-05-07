@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane fx:id="gamePane" prefHeight="634.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="gamePane" prefHeight="634.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fx:id="backgroundImageView" fitHeight="634.0" fitWidth="1000.0" pickOnBounds="true">
          <image>
@@ -30,6 +30,11 @@
                <image>
                   <Image url="@../images/imageDetector.png" />
                </image></ImageView>
+            <ImageView fx:id="imageViewWin" fitHeight="287.0" fitWidth="382.0" layoutX="547.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" visible="false">
+               <image>
+                  <Image url="@../images/imageYouWin.png" />
+               </image>
+            </ImageView>
             <Line fx:id="wallThree" endX="450.0" endY="220.0" startX="500.0" startY="50.0" stroke="#544d4d" strokeWidth="10.0" />
             <Rectangle fx:id="flashlight" arcHeight="5.0" arcWidth="5.0" fill="#ffb01f" height="66.0" layoutX="55.0" layoutY="454.0" rotate="90.0" stroke="BLACK" strokeType="INSIDE" width="34.0" />
             <Line fx:id="wallOne" endX="300.0" endY="370.0" fill="#544d4d" startX="70.0" startY="350.0" stroke="#544d4d" strokeWidth="10.0" />
@@ -86,11 +91,6 @@
             <Line fx:id="lineBorderRight" endX="900.0" endY="634.0" layoutX="100.0" startX="900.0" />
             <Line fx:id="lineMirrorOne" endX="690.0" endY="556.0" startX="529.0" startY="556.0" visible="false" />
             <Line fx:id="lineMirrorTwo" endX="780.0" endY="510.0" startX="780.0" startY="350.0" visible="false" />
-            <ImageView fx:id="imageViewWin" fitHeight="287.0" fitWidth="382.0" layoutX="547.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true" visible="false">
-               <image>
-                  <Image url="@../images/imageWin.jpg" />
-               </image>
-            </ImageView>
             <ImageView fx:id="imageLightBulb" fitHeight="92.0" fitWidth="144.0" layoutX="6.0" layoutY="461.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/imageFlashLightLevelTwo.png" />
@@ -148,6 +148,8 @@
                   </RadialGradient>
                </fill>
             </Rectangle>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7e478f43" height="21.0" layoutX="402.0" layoutY="553.0" stroke="TRANSPARENT" strokeType="INSIDE" width="14.0" />
+            <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#7e478f43" height="21.0" layoutX="989.0" layoutY="551.0" stroke="TRANSPARENT" strokeType="INSIDE" width="14.0" />
          </children></Pane>
       <MediaView fx:id="mediaView" fitHeight="10.0" fitWidth="50.0" layoutX="662.0" layoutY="681.0" />
    </children>
