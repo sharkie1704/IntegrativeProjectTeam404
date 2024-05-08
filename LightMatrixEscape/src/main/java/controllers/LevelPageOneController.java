@@ -217,7 +217,7 @@ public class LevelPageOneController {
                 ){
                     mirror1FOne.setTranslateX(originalXCoord);
                     mirror1FOne.setTranslateY(originalYCoord);
-                    lineMirrorOne.setTranslateY(originalXCoord);
+                    lineMirrorOne.setTranslateX(originalXCoord);
                     lineMirrorOne.setTranslateY(originalYCoord);
                     lightRay.setEndX(lightRay.getStartX());
                     lightRay.setEndY(lightRay.getStartY());
