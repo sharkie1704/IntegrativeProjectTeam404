@@ -236,8 +236,8 @@ public class LevelPageTwoController {
                     || mirrorTwo.getBoundsInParent().intersects(wallFour.getBoundsInParent())) {
                 mirrorTwo.setTranslateX(originalXCoordTwo);
                 mirrorTwo.setTranslateY(originalYCoordTwo);
-                lineMirrorOne.setTranslateY(originalXCoordTwo);
-                lineMirrorOne.setTranslateY(originalYCoordTwo);
+                lineMirrorTwo.setTranslateX(originalXCoordTwo);
+                lineMirrorTwo.setTranslateY(originalYCoordTwo);
             }
 
             lineMirrorTwoClone.setStartX(originalLineXTwo + lineMirrorTwo.getTranslateX());
